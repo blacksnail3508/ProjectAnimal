@@ -1,25 +1,10 @@
 using LazyFramework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class GameServices
 {
     #region controller functions
-    public static void UpBtn()
-    {
-        Event<OnUserMove>.Post(new OnUserMove(MoveDirection.Up));
-    }
-    public static void DownBtn()
-    {
-        Event<OnUserMove>.Post(new OnUserMove(MoveDirection.Down));
-    }
-    public static void LeftBtn()
-    {
-        Event<OnUserMove>.Post(new OnUserMove(MoveDirection.Left));
-    }
-    public static void RightBtn()
-    {
-        Event<OnUserMove>.Post(new OnUserMove(MoveDirection.Right));
-    }
     public static void UndoBtn()
     {
         Event<OnUndo>.Post(new OnUndo());
@@ -46,8 +31,9 @@ public static class GameServices
     #region Gameplay infomations
     static Vector2 currentLevelSize;
     static float width => currentLevelSize.x;
-
     static float height => currentLevelSize.y;
+
+    static List<Animal> animals = new List<Animal>();
     public static void SaveCurrentLevelSize(float width , float height)
     {
         currentLevelSize=new Vector2(width , height);
@@ -59,7 +45,6 @@ public static class GameServices
 
         float deltaSize = MapLerp(screenResolution ,0.41f ,0.75f, 0f, 2f);
         camera.orthographicSize = mapSize + deltaSize;
-
     }
 
     public static Vector2 BoardPositionToLocalPosition(int valueX , int valueY)
@@ -75,6 +60,16 @@ public static class GameServices
         boardY=(int)(position.y+(float)height/2f);
 
         return new Vector2(boardX , boardY);
+    }
+
+    public static bool IsPositionMoveable(int x, int y)
+    {
+        foreach(var animal in  animals)
+        {
+            if (animal.IsOccupied(x , y)==true) return false;
+        }
+
+        return true;
     }
 
     public static int PlayerMove;
