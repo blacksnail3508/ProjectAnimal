@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dbc37378492304480a5142c625b117, type: 3}
+  m_Name: UIMenuPrefabs
+  m_EditorClassIdentifier: 
+  listMenuPrefabs:
+  - menuName: MenuGameplay
+    menuPrefab: {fileID: 5540246416568980581, guid: b14b58e3ae1b5cc4e9c05370eba8a159, type: 3}
+  - menuName: MenuMain
+    menuPrefab: {fileID: 7588057252549627389, guid: 491355a3aa4746d41be6612c8424a83f, type: 3}
+  - menuName: SkinMenu
+    menuPrefab: {fileID: 7588057252549627389, guid: 2c9486eb855840b4ebd537c85d2c49f3, type: 3}

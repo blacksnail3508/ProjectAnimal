@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7052b91dd3f32af49add6e3401cbe5fc, type: 3}
+  m_Name: Level4
+  m_EditorClassIdentifier: 
+  width: 4
+  height: 4
+  listObject:
+  - slotName: slot 0_0
+    valueX: 0
+    valueY: 0
+    objectType: 7
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 1_0
+    valueX: 1
+    valueY: 0
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 2_0
+    valueX: 2
+    valueY: 0
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 3_0
+    valueX: 3
+    valueY: 0
+    objectType: 2
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 0_1
+    valueX: 0
+    valueY: 1
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 1_1
+    valueX: 1
+    valueY: 1
+    objectType: 1
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 2_1
+    valueX: 2
+    valueY: 1
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 3_1
+    valueX: 3
+    valueY: 1
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 0_2
+    valueX: 0
+    valueY: 2
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 1_2
+    valueX: 1
+    valueY: 2
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 2_2
+    valueX: 2
+    valueY: 2
+    objectType: 3
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 3_2
+    valueX: 3
+    valueY: 2
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 0_3
+    valueX: 0
+    valueY: 3
+    objectType: 6
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 1_3
+    valueX: 1
+    valueY: 3
+    objectType: 3
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 2_3
+    valueX: 2
+    valueY: 3
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  - slotName: slot 3_3
+    valueX: 3
+    valueY: 3
+    objectType: 0
+    TargetPosition: {x: 0, y: 0}
+  dificulty: 0
+  solution: 
+  numberOfEnemy: 0
+  numberOfWall: 0
+  numberOfHole: 0
