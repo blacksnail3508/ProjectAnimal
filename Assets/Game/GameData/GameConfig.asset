@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dfeef43c9790174185c9873da10252b, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
-  bulletConfig:
-    bulletSpeed: 10
-  buffConfig:
-    ShieldStrength: 1
-  archerConfig:
-    ArcherMoveTime: 0.15
+  GateConfig:
+    AnimationTime: 0.5
