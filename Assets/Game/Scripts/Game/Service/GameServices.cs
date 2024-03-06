@@ -1,5 +1,4 @@
 using LazyFramework;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class GameServices
@@ -26,33 +25,6 @@ public static class GameServices
         Event<OnUndo>.Post(new OnUndo());
     }
     #endregion
-    #region game event
-    public static void ArcherShoot()
-    {
-        Event<OnArcherShoot>.Post(new OnArcherShoot());
-    }
-    public static void ArcherShootEnd()
-    {
-        Event<OnArcherShootEnd>.Post(new OnArcherShootEnd());
-    }
-    public static void OnEnemyShoot()
-    {
-        Event<OnEnemyShoot>.Post(new OnEnemyShoot());
-
-    }
-    public static void OnEnemyShootEnd()
-    {
-        Event<OnEnemyShootEnd>.Post(new OnEnemyShootEnd());
-
-    }
-    public static void OnArcherDie()
-    {
-        Event<OnArcherDie>.Post(new OnArcherDie());
-    }
-    public static void OnEnemyDie()
-    {
-        Event<OnEnemyDie>.Post(new OnEnemyDie());
-    }
     public static void OnPlayerTurn()
     {
         Event<OnPlayerTurn>.Post(new OnPlayerTurn());
@@ -67,32 +39,15 @@ public static class GameServices
         Event<OnWin>.Post(new OnWin());
         AdsService.ShowInter("win");
     }
-    #endregion
-    /// <summary>
-    /// Clear game play
-    /// </summary>
     public static void EndLevel()
     {
         Event<OnEndLevel>.Post(new OnEndLevel());
-    }
-#if UNITY_EDITOR
-    public static void OnAllSolutionGenerated()
-    {
-        Event<OnAllSolutionGenerated>.Post(new OnAllSolutionGenerated());
-    }
-#endif
-    public static GameState gameState;
-    public static void ChangeGameState(GameState _gameState)
-    {
-        gameState=_gameState;
     }
     #region Gameplay infomations
     static Vector2 currentLevelSize;
     static float width => currentLevelSize.x;
 
     static float height => currentLevelSize.y;
-    static List<BoardObject> AllBoardObject;
-
     public static void SaveCurrentLevelSize(float width , float height)
     {
         currentLevelSize=new Vector2(width , height);
@@ -106,71 +61,7 @@ public static class GameServices
         camera.orthographicSize = mapSize + deltaSize;
 
     }
-    public static void SaveLevelObjects(List<BoardObject> boardObjects)
-    {
-        AllBoardObject=boardObjects;
-    }
-    /// <summary>
-    /// Get the object that occupied board position
-    /// </summary>
-    /// <returns></returns>
-    private static List<BoardObject> result = new List<BoardObject>();
-    public static List<BoardObject> GetObjectsAtPosition(int x , int y)
-    {
-        result.Clear();
-        //check bound
-        if (x<0||y<0) return null;
-        if (x>width-1) return null;
-        if (y>height-1) return null;
 
-        //check obj
-        foreach (var obj in AllBoardObject)
-        {
-            if (obj.GetBoardPosition().x == x && obj.GetBoardPosition().y == y)
-            {
-                if (obj.gameObject.activeSelf == false)
-                {
-                }
-                else
-                {
-                    result.Add(obj);
-                }
-            }
-        }
-        return result;
-    }
-    public static bool IsPositionMoveable(int x , int y)
-    {
-        //check bound
-        if (x<0||y<0) return false;
-        if (x>width-1) return false;
-        if (y>height-1) return false;
-
-        //check all obj on board
-        foreach (var obj in AllBoardObject)
-        {
-            if (obj.GetBoardPosition().x == x && obj.GetBoardPosition().y == y)
-            {
-                if(obj.IsBlocked == true)
-                {
-                    return !obj.gameObject.activeSelf;
-                }
-                else
-                {
-                    return true;
-                }
-            }
-        }
-        return true;
-    }
-    public static bool IsBulletOnBoard(int x , int y)
-    {
-        if (x<0||y<0) return false;
-        if (x>width) return false;
-        if (y>height) return false;
-
-        return true;
-    }
     public static Vector2 BoardPositionToLocalPosition(int valueX , int valueY)
     {
         return new Vector2(valueX+0.5f-width/2f , valueY+0.5f-height/2f);
@@ -178,12 +69,12 @@ public static class GameServices
     public static Vector2 TransformPositionToBoardPosition(Vector2 position)
     {
         int boardX = 0;
-        int boardy = 0;
+        int boardY = 0;
 
         boardX=(int)(position.x+(float)width/2f);
-        boardy=(int)(position.y+(float)height/2f);
+        boardY=(int)(position.y+(float)height/2f);
 
-        return new Vector2(boardX , boardy);
+        return new Vector2(boardX , boardY);
     }
 
     public static int PlayerMove;
