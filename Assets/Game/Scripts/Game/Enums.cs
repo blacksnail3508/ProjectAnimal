@@ -3,47 +3,25 @@ public static class Enums
 {
 
 }
-public enum MoveDirection
+public enum GateOrientation
 {
-    Left,
-    Right,
-    Up,
-    Down
+    Horizontal = 0, Vertical = 1
+
 }
-public enum ObjectType
+public enum AnimalType
 {
-    None = 0,
-    Archer = 1,
-    //Enemy / trap 2-20
-    EnemyUp = 2,
-    EnemyDown = 3,
-    EnemyLeft = 4,
-    EnemyRight = 5,
-
-    BounceWallAcute = 6,
-    BounceWallGrave = 7,
-
-    Wall = 8,
-    Box = 9,
-
-    TurretUp = 10,
-    TurretDown = 11,
-    TurretLeft = 12,
-    TurretRight = 13,
-
-    //Collectible 21 - 30
-    Shield = 21,
-    Split = 22,
-
-    //environment 31 - 40
-    Teleport = 31,
-    IceSurface = 32,
-
-    //trap
-    SpikeTrap = 41,
+    Prey = 0,
+    Predator = 1,
 }
 public enum GameState
 {
     Idle,
     Playing,
+}
+public enum FaceDirection
+{
+    Up = 0,
+    Down = 1,
+    Left = 2,
+    Right = 3,
 }

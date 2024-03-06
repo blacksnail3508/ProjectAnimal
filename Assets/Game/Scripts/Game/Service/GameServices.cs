@@ -34,6 +34,11 @@ public static class GameServices
     static float height => currentLevelSize.y;
 
     static List<Animal> animals = new List<Animal>();
+    public static void AddAnimal(Animal animal)
+    {
+        if(animals.Contains(animal)) return;
+        animals.Add(animal);
+    }
     public static void SaveCurrentLevelSize(float width , float height)
     {
         currentLevelSize=new Vector2(width , height);
@@ -64,11 +69,26 @@ public static class GameServices
 
     public static bool IsPositionMoveable(int x, int y)
     {
-        foreach(var animal in  animals)
+        //if that pos is outside of board
+        if (x<0||y<0||x>=width||y>=height)
         {
-            if (animal.IsOccupied(x , y)==true) return false;
+            Bug.Log("out board movement");
+            return false;
         }
 
+        //if any animal stand on that
+        foreach(var animal in  animals)
+        {
+            if (animal.gameObject.activeSelf==true)
+            {
+                if (animal.IsOccupied(x , y)==true)
+                {
+                    Bug.Log("position occupied");
+                    return false;
+                }
+            }
+        }
+        Bug.Log("moveable");
         return true;
     }
 

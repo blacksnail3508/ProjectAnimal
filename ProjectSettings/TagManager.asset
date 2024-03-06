@@ -4,15 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bound
-  - Bullet
-  - Environment
-  - Character
+  - Animal
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Animal
   - Water
   - UI
   - 

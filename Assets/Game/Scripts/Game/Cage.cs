@@ -21,7 +21,7 @@ public class Cage : MonoBehaviour
 
     //private void Start()
     //{
-    //    Create(7 , 8);
+    //    Create(3 , 3);
     //}
 
     public void Create(int x , int y)
@@ -67,12 +67,12 @@ public class Cage : MonoBehaviour
             //spawn bottom gate
             var newGate1 = GetGate();
             newGate1.transform.localPosition=new Vector2(-(float)x/2f+0.5f+i , -(float)y/2f);
-            newGate1.Init(GateDirection.Bottom);
+            newGate1.Init(GateOrientation.Horizontal);
 
             //spawn top gate
             var newGate2 = GetGate();
             newGate2.transform.localPosition=new Vector2(-(float)x/2f+0.5f+i , (float)y/2f);
-            newGate2.Init(GateDirection.Top);
+            newGate2.Init(GateOrientation.Horizontal);
         }
 
         //spawn gates vertical
@@ -81,12 +81,12 @@ public class Cage : MonoBehaviour
             //spawn left gates
             var newGate1 = GetGate();
             newGate1.transform.localPosition=new Vector2(-(float)x/2f, -(float)y/2f+0.5f+i);
-            newGate1.Init(GateDirection.Left);
+            newGate1.Init(GateOrientation.Vertical);
 
             //spawn right gates
             var newGate2 = GetGate();
             newGate2.transform.localPosition=new Vector2((float)x/2f , -(float)y/2f+0.5f+i);
-            newGate2.Init(GateDirection.Right);
+            newGate2.Init(GateOrientation.Vertical);
         }
     }
 

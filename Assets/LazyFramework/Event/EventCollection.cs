@@ -152,14 +152,7 @@ namespace LazyFramework
     public class OnWin : IEvent { }
     public class OnLose : IEvent { }
     public class OnAllSolutionGenerated : IEvent { }
-    public class OnUserMove : IEvent
-    {
-        public MoveDirection direction;
-        public OnUserMove(MoveDirection direction)
-        {
-            this.direction=direction;
-        }
-    }
+
     public class OnUndo : IEvent { }
     public class OnEndLevel : IEvent { }
     #endregion

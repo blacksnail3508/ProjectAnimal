@@ -1,74 +1,38 @@
-using DG.Tweening;
 using UnityEngine;
 
 public class CageGate : MonoBehaviour
 {
     [SerializeField] GameConfig gameConfig;
 
-    [SerializeField] GateDirection direction;
-    [SerializeField] Transform leftGate;
-    [SerializeField] Transform rightGate;
-    [SerializeField] Transform topGate;
-    [SerializeField] Transform bottomGate;
+    [SerializeField] GateOrientation direction;
+    [SerializeField] Transform horizontalGate;
+    [SerializeField] Transform verticalGate;
 
-    public void Init(GateDirection direction)
+    public void Init(GateOrientation direction)
     {
-        switch (direction)
-        {
-            case GateDirection.Bottom:
-            case GateDirection.Top:
-                leftGate.gameObject.SetActive(true);
-                rightGate.gameObject.SetActive(true);
-                topGate.gameObject.SetActive(false);
-                bottomGate.gameObject.SetActive(false);
-                break;
-            case GateDirection.Left:
-            case GateDirection.Right:
-                leftGate.gameObject.SetActive(false);
-                rightGate.gameObject.SetActive(false);
-                topGate.gameObject.SetActive(true);
-                bottomGate.gameObject.SetActive(true);
-                break;
-        }
+        this.direction=direction;
+        Close();
     }
 
     public void Open()
     {
-        switch (direction)
-        {
-            case GateDirection.Bottom:
-                leftGate.DORotate(new Vector3(0 , 0 , -90) , gameConfig.GateConfig.AnimationTime);
-                rightGate.DORotate(new Vector3(0 , 0 , 90) , gameConfig.GateConfig.AnimationTime);
-                break;
-            case GateDirection.Top:
-                leftGate.DORotate(new Vector3(0 , 0 , 90) , gameConfig.GateConfig.AnimationTime);
-                rightGate.DORotate(new Vector3(0 , 0 , -90) , gameConfig.GateConfig.AnimationTime);
-                break;
-            case GateDirection.Left:
-                topGate.DORotate(new Vector3(0 , 0 , -90) , gameConfig.GateConfig.AnimationTime);
-                bottomGate.DORotate(new Vector3(0 , 0 , 90) , gameConfig.GateConfig.AnimationTime);
-                break;
-            case GateDirection.Right:
-                topGate.DORotate(new Vector3(0 , 0 , 90) , gameConfig.GateConfig.AnimationTime);
-                bottomGate.DORotate(new Vector3(0 , 0 , -90) , gameConfig.GateConfig.AnimationTime);
-                break;
-        }
-
+        horizontalGate.gameObject.SetActive(false);
+        verticalGate.gameObject.SetActive(false);
     }
 
     public void Close()
     {
-        leftGate.DORotate(Vector3.zero , gameConfig.GateConfig.AnimationTime);
-        rightGate.DORotate(Vector3.zero , gameConfig.GateConfig.AnimationTime);
-        topGate.DORotate(Vector3.zero , gameConfig.GateConfig.AnimationTime);
-        bottomGate.DORotate(Vector3.zero , gameConfig.GateConfig.AnimationTime);
-    }
-    public void CloseImmidiately()
-    {
-        leftGate.DORotate(Vector3.zero , 0);
-        rightGate.DORotate(Vector3.zero , 0);
-        topGate.DORotate(Vector3.zero , 0);
-        bottomGate.DORotate(Vector3.zero , 0);
+        switch (direction)
+        {
+            case GateOrientation.Horizontal:
+                horizontalGate.gameObject.SetActive(true);
+                verticalGate.gameObject.SetActive(false);
+                break;
+            case GateOrientation.Vertical:
+                horizontalGate.gameObject.SetActive(false);
+                verticalGate.gameObject.SetActive(true);
+                break;
+        }
     }
 
     public void ReturnPool()

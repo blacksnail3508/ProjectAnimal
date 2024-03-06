@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GateConfig:
     AnimationTime: 0.5
+  AnimalConfig:
+    tilePerSec: 8
