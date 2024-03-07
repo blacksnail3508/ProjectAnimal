@@ -13,11 +13,10 @@ public class ClickDetector : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition)
                 ,Vector2.zero , Mathf.Infinity , animalLayer);
 
-            if (hit.collider.CompareTag("Animal"))
+            if (hit.collider.CompareTag("Cannon"))
             {
-                Prey prey = hit.collider.GetComponent<Prey>();
-                prey.Move();
-                Bug.Log("Click on pig");
+                AnimalCannon cannon = hit.collider.GetComponent<AnimalCannon>();
+                cannon.Shoot();
             }
         }
     }

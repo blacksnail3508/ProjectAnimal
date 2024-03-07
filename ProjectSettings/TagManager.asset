@@ -4,12 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Animal
+  - Cannon
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Animal
+  - Cannon
   - Water
   - UI
   - 
@@ -41,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Collide
+    uniqueID: 3290366565
     locked: 0

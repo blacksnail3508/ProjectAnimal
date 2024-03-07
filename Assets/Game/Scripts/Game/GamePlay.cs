@@ -4,9 +4,6 @@ public class GamePlay : MonoBehaviour
 {
     [SerializeField] LevelAsset levelAsset;
     [SerializeField] Cage cage;
-    [SerializeField] Prey pigPrefab;
-
-    [SerializeField] Transform animalRoot;
 
     private void Start()
     {
@@ -16,14 +13,7 @@ public class GamePlay : MonoBehaviour
         cage.Create(3 , 3);
         GameServices.SaveCurrentLevelSize(3 , 3);
 
-        //spawn prey
-        var newPig = Instantiate(pigPrefab , animalRoot);
-        newPig.Init(FaceDirection.Up , 2 , 0 , -1);
-        GameServices.AddAnimal(newPig);
-
-        var newPig2 = Instantiate(pigPrefab , animalRoot);
-        newPig2.Init(FaceDirection.Up , 2 , 0 , -3);
-        GameServices.AddAnimal(newPig2);
+        //load animal to cannon
     }
     private void OnDestroy()
     {
@@ -38,13 +28,6 @@ public class GamePlay : MonoBehaviour
 
         //create game board
         cage.Create(sizeX, sizeY);
-
-        //spawn prey
-        var newPig = Instantiate(pigPrefab , animalRoot);
-        newPig.Init(FaceDirection.Up , 2 , 0 , -1);
-
-        //spawn predator
-
     }
     private void Subscribe()
     {

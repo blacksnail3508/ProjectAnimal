@@ -10,6 +10,8 @@ public static class GameServices
         Event<OnUndo>.Post(new OnUndo());
     }
     #endregion
+
+    #region user event
     public static void OnPlayerTurn()
     {
         Event<OnPlayerTurn>.Post(new OnPlayerTurn());
@@ -28,16 +30,17 @@ public static class GameServices
     {
         Event<OnEndLevel>.Post(new OnEndLevel());
     }
+    #endregion
     #region Gameplay infomations
+
     static Vector2 currentLevelSize;
     static float width => currentLevelSize.x;
     static float height => currentLevelSize.y;
 
-    static List<Animal> animals = new List<Animal>();
-    public static void AddAnimal(Animal animal)
+    static List<BoardObject> AllBoardObject;
+    public static void SaveLevelObjects(List<BoardObject> boardObjects)
     {
-        if(animals.Contains(animal)) return;
-        animals.Add(animal);
+        AllBoardObject=boardObjects;
     }
     public static void SaveCurrentLevelSize(float width , float height)
     {
@@ -52,38 +55,33 @@ public static class GameServices
         camera.orthographicSize = mapSize + deltaSize;
     }
 
-    public static Vector2 BoardPositionToLocalPosition(int valueX , int valueY)
+    public static Vector2 BoardPositionToLocalPosition(float valueX , float valueY)
     {
         return new Vector2(valueX+0.5f-width/2f , valueY+0.5f-height/2f);
     }
     public static Vector2 TransformPositionToBoardPosition(Vector2 position)
     {
-        int boardX = 0;
-        int boardY = 0;
-
-        boardX=(int)(position.x+(float)width/2f);
-        boardY=(int)(position.y+(float)height/2f);
-
-        return new Vector2(boardX , boardY);
+        return new Vector2((int)(position.x+(float)width/2f) , (int)(position.y+(float)height/2f));
     }
-
     public static bool IsPositionMoveable(int x, int y)
     {
         //if that pos is outside of board
         if (x<0||y<0||x>=width||y>=height)
         {
-            Bug.Log("out board movement");
+            Bug.Log("This position is outside of cage!");
             return false;
         }
 
         //if any animal stand on that
-        foreach(var animal in  animals)
+        foreach (var animal in AllBoardObject)
         {
-            if (animal.gameObject.activeSelf==true)
+            if (animal.gameObject.activeSelf == true)
             {
-                if (animal.IsOccupied(x , y)==true)
+                if (animal.IsOccupied(x , y) == true)
                 {
-                    Bug.Log("position occupied");
+                    Bug.Log("position occupied, not moveable");
+
+                    //position is occupied, moveable = false
                     return false;
                 }
             }
@@ -91,9 +89,35 @@ public static class GameServices
         Bug.Log("moveable");
         return true;
     }
+    private static List<BoardObject> result = new List<BoardObject>();
+    public static List<BoardObject> GetObjectsAtPosition(int x , int y)
+    {
+        result.Clear();
+        //check bound
+        if (x<0||y<0) return null;
+        if (x>width-1) return null;
+        if (y>height-1) return null;
+
+        //check obj
+        foreach (var obj in AllBoardObject)
+        {
+            if (obj.GetBoardPosition().x==x&&obj.GetBoardPosition().y==y)
+            {
+                if (obj.gameObject.activeSelf==false)
+                {
+                }
+                else
+                {
+                    result.Add(obj);
+                }
+            }
+        }
+        return result;
+    }
 
     public static int PlayerMove;
     #endregion
+    #region math ectension
     public static float MapLerp(float value , float from , float to , float outMin , float outMax)
     {
         // Clamp the input value to the specified range
@@ -102,4 +126,5 @@ public static class GameServices
         // Map the clamped value to the [outMin, outMax] range using lerp
         return Mathf.Lerp(outMax , outMin , Mathf.InverseLerp(from , to , value));
     }
+    #endregion
 }

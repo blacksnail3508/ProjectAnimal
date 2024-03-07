@@ -3,7 +3,7 @@ public static class Enums
 {
 
 }
-public enum GateOrientation
+public enum Orientation
 {
     Horizontal = 0, Vertical = 1
 
@@ -24,4 +24,9 @@ public enum FaceDirection
     Down = 1,
     Left = 2,
     Right = 3,
+}
+public enum ObjectType
+{
+    Animal = 0,
+
 }

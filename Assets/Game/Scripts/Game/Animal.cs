@@ -1,46 +1,108 @@
+using DG.Tweening;
 using UnityEngine;
 
-public abstract class Animal : MonoBehaviour
+public class Animal : BoardObject
 {
-    public int posX;
-    public int posY;
-    public AnimalType AnimalType;
+    [SerializeField] Transform sprite;
     public int bodyLength;
     public FaceDirection direction;
 
-    public abstract void Move();
-
-    public bool IsOccupied(int x , int y)
+    public void Move()
     {
-        //calculate size, direction and head position
-        if (direction==FaceDirection.Up)
-        {
-            if (posX-x == 0 &&
-                posY-y <= bodyLength-1 && posY-y>=0)
-            {
-                return true;
-            }
-        }
+        //parse enum direction to vector
+        var moveDirection = DirectionToVector(direction);
 
-        if (direction == FaceDirection.Right)
+        //check if next position is moveable
+        int nextX = positionX + (int)moveDirection.x;
+        int nextY = positionY + (int)moveDirection.y;
+        if (GameServices.IsPositionMoveable(nextX , nextY) == true)
         {
-            if (posX-x >= 0 && posX-x <= bodyLength-1&&
-                posY-y == 0)
+            //move tranform
+            transform.DOMove(transform.position+moveDirection , 0.5f).SetEase(Ease.Linear).OnComplete(() =>
             {
-                return true;
-            }
-        }
+                //update this position param
+                UpdatePositionOnBoard(nextX , nextY);
 
-        if (direction == FaceDirection.Down)
+                //repeat move sequence
+                Move();
+            });
+        }
+        else
         {
-            if (posX-x == 0 &&
-                posY-y <= bodyLength-1 && posY-y >= 0)
-            {
-                return true;
-            }
+            //Stop and check if it already get inside cage
         }
+    }
 
+    //calculate it position and bodyLength
+    public override bool IsOccupied(int x , int y)
+    {
+        //this head position
+        if(x == positionX && y == positionY) return true;
+
+        //tail position
+        switch (direction)
+        {
+            //facing right, that tail is one step on left
+            case FaceDirection.Right:
+                if ( x == positionX - 1 && y == positionY) return true;
+                break;
+
+            //facing left, tail is on the right
+            case FaceDirection.Left:
+                if ( x == positionX + 1 && y == positionY) return true;
+                break;
+
+            //facing up, tail is downward
+            case FaceDirection.Up:
+                if (x == positionX && y == positionY - 1) return true;
+                break;
+
+            //facing down, tail is upward
+            case FaceDirection.Down:
+                if (x == positionX && y == positionY + 1) return true;
+                break;
+        }
 
         return false;
+    }
+
+    private Vector3 DirectionToVector(FaceDirection direction)
+    {
+        switch (direction)
+        {
+            case FaceDirection.Up:
+                return Vector2.up;
+            case FaceDirection.Down:
+                return Vector2.down;
+            case FaceDirection.Left:
+                return Vector2.left;
+            case FaceDirection.Right:
+                return Vector2.right;
+            default: return Vector2.zero;
+        }
+    }
+    public int ChangeRotation(FaceDirection direction)
+    {
+        switch (direction)
+        {
+            case FaceDirection.Left:
+                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , 90));
+                return 90;
+            case FaceDirection.Right:
+                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , -90));
+                return -90;
+            case FaceDirection.Up:
+                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , 0));
+                return 0;
+            case FaceDirection.Down:
+                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , -180));
+                return -180;
+        }
+        return 0;
+    }
+    private void UpdatePositionOnBoard(int x , int y)
+    {
+        this.positionX=x;
+        this.positionY=y;
     }
 }
