@@ -1,6 +1,7 @@
 using LazyFramework;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public static class GameServices
 {
@@ -19,17 +20,26 @@ public static class GameServices
     public static void OnLose()
     {
         Event<OnLose>.Post(new OnLose());
-        AdsService.ShowInter("lose");
     }
     public static void OnWin()
     {
         Event<OnWin>.Post(new OnWin());
-        AdsService.ShowInter("win");
     }
     public static void EndLevel()
     {
         Event<OnEndLevel>.Post(new OnEndLevel());
     }
+
+    public static void OnCannonLoaded(int count)
+    {
+        Event<OnCannonLoaded>.Post(new OnCannonLoaded(count));
+    }
+
+    public static void OnCannonShot()
+    {
+        Event<OnCannonShot>.Post(new OnCannonShot());
+    }
+
     #endregion
     #region Gameplay infomations
 
@@ -37,14 +47,30 @@ public static class GameServices
     static float width => currentLevelSize.x;
     static float height => currentLevelSize.y;
 
-    static List<BoardObject> AllBoardObject;
-    public static void SaveLevelObjects(List<BoardObject> boardObjects)
+    public static List<BoardObject> listAnimal = new List<BoardObject>();
+    public static AnimalPool AnimalPool;
+
+    public static bool IsAllAnimalSafe()
     {
-        AllBoardObject=boardObjects;
+        foreach (var animal in listAnimal)
+        {
+            if(animal.gameObject.activeSelf == true &&
+                animal.IsSafe() == false)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void Add(BoardObject obj)
+    {
+        listAnimal.Add(obj);
     }
     public static void SaveCurrentLevelSize(float width , float height)
     {
-        currentLevelSize=new Vector2(width , height);
+        currentLevelSize = new Vector2(width , height);
     }
     public static void SetCameraZoom(Camera camera)
     {
@@ -52,12 +78,13 @@ public static class GameServices
         float screenResolution = (float)Screen.width/(float)Screen.height;
 
         float deltaSize = MapLerp(screenResolution ,0.41f ,0.75f, 0f, 2f);
-        camera.orthographicSize = mapSize + deltaSize;
+        camera.orthographicSize = mapSize + deltaSize*2 + 4;
     }
 
     public static Vector2 BoardPositionToLocalPosition(float valueX , float valueY)
     {
-        return new Vector2(valueX+0.5f-width/2f , valueY+0.5f-height/2f);
+        //Bug.Log($"Calculating width {width}, x = {valueX}, position x = {-width/2f+0.5f+valueX} ");
+        return new Vector2(-width/2f + 0.5f + valueX , -height/2f+0.5f+valueY);
     }
     public static Vector2 TransformPositionToBoardPosition(Vector2 position)
     {
@@ -66,27 +93,29 @@ public static class GameServices
     public static bool IsPositionMoveable(int x, int y)
     {
         //if that pos is outside of board
-        if (x<0||y<0||x>=width||y>=height)
+        if (x<0||y<0||x >= width||y >= height)
         {
-            Bug.Log("This position is outside of cage!");
+            //Bug.Log($"Position {x}:{y} is outside of cage {width}x{height}!");
             return false;
         }
 
         //if any animal stand on that
-        foreach (var animal in AllBoardObject)
+        foreach (var animal in listAnimal)
         {
             if (animal.gameObject.activeSelf == true)
             {
                 if (animal.IsOccupied(x , y) == true)
                 {
-                    Bug.Log("position occupied, not moveable");
+                    //Bug.Log("position occupied, not moveable");
 
                     //position is occupied, moveable = false
                     return false;
                 }
             }
         }
-        Bug.Log("moveable");
+
+        //every thing checked, available to step on
+        //Bug.Log($"Position {x}:{y} is moveable!");
         return true;
     }
     private static List<BoardObject> result = new List<BoardObject>();
@@ -99,7 +128,7 @@ public static class GameServices
         if (y>height-1) return null;
 
         //check obj
-        foreach (var obj in AllBoardObject)
+        foreach (var obj in listAnimal)
         {
             if (obj.GetBoardPosition().x==x&&obj.GetBoardPosition().y==y)
             {
@@ -114,6 +143,18 @@ public static class GameServices
         }
         return result;
     }
+    public static bool IsPositionOnBoard(int x , int y)
+    {
+        //if that pos is outside of board
+        if (x<0||y<0||x>=width||y>=height)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
     public static int PlayerMove;
     #endregion
@@ -125,6 +166,21 @@ public static class GameServices
 
         // Map the clamped value to the [outMin, outMax] range using lerp
         return Mathf.Lerp(outMax , outMin , Mathf.InverseLerp(from , to , value));
+    }
+    public static Vector3 DirectionToVector(FaceDirection direction)
+    {
+        switch (direction)
+        {
+            case FaceDirection.Up:
+                return Vector2.up;
+            case FaceDirection.Down:
+                return Vector2.down;
+            case FaceDirection.Left:
+                return Vector2.left;
+            case FaceDirection.Right:
+                return Vector2.right;
+            default: return Vector2.zero;
+        }
     }
     #endregion
 }

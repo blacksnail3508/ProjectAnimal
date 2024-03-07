@@ -9,9 +9,10 @@ public class Cage : MonoBehaviour
     [SerializeField] CageTile tilePrefab;
     [SerializeField] Transform tileRoot;
 
-    [Header("Gate prefabs")]
+    [Header("Cannon prefabs")]
     [SerializeField] AnimalCannon cannonPrefab;
     [SerializeField] Transform cannonRoot;
+
 
     private int sizeX;
     private int sizeY;
@@ -26,6 +27,12 @@ public class Cage : MonoBehaviour
         {
             tile.ReturnPool();
         }
+        foreach (var cannon in cannonPool)
+        {
+            cannon.ReturnPool();
+        }
+        GameServices.AnimalPool.ReleaseAll();
+
 
         sizeX = x;
         sizeY = y;
@@ -35,6 +42,7 @@ public class Cage : MonoBehaviour
         SpawnTiles();
 
         SpawnCannons();
+
     }
     private void SpawnTiles()
     {
@@ -60,15 +68,15 @@ public class Cage : MonoBehaviour
         for (int i = 0; i<x; i++)
         {
             //spawn bottom gate
-            var newCannon1 = GetGate();
+            var newCannon1 = GetCannon();
             newCannon1.transform.localPosition = new Vector2(-(float)x/2f+0.5f+i , -(float)y/2f);
-            newCannon1.Init(FaceDirection.Up,i - sizeX/2f-0.5f , - sizeY/2f-0.5f);
+            newCannon1.Init(FaceDirection.Up,i -0.5f , -0.5f);
             newCannon1.SetPosition(i,-1);
 
             //spawn top gate
-            var newCannon2 = GetGate();
+            var newCannon2 = GetCannon();
             newCannon2.transform.localPosition=new Vector2(-(float)x/2f+0.5f+i , (float)y/2f);
-            newCannon2.Init(FaceDirection.Down , i-sizeX/2f -0.5f , y-sizeY/2f-0.5f);
+            newCannon2.Init(FaceDirection.Down , i -0.5f , y-0.5f);
             newCannon2.SetPosition(i,y);
         }
 
@@ -76,17 +84,28 @@ public class Cage : MonoBehaviour
         for (int i = 0; i<y; i++)
         {
             //spawn left gates
-            var newCannon1 = GetGate();
+            var newCannon1 = GetCannon();
             newCannon1.transform.localPosition=new Vector2(-(float)x/2f, -(float)y/2f+0.5f+i);
-            newCannon1.Init(FaceDirection.Right, 0-sizeX/2f-0.5f , i-sizeY/2f-0.5f);
+            newCannon1.Init(FaceDirection.Right, 0-0.5f , i-0.5f);
             newCannon1.SetPosition(-1,i);
 
             //spawn right gates
-            var newCannon2 = GetGate();
+            var newCannon2 = GetCannon();
             newCannon2.transform.localPosition=new Vector2((float)x/2f , -(float)y/2f+0.5f+i);
-            newCannon2.Init(FaceDirection.Left,x-sizeX/2f-0.5f , i-sizeY/2f-0.5f);
-            newCannon1.SetPosition(x , i);
+            newCannon2.Init(FaceDirection.Left,x-0.5f , i-0.5f);
+            newCannon2.SetPosition(x , i);
         }
+    }
+
+    /// <summary>
+    /// load animal to cannon at position
+    /// </summary>
+    /// <param name="posX"></param>
+    /// <param name="posY"></param>
+    /// <param name="count"></param>
+    public void SetCannon(int posX, int posY, int count)
+    {
+        GetCannon(posX, posY).LoadAnimal(count);
     }
 
     /// <summary>
@@ -114,14 +133,14 @@ public class Cage : MonoBehaviour
     /// create or reuse gates
     /// </summary>
     /// <returns></returns>
-    private AnimalCannon GetGate()
+    private AnimalCannon GetCannon()
     {
-        foreach (var gate in cannonPool)
+        foreach (var cannon in cannonPool)
         {
-            if (gate.gameObject.activeSelf==false)
+            if (cannon.gameObject.activeSelf==false)
             {
-                gate.gameObject.SetActive(true);
-                return gate;
+                cannon.gameObject.SetActive(true);
+                return cannon;
             }
         }
 
@@ -129,5 +148,15 @@ public class Cage : MonoBehaviour
         cannonPool.Add(newGate);
 
         return newGate;
+    }
+
+    private AnimalCannon GetCannon(int x, int y)
+    {
+        foreach(var cannon in cannonPool)
+        {
+            if(cannon.posX == x && cannon.posY == y) return cannon;
+        }
+
+        return null;
     }
 }

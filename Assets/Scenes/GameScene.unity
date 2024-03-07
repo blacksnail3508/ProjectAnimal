@@ -151,7 +151,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 680076129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -200,8 +200,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 10, y: 10}
+  m_DrawMode: 2
+  m_Size: {x: 20, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -363,6 +363,7 @@ Transform:
   m_Children:
   - {fileID: 283468489}
   - {fileID: 1616481216}
+  - {fileID: 830089579}
   m_Father: {fileID: 680076129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &547237923
@@ -380,8 +381,8 @@ MonoBehaviour:
   spriteRenderer: {fileID: 547237924}
   tilePrefab: {fileID: -9200746100376143889, guid: a5055af07de3f9e4a9ba3b5163318be7, type: 3}
   tileRoot: {fileID: 283468489}
-  gatePrefab: {fileID: 1417906720174008262, guid: 351bdc183f4211e4488375a705a2729d, type: 3}
-  gateRoot: {fileID: 1616481216}
+  cannonPrefab: {fileID: 1417906720174008262, guid: 351bdc183f4211e4488375a705a2729d, type: 3}
+  cannonRoot: {fileID: 1616481216}
 --- !u!212 &547237924
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -466,8 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelAsset: {fileID: 11400000, guid: 8d5506b316d454d44a39bbf56e62a6a3, type: 2}
   cage: {fileID: 547237923}
-  pigPrefab: {fileID: 3383744498104664736, guid: c91d0e4360a321d4489618521a531ebf, type: 3}
-  animalRoot: {fileID: 1768683417}
+  animalRemaining: 0
 --- !u!4 &680076129
 Transform:
   m_ObjectHideFlags: 0
@@ -483,7 +483,6 @@ Transform:
   m_Children:
   - {fileID: 156220837}
   - {fileID: 547237922}
-  - {fileID: 1768683417}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &680076130
@@ -569,6 +568,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &830089578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 830089579}
+  - component: {fileID: 830089580}
+  m_Layer: 0
+  m_Name: animal_root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &830089579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830089578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 547237922}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &830089580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830089578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cae59707a229a4ebb3d3fe49f135bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalPrefab: {fileID: 6611710894164814268, guid: c91d0e4360a321d4489618521a531ebf, type: 3}
 --- !u!1 &1616481215
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +623,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1616481216}
   m_Layer: 0
-  m_Name: border_root
+  m_Name: cannon_root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -599,37 +643,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 547237922}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1768683416
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1768683417}
-  m_Layer: 0
-  m_Name: animal_root
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1768683417
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1768683416}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 680076129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

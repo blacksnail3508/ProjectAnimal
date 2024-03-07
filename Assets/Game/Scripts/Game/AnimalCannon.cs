@@ -1,4 +1,6 @@
+using LazyFramework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimalCannon : MonoBehaviour
@@ -16,18 +18,27 @@ public class AnimalCannon : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [Header("Parameters")]
     [SerializeField] FaceDirection direction;
+    [SerializeField] List<Animal> loadedAnimals = new List<Animal>();
+
+    public FaceDirection Direction { get => direction; private set { } }
     public int posX;
     public int posY;
 
+    private void Awake()
+    {
+        Close();
+    }
     public void Open()
     {
+        Bug.Log("Opened");
         box.enabled=true;
-        horizontalRoot.gameObject.SetActive(false);
-        verticalRoot.gameObject.SetActive(false);
+        horizontalGate.gameObject.SetActive(false);
+        verticalGate.gameObject.SetActive(false);
     }
 
     public void Close()
     {
+        Bug.Log("Closed");
         box.enabled=false;
         horizontalGate.gameObject.SetActive(true);
         verticalGate.gameObject.SetActive(true);
@@ -93,17 +104,75 @@ public class AnimalCannon : MonoBehaviour
     {
         posX = x; posY = y;
     }
-    public void LoadAnimal(int number)
+    public void LoadAnimal(int count)
     {
         //create and sort animal in clip
+        ReleaseLoadedAnimals();
+        for (int i = 0; i<count; i++)
+        {
+            var animal = GameServices.AnimalPool.GetAnimal();
+            animal.gameObject.SetActive(true);
+            loadedAnimals.Add(animal);
+            //sort
+            animal.ChangeRotation(this.direction);
+
+            var _direction = GameServices.DirectionToVector(direction);
+
+            animal.SetPosition(posX - (int)_direction.x*2*i , posY - (int)_direction.y*2*i);
+        }
+        Open();
+
+        GameServices.OnCannonLoaded(count);
     }
     public void ReturnPool()
     {
         gameObject.SetActive(false);
+        ReleaseLoadedAnimals();
     }
 
-    internal void Shoot()
+    public void Shoot()
     {
-        throw new NotImplementedException();
+        //get 1st queue animal
+        var animal = loadedAnimals[0];
+
+        //remove from list
+        loadedAnimals.Remove(animal);
+
+        box.enabled = false;
+
+        //create callback
+        Action onStop = () =>
+        {
+            box.enabled = true;
+
+            //sort if queue is remaining
+            if (loadedAnimals.Count>0)
+            {
+                //sort
+                SortAnimal();
+            }
+            else //if no animal remaining, check if all animal is get inside cage
+            {
+                Close();
+            }
+            GameServices.OnCannonShot();
+            PlayerService.ResetDirection();
+        };
+
+        //move
+        animal.Move(onStop);
+    }
+
+    private void SortAnimal()
+    {
+        var _direction = GameServices.DirectionToVector(direction);
+        for (int i = 0;i <loadedAnimals.Count; i++)
+        {
+            loadedAnimals[i].SetPosition(posX - (int)_direction.x*2*i , posY - (int)_direction.y*2*i);
+        }
+    }
+    private void ReleaseLoadedAnimals()
+    {
+        loadedAnimals.Clear();
     }
 }

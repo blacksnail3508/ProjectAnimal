@@ -155,5 +155,15 @@ namespace LazyFramework
 
     public class OnUndo : IEvent { }
     public class OnEndLevel : IEvent { }
+    public class OnCannonLoaded : IEvent
+    {
+        public int count;
+        public OnCannonLoaded(int count)
+        {
+            this.count=count;
+        }
+    }
+    public class OnCannonShot: IEvent { }
+
     #endregion
 }

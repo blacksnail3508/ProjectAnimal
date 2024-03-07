@@ -1,4 +1,6 @@
 using DG.Tweening;
+using LazyFramework;
+using System;
 using UnityEngine;
 
 public class Animal : BoardObject
@@ -6,19 +8,28 @@ public class Animal : BoardObject
     [SerializeField] Transform sprite;
     public int bodyLength;
     public FaceDirection direction;
-
-    public void Move()
+    private Action onStop;
+    [SerializeField] Ease moveEase;
+    private void Start()
     {
+        GameServices.Add(this);
+    }
+    public void Move(Action OnStop = null)
+    {
+        //cache callback
+        if(OnStop!= null) onStop = OnStop;
+
         //parse enum direction to vector
-        var moveDirection = DirectionToVector(direction);
+        var moveDirection = GameServices.DirectionToVector(direction);
 
         //check if next position is moveable
         int nextX = positionX + (int)moveDirection.x;
         int nextY = positionY + (int)moveDirection.y;
+
         if (GameServices.IsPositionMoveable(nextX , nextY) == true)
         {
             //move tranform
-            transform.DOMove(transform.position+moveDirection , 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+            transform.DOMove(transform.position + moveDirection , 0.25f).SetEase(moveEase).OnComplete(() =>
             {
                 //update this position param
                 UpdatePositionOnBoard(nextX , nextY);
@@ -30,6 +41,7 @@ public class Animal : BoardObject
         else
         {
             //Stop and check if it already get inside cage
+            onStop?.Invoke();
         }
     }
 
@@ -66,36 +78,23 @@ public class Animal : BoardObject
         return false;
     }
 
-    private Vector3 DirectionToVector(FaceDirection direction)
-    {
-        switch (direction)
-        {
-            case FaceDirection.Up:
-                return Vector2.up;
-            case FaceDirection.Down:
-                return Vector2.down;
-            case FaceDirection.Left:
-                return Vector2.left;
-            case FaceDirection.Right:
-                return Vector2.right;
-            default: return Vector2.zero;
-        }
-    }
+
     public int ChangeRotation(FaceDirection direction)
     {
+        this.direction = direction;
         switch (direction)
         {
             case FaceDirection.Left:
-                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , 90));
+                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , -90));
                 return 90;
             case FaceDirection.Right:
-                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , -90));
+                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , 90));
                 return -90;
             case FaceDirection.Up:
-                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , 0));
+                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , -180));
                 return 0;
             case FaceDirection.Down:
-                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , -180));
+                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , 0));
                 return -180;
         }
         return 0;
@@ -104,5 +103,34 @@ public class Animal : BoardObject
     {
         this.positionX=x;
         this.positionY=y;
+    }
+    public void ReturnPool()
+    {
+        this.gameObject.SetActive(false);
+    }
+
+    public override bool IsSafe()
+    {
+        bool isHeadSafe = GameServices.IsPositionOnBoard(positionX, positionY);
+        bool isTailSafe = false;
+        switch (direction)
+        {
+            case FaceDirection.Left:
+                isTailSafe =GameServices.IsPositionOnBoard(positionX+1, positionY);
+                break;
+            case FaceDirection.Right:
+                isTailSafe=GameServices.IsPositionOnBoard(positionX-1 , positionY);
+                break;
+            case FaceDirection.Up:
+                isTailSafe=GameServices.IsPositionOnBoard(positionX , positionY-1);
+                break;
+            case FaceDirection.Down:
+                isTailSafe=GameServices.IsPositionOnBoard(positionX , positionY+1);
+                break;
+        }
+
+        Bug.Log($"{gameObject.name} head safe = {isHeadSafe}, tail safe = {isTailSafe}");
+        if (isHeadSafe == true && isTailSafe==true) return true;
+        return false;
     }
 }

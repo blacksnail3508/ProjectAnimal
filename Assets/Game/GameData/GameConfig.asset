@@ -15,4 +15,4 @@ MonoBehaviour:
   GateConfig:
     AnimationTime: 0.5
   AnimalConfig:
-    tilePerSec: 8
+    animationTime: 0.5

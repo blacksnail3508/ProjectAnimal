@@ -277,13 +277,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameConfig: {fileID: 11400000, guid: aa0808a5b80e37342b2a98c8942b5834, type: 2}
-  direction: 0
   horizontalRoot: {fileID: 466903565424079631}
   verticalRoot: {fileID: 2993458610018471716}
   horizontalGate: {fileID: 7504540851459697449}
   verticalGate: {fileID: 1797444163886575837}
   box: {fileID: 8645832130635945598}
   spriteRenderer: {fileID: 1593145555438576888}
+  direction: 0
+  loadedAnimals: []
+  posX: 0
+  posY: 0
 --- !u!61 &8645832130635945598
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -539,7 +542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2497014165620028549
 Transform:
   m_ObjectHideFlags: 0

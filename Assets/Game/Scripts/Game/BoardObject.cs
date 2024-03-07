@@ -14,8 +14,9 @@ public class BoardObject : MonoBehaviour
         this.positionX=positionX;
         this.positionY=positionY;
 
+        //calculate position base on posX, posY and size of game
         var localPosition = GameServices.BoardPositionToLocalPosition(this.positionX , this.positionY);
-        transform.localPosition=localPosition;
+        transform.localPosition = localPosition;
     }
     public Vector2 GetBoardPosition()
     {
@@ -26,5 +27,9 @@ public class BoardObject : MonoBehaviour
         if(x == positionX && y == positionY) return true;
 
         return false;
+    }
+    public virtual bool IsSafe()
+    {
+        return true;
     }
 }

@@ -13,10 +13,16 @@ public class ClickDetector : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition)
                 ,Vector2.zero , Mathf.Infinity , animalLayer);
 
-            if (hit.collider.CompareTag("Cannon"))
+            if (hit.collider==null) return;
+
+            if(hit.collider.CompareTag("Cannon"))
             {
                 AnimalCannon cannon = hit.collider.GetComponent<AnimalCannon>();
-                cannon.Shoot();
+
+                if(cannon.Direction == PlayerService.SelectedDirection || PlayerService.SelectedDirection ==FaceDirection.None)
+                {
+                    cannon.Shoot();
+                }
             }
         }
     }

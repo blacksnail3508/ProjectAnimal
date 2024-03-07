@@ -24,6 +24,7 @@ public enum FaceDirection
     Down = 1,
     Left = 2,
     Right = 3,
+    None = 4
 }
 public enum ObjectType
 {

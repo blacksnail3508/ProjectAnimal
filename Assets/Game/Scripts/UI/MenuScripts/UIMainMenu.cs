@@ -10,7 +10,6 @@ public class UIMainMenu : UIMenuBase
     {
         base.OnEnable();
         AudioService.PlayMusic(AudioName.BG);
-        AdsService.ShowInter("home");
         Reload();
     }
     public void OnPlayBtn()

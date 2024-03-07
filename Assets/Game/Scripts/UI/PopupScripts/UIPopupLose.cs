@@ -36,18 +36,23 @@ public class UIPopupLose : UIPopupBase
     {
         AudioService.PlaySound(AudioName.Button);
 
-        Action onSuccess = () =>
-        {
-            PlayerService.Level=Mathf.Max(PlayerService.CurrentLevel+1 , PlayerService.Level);
-            PlayerService.NextLevel();
-            DisplayService.ShowMenu(UIMenuName.MenuGameplay);
-            Hide();
-        };
-        Action onFailed = () =>
-        {
+        PlayerService.UpdateLevel();
+        PlayerService.NextLevel();
+        DisplayService.ShowMenu(UIMenuName.MenuGameplay);
+        Hide();
 
-        };
+        //Action onSuccess = () =>
+        //{
+        //    PlayerService.UpdateLevel();
+        //    PlayerService.NextLevel();
+        //    DisplayService.ShowMenu(UIMenuName.MenuGameplay);
+        //    Hide();
+        //};
+        //Action onFailed = () =>
+        //{
 
-        AdsService.ShowReward("skip" , onSuccess , onFailed);
+        //};
+
+        //AdsService.ShowReward("skip" , onSuccess , onFailed);
     }
 }

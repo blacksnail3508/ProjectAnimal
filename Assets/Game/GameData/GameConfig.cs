@@ -13,6 +13,6 @@ public class GameConfig : ScriptableObject
 }
 [Serializable] public struct AnimalConfig
 {
-    public float tilePerSec;
+    public float animationTime;
 }
 
