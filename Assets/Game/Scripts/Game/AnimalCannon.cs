@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class AnimalCannon : MonoBehaviour
@@ -21,6 +22,16 @@ public class AnimalCannon : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] FaceDirection direction;
     [SerializeField] List<Animal> loadedAnimals = new List<Animal>();
+
+    [Header("Sorting group")]
+    [SerializeField] SortingGroup columnUp;
+    [SerializeField] SortingGroup columnDown;
+    [SerializeField] SortingGroup columnLeft;
+    [SerializeField] SortingGroup columnRight;
+
+    [SerializeField] SortingGroup gateHorizontalSort;
+    [SerializeField] SortingGroup gateVerticalSort;
+
     Vector3 moveDirection { get { return GameServices.DirectionToVector(direction); } }
 
     public FaceDirection Direction { get => direction; private set { } }
@@ -56,6 +67,16 @@ public class AnimalCannon : MonoBehaviour
     /// <param name="y">board position y</param>
     public void Init(FaceDirection direction, float x , float y)
     {
+        //sorting if horizontal
+        columnLeft.sortingOrder         = -(int)(y+1)*3;
+        columnRight.sortingOrder        = -(int)(y+1)*2;
+        gateHorizontalSort.sortingOrder = -(int)(y+1)*3 - 1;
+
+        //sorting vertical
+        columnUp.sortingOrder           = -(int)(y+1)*3;
+        gateVerticalSort.sortingOrder   = -(int)(y+1)*3+1;
+        columnDown.sortingOrder         = -(int)(y+1)*3+2;
+
         this.direction=direction;
         //active gate
         switch (direction)

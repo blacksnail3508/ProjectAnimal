@@ -285,6 +285,12 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1593145555438576888}
   direction: 0
   loadedAnimals: []
+  columnUp: {fileID: 6638690973602201511}
+  columnDown: {fileID: 3825067860063344623}
+  columnLeft: {fileID: 708439805525969171}
+  columnRight: {fileID: 1657634598293610944}
+  gateHorizontalSort: {fileID: 4248736761776990071}
+  gateVerticalSort: {fileID: 373457360364848965}
   posX: 0
   posY: 0
 --- !u!61 &8645832130635945598

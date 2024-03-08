@@ -15,4 +15,4 @@ MonoBehaviour:
   GateConfig:
     AnimationTime: 0.5
   AnimalConfig:
-    animationTime: 1
+    animationTime: 0.25
