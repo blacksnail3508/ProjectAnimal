@@ -18,11 +18,7 @@ public class ClickDetector : MonoBehaviour
             if(hit.collider.CompareTag("Cannon"))
             {
                 AnimalCannon cannon = hit.collider.GetComponent<AnimalCannon>();
-
-                if(cannon.Direction == PlayerService.SelectedDirection || PlayerService.SelectedDirection ==FaceDirection.None)
-                {
-                    cannon.Shoot();
-                }
+                cannon.Shoot();
             }
         }
     }

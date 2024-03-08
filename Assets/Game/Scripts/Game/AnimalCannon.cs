@@ -2,6 +2,8 @@ using LazyFramework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class AnimalCannon : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class AnimalCannon : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] FaceDirection direction;
     [SerializeField] List<Animal> loadedAnimals = new List<Animal>();
+    Vector3 moveDirection { get { return GameServices.DirectionToVector(direction); } }
 
     public FaceDirection Direction { get => direction; private set { } }
     public int posX;
@@ -30,7 +33,7 @@ public class AnimalCannon : MonoBehaviour
     }
     public void Open()
     {
-        Bug.Log("Opened");
+        //Bug.Log("Opened");
         box.enabled=true;
         horizontalGate.gameObject.SetActive(false);
         verticalGate.gameObject.SetActive(false);
@@ -38,7 +41,7 @@ public class AnimalCannon : MonoBehaviour
 
     public void Close()
     {
-        Bug.Log("Closed");
+        //Bug.Log("Closed");
         box.enabled=false;
         horizontalGate.gameObject.SetActive(true);
         verticalGate.gameObject.SetActive(true);
@@ -132,6 +135,31 @@ public class AnimalCannon : MonoBehaviour
 
     public void Shoot()
     {
+        //check for blocked path
+        var path = new List<TilePosition>();
+        int targetX = posX+(int)moveDirection.x;
+        int targetY = posY+(int)moveDirection.y;
+
+        path.Add(new TilePosition(targetX , targetY));
+
+        while (GameServices.IsPositionMoveable(targetX , targetY)==true)
+        {
+            targetX+=(int)moveDirection.x;
+            targetY+=(int)moveDirection.y;
+            path.Add(new TilePosition(targetX , targetY));
+        }
+
+        if(path.Count > 0)
+        {
+            path.RemoveAt(path.Count-1);
+
+            if (GameServices.IsBlocked(path)==true)
+            {
+                Bug.Log("Path is blocked");
+                return;
+            }
+        }
+
         //get 1st queue animal
         var animal = loadedAnimals[0];
 
@@ -156,7 +184,6 @@ public class AnimalCannon : MonoBehaviour
                 Close();
             }
             GameServices.OnCannonShot();
-            PlayerService.ResetDirection();
         };
 
         //move

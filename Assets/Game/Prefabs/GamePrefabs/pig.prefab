@@ -49,10 +49,11 @@ MonoBehaviour:
   positionY: 0
   IsBlocked: 0
   objectType: 0
+  config: {fileID: 11400000, guid: aa0808a5b80e37342b2a98c8942b5834, type: 2}
   sprite: {fileID: 4504666021655079348}
   bodyLength: 0
   direction: 0
-  moveEase: 2
+  moveEase: 1
 --- !u!1 &3862631386004444223
 GameObject:
   m_ObjectHideFlags: 0

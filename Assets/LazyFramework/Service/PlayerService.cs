@@ -39,12 +39,5 @@ namespace LazyFramework
         {
             Level = Mathf.Max(CurrentLevel+1, Level);
         }
-
-        public static FaceDirection SelectedDirection;
-
-        public static void ResetDirection()
-        {
-            SelectedDirection = FaceDirection.None;
-        }
     }
 }

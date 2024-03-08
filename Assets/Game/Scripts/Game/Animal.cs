@@ -1,48 +1,66 @@
 using DG.Tweening;
 using LazyFramework;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Animal : BoardObject
 {
+    [SerializeField] GameConfig config;
     [SerializeField] Transform sprite;
     public int bodyLength;
     public FaceDirection direction;
-    private Action onStop;
     [SerializeField] Ease moveEase;
+    [SerializeField] List<TilePosition> path = new List<TilePosition>();
     private void Start()
     {
         GameServices.Add(this);
     }
     public void Move(Action OnStop = null)
     {
-        //cache callback
-        if(OnStop!= null) onStop = OnStop;
-
         //parse enum direction to vector
         var moveDirection = GameServices.DirectionToVector(direction);
 
         //check if next position is moveable
-        int nextX = positionX + (int)moveDirection.x;
-        int nextY = positionY + (int)moveDirection.y;
+        int targetX = positionX + (int)moveDirection.x;
+        int targetY = positionY + (int)moveDirection.y;
 
-        if (GameServices.IsPositionMoveable(nextX , nextY) == true)
-        {
-            //move tranform
-            transform.DOMove(transform.position + moveDirection , 0.25f).SetEase(moveEase).OnComplete(() =>
-            {
-                //update this position param
-                UpdatePositionOnBoard(nextX , nextY);
+        path.Add(new TilePosition(targetX, targetY));
 
-                //repeat move sequence
-                Move();
-            });
-        }
-        else
+        while(GameServices.IsPositionMoveable(targetX, targetY) == true)
         {
-            //Stop and check if it already get inside cage
-            onStop?.Invoke();
+            targetX += (int)moveDirection.x;
+            targetY += (int)moveDirection.y;
+            path.Add(new TilePosition(targetX , targetY));
         }
+
+        //remove position that animal will stop on
+        if (path.Count >= 1)path.RemoveAt(path.Count-1);
+        if (path.Count >= 1) path.RemoveAt(path.Count-1);
+        if (path.Count >= 1) path.RemoveAt(path.Count-1);
+
+        if(path.Count > 0) GameServices.BlockPath(path);
+
+        targetX -= (int)moveDirection.x;
+        targetY -= (int)moveDirection.y;
+        targetX -= positionX;
+        targetY -= positionY;
+
+        //Bug.Log($"path length = {path.Count}");
+        //for (int i = 0; i < path.Count; i++)
+        //{
+        //    Bug.Log($"{path[i].x},{path[i].y}");
+        //}
+
+        moveDirection = new Vector3(targetX, targetY);
+        //update this position param
+        UpdatePositionOnBoard(targetX + positionX , targetY + positionY);
+
+        transform.DOMove(transform.position + moveDirection , config.AnimalConfig.animationTime).SetEase(moveEase).OnComplete(() =>
+        {
+            GameServices.ReleasePath(path);
+            OnStop?.Invoke();
+        });
     }
 
     //calculate it position and bodyLength
@@ -129,7 +147,7 @@ public class Animal : BoardObject
                 break;
         }
 
-        Bug.Log($"{gameObject.name} head safe = {isHeadSafe}, tail safe = {isTailSafe}");
+        //Bug.Log($"{gameObject.name} head safe = {isHeadSafe}, tail safe = {isTailSafe}");
         if (isHeadSafe == true && isTailSafe==true) return true;
         return false;
     }
