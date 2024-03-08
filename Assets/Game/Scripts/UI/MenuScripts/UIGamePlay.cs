@@ -18,11 +18,6 @@ public class UIGamePlay : UIMenuBase
         moveCountTxt.text = GameServices.PlayerMove.ToString();
     }
 
-    //call when all object complete action
-    private void OnPlayerTurn(OnPlayerTurn e)
-    {
-        isPlayerTurn = true;
-    }
     private void OnUndo(OnUndo e)
     {
         GameServices.PlayerMove--;
@@ -40,13 +35,11 @@ public class UIGamePlay : UIMenuBase
         base.Subscribe();
         Event<OnUndo>.Subscribe(OnUndo);
         Event<OnPlayLevel>.Subscribe(OnPlayLevel);
-        Event<OnPlayerTurn>.Subscribe(OnPlayerTurn);
     }
     public override void Unsubscribe()
     {
         base.Unsubscribe();
         Event<OnUndo>.Unsubscribe(OnUndo);
         Event<OnPlayLevel>.Unsubscribe(OnPlayLevel);
-        Event<OnPlayerTurn>.Unsubscribe(OnPlayerTurn);
     }
 }

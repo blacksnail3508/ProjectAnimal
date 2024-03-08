@@ -140,14 +140,15 @@ public class Cage : MonoBehaviour
             if (cannon.gameObject.activeSelf==false)
             {
                 cannon.gameObject.SetActive(true);
+                cannon.Close();
                 return cannon;
             }
         }
 
-        var newGate = Instantiate(cannonPrefab , cannonRoot);
-        cannonPool.Add(newGate);
-
-        return newGate;
+        var newCannon = Instantiate(cannonPrefab , cannonRoot);
+        cannonPool.Add(newCannon);
+        newCannon.Close();
+        return newCannon;
     }
 
     private AnimalCannon GetCannon(int x, int y)

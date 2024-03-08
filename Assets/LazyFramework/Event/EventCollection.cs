@@ -141,18 +141,9 @@ namespace LazyFramework
             Level=level;
         }
     }
-    public class OnArcherShoot : IEvent { }
-    public class OnArcherShootEnd : IEvent { }
-    public class OnEnemyShoot : IEvent { }
-    public class OnEnemyShootEnd : IEvent { }
-    public class OnEnemyDie : IEvent { }
-    public class OnArcherDie : IEvent { }
 
-    public class OnPlayerTurn : IEvent { }
     public class OnWin : IEvent { }
     public class OnLose : IEvent { }
-    public class OnAllSolutionGenerated : IEvent { }
-
     public class OnUndo : IEvent { }
     public class OnEndLevel : IEvent { }
     public class OnCannonLoaded : IEvent

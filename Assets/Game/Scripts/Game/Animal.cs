@@ -1,5 +1,4 @@
 using DG.Tweening;
-using LazyFramework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,29 +21,29 @@ public class Animal : BoardObject
         var moveDirection = GameServices.DirectionToVector(direction);
 
         //check if next position is moveable
-        int targetX = positionX + (int)moveDirection.x;
-        int targetY = positionY + (int)moveDirection.y;
+        int targetX = positionX+(int)moveDirection.x;
+        int targetY = positionY+(int)moveDirection.y;
 
-        path.Add(new TilePosition(targetX, targetY));
+        path.Add(new TilePosition(targetX , targetY));
 
-        while(GameServices.IsPositionMoveable(targetX, targetY) == true)
+        while (GameServices.IsPositionMoveable(targetX , targetY)==true)
         {
-            targetX += (int)moveDirection.x;
-            targetY += (int)moveDirection.y;
+            targetX+=(int)moveDirection.x;
+            targetY+=(int)moveDirection.y;
             path.Add(new TilePosition(targetX , targetY));
         }
 
         //remove position that animal will stop on
-        if (path.Count >= 1)path.RemoveAt(path.Count-1);
-        if (path.Count >= 1) path.RemoveAt(path.Count-1);
-        if (path.Count >= 1) path.RemoveAt(path.Count-1);
+        if (path.Count>=1) path.RemoveAt(path.Count-1);
+        if (path.Count>=1) path.RemoveAt(path.Count-1);
+        if (path.Count>=1) path.RemoveAt(path.Count-1);
 
-        if(path.Count > 0) GameServices.BlockPath(path);
+        if (path.Count>0) GameServices.BlockPath(path);
 
-        targetX -= (int)moveDirection.x;
-        targetY -= (int)moveDirection.y;
-        targetX -= positionX;
-        targetY -= positionY;
+        targetX-=(int)moveDirection.x;
+        targetY-=(int)moveDirection.y;
+        targetX-=positionX;
+        targetY-=positionY;
 
         //Bug.Log($"path length = {path.Count}");
         //for (int i = 0; i < path.Count; i++)
@@ -52,11 +51,11 @@ public class Animal : BoardObject
         //    Bug.Log($"{path[i].x},{path[i].y}");
         //}
 
-        moveDirection = new Vector3(targetX, targetY);
+        moveDirection=new Vector3(targetX , targetY);
         //update this position param
-        UpdatePositionOnBoard(targetX + positionX , targetY + positionY);
+        UpdatePositionOnBoard(targetX+positionX , targetY+positionY);
 
-        transform.DOMove(transform.position + moveDirection , config.AnimalConfig.animationTime).SetEase(moveEase).OnComplete(() =>
+        transform.DOMove(transform.position+moveDirection , config.AnimalConfig.animationTime).SetEase(moveEase).OnComplete(() =>
         {
             GameServices.ReleasePath(path);
             OnStop?.Invoke();
@@ -67,29 +66,29 @@ public class Animal : BoardObject
     public override bool IsOccupied(int x , int y)
     {
         //this head position
-        if(x == positionX && y == positionY) return true;
+        if (x==positionX&&y==positionY) return true;
 
         //tail position
         switch (direction)
         {
             //facing right, that tail is one step on left
             case FaceDirection.Right:
-                if ( x == positionX - 1 && y == positionY) return true;
+                if (x==positionX-1&&y==positionY) return true;
                 break;
 
             //facing left, tail is on the right
             case FaceDirection.Left:
-                if ( x == positionX + 1 && y == positionY) return true;
+                if (x==positionX+1&&y==positionY) return true;
                 break;
 
             //facing up, tail is downward
             case FaceDirection.Up:
-                if (x == positionX && y == positionY - 1) return true;
+                if (x==positionX&&y==positionY-1) return true;
                 break;
 
             //facing down, tail is upward
             case FaceDirection.Down:
-                if (x == positionX && y == positionY + 1) return true;
+                if (x==positionX&&y==positionY+1) return true;
                 break;
         }
 
@@ -99,7 +98,7 @@ public class Animal : BoardObject
 
     public int ChangeRotation(FaceDirection direction)
     {
-        this.direction = direction;
+        this.direction=direction;
         switch (direction)
         {
             case FaceDirection.Left:
@@ -129,12 +128,12 @@ public class Animal : BoardObject
 
     public override bool IsSafe()
     {
-        bool isHeadSafe = GameServices.IsPositionOnBoard(positionX, positionY);
+        bool isHeadSafe = GameServices.IsPositionOnBoard(positionX , positionY);
         bool isTailSafe = false;
         switch (direction)
         {
             case FaceDirection.Left:
-                isTailSafe =GameServices.IsPositionOnBoard(positionX+1, positionY);
+                isTailSafe=GameServices.IsPositionOnBoard(positionX+1 , positionY);
                 break;
             case FaceDirection.Right:
                 isTailSafe=GameServices.IsPositionOnBoard(positionX-1 , positionY);
@@ -148,7 +147,28 @@ public class Animal : BoardObject
         }
 
         //Bug.Log($"{gameObject.name} head safe = {isHeadSafe}, tail safe = {isTailSafe}");
-        if (isHeadSafe == true && isTailSafe==true) return true;
+        if (isHeadSafe==true&&isTailSafe==true) return true;
         return false;
+    }
+    public Vector2 TailPosition()
+    {
+        //tail position
+        switch (direction)
+        {
+            //facing right, that tail is one step on left
+            case FaceDirection.Right:
+                return new Vector2(positionX-1, positionY);
+            //facing left, tail is on the right
+            case FaceDirection.Left:
+                return new Vector2(positionX+1 , positionY);
+            //facing up, tail is downward
+            case FaceDirection.Up:
+                return new Vector2(positionX , positionY-1);
+
+            //facing down, tail is upward
+            case FaceDirection.Down:
+                return new Vector2(positionX , positionY+1);
+        }
+        return Vector2.zero;
     }
 }

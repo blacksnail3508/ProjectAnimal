@@ -1,4 +1,5 @@
 using LazyFramework;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 public class GamePlay : MonoBehaviour
@@ -6,6 +7,7 @@ public class GamePlay : MonoBehaviour
     [SerializeField] LevelAsset levelAsset;
     [SerializeField] Cage cage;
     [SerializeField] int animalRemaining;
+    [SerializeField] Predator wolf;
 
     private void Start()
     {
@@ -29,6 +31,9 @@ public class GamePlay : MonoBehaviour
         GameServices.SaveCurrentLevelSize(sizeX, sizeY);
         cage.Create(sizeX, sizeY);
 
+        //relocate predator
+        wolf.SetPosition(-2 , sizeY+1);
+
         //set camera size
         GameServices.SetCameraZoom(Camera.main);
 
@@ -50,16 +55,25 @@ public class GamePlay : MonoBehaviour
         await Task.Delay(500);
         if (animalRemaining == 0)
         {
-            //win
+            //end turn
 
             if (GameServices.IsAllAnimalSafe())
             {
+                //predator is upset
+
                 PlayerService.UpdateLevel();
                 DisplayService.ShowPopup(UIPopupName.PopupWin);
             }
             else
             {
-                DisplayService.ShowPopup(UIPopupName.PopupLose);
+                //predator hunt
+
+                Action onReachTarget = () =>
+                {
+                    DisplayService.ShowPopup(UIPopupName.PopupLose);
+                };
+
+                wolf.StartHunt(onReachTarget);
             }
         }
     }

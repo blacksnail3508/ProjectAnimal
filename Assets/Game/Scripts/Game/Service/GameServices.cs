@@ -13,10 +13,6 @@ public static class GameServices
     #endregion
 
     #region user event
-    public static void OnPlayerTurn()
-    {
-        Event<OnPlayerTurn>.Post(new OnPlayerTurn());
-    }
     public static void OnLose()
     {
         Event<OnLose>.Post(new OnLose());
@@ -62,6 +58,18 @@ public static class GameServices
         }
 
         return true;
+    }
+    public static Animal UnsafedAnimal()
+    {
+        foreach (var animal in listAnimal)
+        {
+            if (animal.gameObject.activeSelf==true&&
+                animal.IsSafe()==false)
+            {
+                return animal as Animal;
+            }
+        }
+        return null;
     }
 
     public static void Add(BoardObject obj)

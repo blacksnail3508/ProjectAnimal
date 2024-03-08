@@ -2,9 +2,7 @@ using LazyFramework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
-using UnityEngine.UIElements;
 
 public class AnimalCannon : MonoBehaviour
 {
@@ -65,17 +63,17 @@ public class AnimalCannon : MonoBehaviour
     /// <param name="bodyLength"> the length that animal occupied on cage</param>
     /// <param name="x">board position x</param>
     /// <param name="y">board position y</param>
-    public void Init(FaceDirection direction, float x , float y)
+    public void Init(FaceDirection direction , float x , float y)
     {
         //sorting if horizontal
-        columnLeft.sortingOrder         = -(int)(y+1)*3;
-        columnRight.sortingOrder        = -(int)(y+1)*2;
-        gateHorizontalSort.sortingOrder = -(int)(y+1)*3 - 1;
+        columnLeft.sortingOrder=-(int)(y+1)*3;
+        columnRight.sortingOrder=-(int)(y+1)*3;
+        gateHorizontalSort.sortingOrder=-(int)(y+1)*3-1;
 
         //sorting vertical
-        columnUp.sortingOrder           = -(int)(y+1)*3;
-        gateVerticalSort.sortingOrder   = -(int)(y+1)*3+1;
-        columnDown.sortingOrder         = -(int)(y+1)*3+2;
+        columnUp.sortingOrder=-(int)(y+1)*3;
+        gateVerticalSort.sortingOrder=-(int)(y+1)*3+1;
+        columnDown.sortingOrder=-(int)(y+1)*3+2;
 
         this.direction=direction;
         //active gate
@@ -97,36 +95,36 @@ public class AnimalCannon : MonoBehaviour
         switch (direction)
         {
             case FaceDirection.Up:
-                box.size = new Vector2(1 , 2);
-                box.offset = new Vector2(0 , -1f);
+                box.size=new Vector2(1 , 2);
+                box.offset=new Vector2(0 , -1f);
                 spriteRenderer.transform.rotation=Quaternion.Euler(0 , 0 , 180);
-                transform.localPosition=GameServices.BoardPositionToLocalPosition(x + 0.5f , y);
+                transform.localPosition=GameServices.BoardPositionToLocalPosition(x+0.5f , y);
                 break;
             case FaceDirection.Down:
-                box.size = new Vector2(1 , 2);
-                box.offset = new Vector2(0 , 1f);
+                box.size=new Vector2(1 , 2);
+                box.offset=new Vector2(0 , 1f);
                 spriteRenderer.transform.rotation=Quaternion.Euler(0 , 0 , 180);
-                transform.localPosition = GameServices.BoardPositionToLocalPosition(x + 0.5f , y);
+                transform.localPosition=GameServices.BoardPositionToLocalPosition(x+0.5f , y);
                 break;
             case FaceDirection.Left:
                 box.size=new Vector2(2 , 1);
                 box.offset=new Vector2(1f , 0);
                 spriteRenderer.transform.rotation=Quaternion.Euler(0 , 0 , -90);
-                transform.localPosition=GameServices.BoardPositionToLocalPosition(x , y + 0.5f);
+                transform.localPosition=GameServices.BoardPositionToLocalPosition(x , y+0.5f);
                 break;
             case FaceDirection.Right:
                 box.size=new Vector2(2 , 1);
                 box.offset=new Vector2(-1f , 0);
                 spriteRenderer.transform.rotation=Quaternion.Euler(0 , 0 , 90);
-                transform.localPosition=GameServices.BoardPositionToLocalPosition(x , y + 0.5f);
+                transform.localPosition=GameServices.BoardPositionToLocalPosition(x , y+0.5f);
                 break;
         }
 
-        spriteRenderer.transform.localPosition = box.offset;
+        spriteRenderer.transform.localPosition=box.offset;
     }
-    public void SetPosition(int x, int y)
+    public void SetPosition(int x , int y)
     {
-        posX = x; posY = y;
+        posX=x; posY=y;
     }
     public void LoadAnimal(int count)
     {
@@ -142,7 +140,7 @@ public class AnimalCannon : MonoBehaviour
 
             var _direction = GameServices.DirectionToVector(direction);
 
-            animal.SetPosition(posX - (int)_direction.x*2*i , posY - (int)_direction.y*2*i);
+            animal.SetPosition(posX-(int)_direction.x*2*i , posY-(int)_direction.y*2*i);
         }
         Open();
 
@@ -170,7 +168,7 @@ public class AnimalCannon : MonoBehaviour
             path.Add(new TilePosition(targetX , targetY));
         }
 
-        if(path.Count > 0)
+        if (path.Count>0)
         {
             path.RemoveAt(path.Count-1);
 
@@ -184,27 +182,39 @@ public class AnimalCannon : MonoBehaviour
         //get 1st queue animal
         var animal = loadedAnimals[0];
 
-        //remove from list
-        loadedAnimals.Remove(animal);
-
-        box.enabled = false;
+        box.enabled=false;
 
         //create callback
         Action onStop = () =>
         {
-            box.enabled = true;
+            //check if it realy get inside
+            if(animal.IsSafe() == true)
+            {
+                //remove from list
+                loadedAnimals.Remove(animal);
 
-            //sort if queue is remaining
-            if (loadedAnimals.Count>0)
-            {
-                //sort
-                SortAnimal();
+                box.enabled=true;
+                //sort if queue is remaining
+                if (loadedAnimals.Count>0)
+                {
+                    //sort
+                    SortAnimal();
+                }
+                else //if no animal remaining, check if all animal is get inside cage
+                {
+                    Close();
+                }
+                GameServices.OnCannonShot();
             }
-            else //if no animal remaining, check if all animal is get inside cage
+            else
             {
-                Close();
+                for(int i=0; i<loadedAnimals.Count; i++)
+                {
+                    GameServices.OnCannonShot();
+                }
+                box.enabled=false;
             }
-            GameServices.OnCannonShot();
+
         };
 
         //move
@@ -214,9 +224,9 @@ public class AnimalCannon : MonoBehaviour
     private void SortAnimal()
     {
         var _direction = GameServices.DirectionToVector(direction);
-        for (int i = 0;i <loadedAnimals.Count; i++)
+        for (int i = 0; i<loadedAnimals.Count; i++)
         {
-            loadedAnimals[i].SetPosition(posX - (int)_direction.x*2*i , posY - (int)_direction.y*2*i);
+            loadedAnimals[i].SetPosition(posX-(int)_direction.x*2*i , posY-(int)_direction.y*2*i);
         }
     }
     private void ReleaseLoadedAnimals()
