@@ -1,7 +1,6 @@
 using LazyFramework;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public static class GameServices
 {
@@ -83,7 +82,7 @@ public static class GameServices
     public static void SetCameraZoom(Camera camera)
     {
         float mapSize = Mathf.Max(width , height);
-        float screenResolution = (float)Screen.width/(float)Screen.height;
+        float screenResolution = Screen.width/(float)Screen.height;
 
         float deltaSize = MapLerp(screenResolution , 0.41f , 0.75f , 0f , 2f);
         camera.orthographicSize=mapSize+deltaSize*2+4;
@@ -166,6 +165,40 @@ public static class GameServices
 
     public static int PlayerMove;
     #endregion
+
+    #region UNDO
+
+    static History history = new History();
+
+    public static void WriteHistory(AnimalCannon cannon)
+    {
+        history.Push(cannon);
+    }
+    public static bool Undo()
+    {
+        Bug.Log("Undo");
+        var lastMove = history.Pop();
+        if (lastMove!=null)
+        {
+            //undo move
+            var isRefreshed = lastMove.Undo();
+
+            //event for gameplay
+            if(isRefreshed) Event<OnUndo>.Post(new OnUndo());
+
+            return true; // game has history to undo
+        }
+
+        return false;// game has NO history to undo
+    }
+
+    public static void ClearHistory()
+    {
+        history.Clear();
+    }
+
+    #endregion
+
     #region math ectension
     public static float MapLerp(float value , float from , float to , float outMin , float outMax)
     {

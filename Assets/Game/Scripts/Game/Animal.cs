@@ -34,9 +34,9 @@ public class Animal : BoardObject
         }
 
         //remove position that animal will stop on
-        if (path.Count>=1) path.RemoveAt(path.Count-1);
-        if (path.Count>=1) path.RemoveAt(path.Count-1);
-        if (path.Count>=1) path.RemoveAt(path.Count-1);
+        if (path.Count>=1) path.RemoveAt(path.Count-1); //remove the last checking point(it result is not moveable)
+        if (path.Count>=1) path.RemoveAt(path.Count-1); //remove 1 position of head
+        if (path.Count>=1) path.RemoveAt(path.Count-1); //remove 1 position of tail
 
         if (path.Count>0) GameServices.BlockPath(path);
 

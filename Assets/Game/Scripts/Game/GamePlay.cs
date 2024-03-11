@@ -20,6 +20,9 @@ public class GamePlay : MonoBehaviour
 
     private void OnPlayLevel(OnPlayLevel e)
     {
+        //clear history
+        GameServices.ClearHistory();
+
         //reset and release all pool
         animalRemaining=0;
 
@@ -49,10 +52,9 @@ public class GamePlay : MonoBehaviour
         animalRemaining += e.count;
     }
 
-    private async void OnCannonShot(OnCannonShot e)
+    private void OnCannonShot(OnCannonShot e)
     {
         animalRemaining--;
-        await Task.Delay(500);
         if (animalRemaining == 0)
         {
             //end turn
@@ -78,16 +80,30 @@ public class GamePlay : MonoBehaviour
         }
     }
 
+    public void OnUndo(OnUndo e)
+    {
+        if(animalRemaining == 0)
+        {
+
+        }
+        else
+        {
+            animalRemaining++;
+        }
+
+    }
     private void Subscribe()
     {
         Event<OnPlayLevel>.Subscribe(OnPlayLevel);
         Event<OnCannonLoaded>.Subscribe(OnCannonLoaded);
         Event<OnCannonShot>.Subscribe(OnCannonShot);
+        Event<OnUndo>.Subscribe(OnUndo);
     }
     private void Unsubscribe()
     {
         Event<OnPlayLevel>.Unsubscribe(OnPlayLevel);
         Event<OnCannonLoaded>.Unsubscribe(OnCannonLoaded);
         Event<OnCannonShot>.Unsubscribe(OnCannonShot);
+        Event<OnUndo>.Unsubscribe(OnUndo);
     }
 }

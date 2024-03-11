@@ -1,3 +1,4 @@
+using AdsAnalytics;
 using LazyFramework;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,8 @@ public class AnimalCannon : MonoBehaviour
     public FaceDirection Direction { get => direction; private set { } }
     public int posX;
     public int posY;
+
+    public int shoot = 0;
 
     private void Awake()
     {
@@ -128,6 +131,9 @@ public class AnimalCannon : MonoBehaviour
     }
     public void LoadAnimal(int count)
     {
+        //reset shoot count
+        shoot=0;
+
         //create and sort animal in clip
         ReleaseLoadedAnimals();
         for (int i = 0; i<count; i++)
@@ -144,7 +150,9 @@ public class AnimalCannon : MonoBehaviour
         }
         Open();
 
-        GameServices.OnCannonLoaded(count);
+        //tell gameplay how long it wait to user to shoot
+        //GameServices.OnCannonLoaded(count);
+        GameServices.OnCannonLoaded(1);
     }
     public void ReturnPool()
     {
@@ -179,23 +187,29 @@ public class AnimalCannon : MonoBehaviour
             }
         }
 
-        //get 1st queue animal
-        var animal = loadedAnimals[0];
+        //if path not blocked (animal can be shoot), write to history
+        GameServices.WriteHistory(this);
 
+        //get 1st queue animal
+        var animal = loadedAnimals[shoot];
+        shoot++;
         box.enabled=false;
 
         //create callback
         Action onStop = () =>
         {
+            Bug.Log("Callback stop");
+
             //check if it realy get inside
             if(animal.IsSafe() == true)
             {
-                //remove from list
-                loadedAnimals.Remove(animal);
+                ////remove from list
+                //loadedAnimals.Remove(animal);
 
                 box.enabled=true;
+
                 //sort if queue is remaining
-                if (loadedAnimals.Count>0)
+                if (loadedAnimals.Count > shoot)
                 {
                     //sort
                     SortAnimal();
@@ -203,18 +217,19 @@ public class AnimalCannon : MonoBehaviour
                 else //if no animal remaining, check if all animal is get inside cage
                 {
                     Close();
+                    GameServices.OnCannonShot();
                 }
-                GameServices.OnCannonShot();
+                //GameServices.OnCannonShot();
             }
             else
             {
-                for(int i=0; i<loadedAnimals.Count; i++)
-                {
-                    GameServices.OnCannonShot();
-                }
+                //for (int i = shoot-1; i<loadedAnimals.Count; i++)
+                //{
+                //    GameServices.OnCannonShot();
+                //}
+                GameServices.OnCannonShot();
                 box.enabled=false;
             }
-
         };
 
         //move
@@ -224,13 +239,28 @@ public class AnimalCannon : MonoBehaviour
     private void SortAnimal()
     {
         var _direction = GameServices.DirectionToVector(direction);
-        for (int i = 0; i<loadedAnimals.Count; i++)
+        for (int i = shoot; i < loadedAnimals.Count; i++)
         {
-            loadedAnimals[i].SetPosition(posX-(int)_direction.x*2*i , posY-(int)_direction.y*2*i);
+            int positionInCannon = i-shoot;
+            loadedAnimals[i].SetPosition(posX-(int)_direction.x*2*positionInCannon , posY-(int)_direction.y*2*positionInCannon);
         }
     }
     private void ReleaseLoadedAnimals()
     {
         loadedAnimals.Clear();
+    }
+
+    public bool Undo()
+    {
+
+        //recall last shoot animal, then sort
+        shoot--;
+        SortAnimal();
+        Open();
+
+        //reallow click
+        box.enabled=true;
+        var isFreshed = shoot == 0 ? false : true;
+        return isFreshed;
     }
 }
