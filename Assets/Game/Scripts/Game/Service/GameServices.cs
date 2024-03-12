@@ -42,8 +42,41 @@ public static class GameServices
     static float width => currentLevelSize.x;
     static float height => currentLevelSize.y;
 
-    public static List<BoardObject> listAnimal = new List<BoardObject>();
+    private static List<BoardObject> listAnimal = new List<BoardObject>();
+    private static List<AnimalCannon> listCannon = new List<AnimalCannon>();
+
     public static AnimalPool AnimalPool;
+
+    public static void ClearCannon()
+    {
+        listCannon.Clear();
+    }
+    public static void AddCannon(AnimalCannon cannon)
+    {
+        listCannon.Add(cannon);
+    }
+    public static bool IsAllCannonShot()
+    {
+        foreach(var cannon in listCannon)
+        {
+            if (cannon.IsEmpty() == false) return false;
+        }
+
+        return true;
+    }
+
+    public static void AnimalCelebrate()
+    {
+        foreach (var pig in listAnimal)
+        {
+            pig.Playwin();
+        }
+    }
+
+    public static void ClearAnimal()
+    {
+        listAnimal.Clear();
+    }
 
     public static bool IsAllAnimalSafe()
     {
@@ -176,15 +209,11 @@ public static class GameServices
     }
     public static bool Undo()
     {
-        Bug.Log("Undo");
         var lastMove = history.Pop();
         if (lastMove!=null)
         {
             //undo move
-            var isRefreshed = lastMove.Undo();
-
-            //event for gameplay
-            if(isRefreshed) Event<OnUndo>.Post(new OnUndo());
+            lastMove.Undo();
 
             return true; // game has history to undo
         }

@@ -3,8 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameConfig" , menuName = ("ScriptableObjects/GameConfig"))]
 public class GameConfig : ScriptableObject
 {
-    public GateConfig GateConfig = new GateConfig();
-    public AnimalConfig AnimalConfig = new AnimalConfig();
+    public GateConfig Cannon = new GateConfig();
+    public AnimalConfig Animal = new AnimalConfig();
+    public EffectConfig Effect = new EffectConfig();
 }
 [Serializable] public struct GateConfig
 {
@@ -14,5 +15,10 @@ public class GameConfig : ScriptableObject
 [Serializable] public struct AnimalConfig
 {
     public float animationTime;
+    public float backwardScale;
+}
+[Serializable] public struct EffectConfig
+{
+    public float combatTime;
 }
 

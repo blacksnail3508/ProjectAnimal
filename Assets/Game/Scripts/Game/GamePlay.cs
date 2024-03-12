@@ -1,14 +1,12 @@
 using LazyFramework;
 using System;
-using System.Threading.Tasks;
 using UnityEngine;
 public class GamePlay : MonoBehaviour
 {
     [SerializeField] LevelAsset levelAsset;
     [SerializeField] Cage cage;
-    [SerializeField] int animalRemaining;
     [SerializeField] Predator wolf;
-
+    [SerializeField] CombatEffect combat;
     private void Start()
     {
         Subscribe();
@@ -22,17 +20,19 @@ public class GamePlay : MonoBehaviour
     {
         //clear history
         GameServices.ClearHistory();
+        GameServices.ClearCannon();
 
         //reset and release all pool
-        animalRemaining=0;
+        wolf.Idle();
+        combat.Hide();
 
         //fetch size from level asset
         var data = levelAsset.listLevel[e.Level];
         int sizeX = data.sizeX;
         int sizeY = data.sizeY;
         //create game board
-        GameServices.SaveCurrentLevelSize(sizeX, sizeY);
-        cage.Create(sizeX, sizeY);
+        GameServices.SaveCurrentLevelSize(sizeX , sizeY);
+        cage.Create(sizeX , sizeY);
 
         //relocate predator
         wolf.SetPosition(-2 , sizeY+1);
@@ -47,15 +47,9 @@ public class GamePlay : MonoBehaviour
         }
     }
 
-    private void OnCannonLoaded(OnCannonLoaded e)
-    {
-        animalRemaining += e.count;
-    }
-
     private void OnCannonShot(OnCannonShot e)
     {
-        animalRemaining--;
-        if (animalRemaining == 0)
+        if (GameServices.IsAllCannonShot()==true)
         {
             //end turn
 
@@ -64,7 +58,10 @@ public class GamePlay : MonoBehaviour
                 //predator is upset
 
                 PlayerService.UpdateLevel();
-                DisplayService.ShowPopup(UIPopupName.PopupWin);
+
+                GameServices.AnimalCelebrate();
+
+                Invoke("ShowPopupWin" , 1);
             }
             else
             {
@@ -72,38 +69,37 @@ public class GamePlay : MonoBehaviour
 
                 Action onReachTarget = () =>
                 {
-                    DisplayService.ShowPopup(UIPopupName.PopupLose);
+                    Action callback = () =>
+                    {
+                        DisplayService.ShowPopup(UIPopupName.PopupLose);
+                    };
+
+                    //hide animal
+                    wolf.Hide();
+                    GameServices.UnsafedAnimal().ReturnPool();
+
+                    //show combat
+                    combat.SetPosition(wolf.positionX , wolf.positionY);
+                    combat.Play(callback);
                 };
 
                 wolf.StartHunt(onReachTarget);
             }
         }
     }
-
-    public void OnUndo(OnUndo e)
-    {
-        if(animalRemaining == 0)
-        {
-
-        }
-        else
-        {
-            animalRemaining++;
-        }
-
-    }
     private void Subscribe()
     {
         Event<OnPlayLevel>.Subscribe(OnPlayLevel);
-        Event<OnCannonLoaded>.Subscribe(OnCannonLoaded);
         Event<OnCannonShot>.Subscribe(OnCannonShot);
-        Event<OnUndo>.Subscribe(OnUndo);
     }
     private void Unsubscribe()
     {
         Event<OnPlayLevel>.Unsubscribe(OnPlayLevel);
-        Event<OnCannonLoaded>.Unsubscribe(OnCannonLoaded);
         Event<OnCannonShot>.Unsubscribe(OnCannonShot);
-        Event<OnUndo>.Unsubscribe(OnUndo);
+    }
+
+    private void ShowPopupWin()
+    {
+        DisplayService.ShowPopup(UIPopupName.PopupWin);
     }
 }

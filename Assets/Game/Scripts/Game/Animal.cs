@@ -6,11 +6,19 @@ using UnityEngine;
 public class Animal : BoardObject
 {
     [SerializeField] GameConfig config;
-    [SerializeField] Transform sprite;
+    [SerializeField] Transform skate;
+    [SerializeField] Transform spine;
     public int bodyLength;
     public FaceDirection direction;
     [SerializeField] Ease moveEase;
     [SerializeField] List<TilePosition> path = new List<TilePosition>();
+    [SerializeField] PigAnimator animator;
+
+    public void PlayIdle()
+    {
+        animator.Idle();
+    }
+
     private void Start()
     {
         GameServices.Add(this);
@@ -19,6 +27,8 @@ public class Animal : BoardObject
     {
         //parse enum direction to vector
         var moveDirection = GameServices.DirectionToVector(direction);
+        var backward = GameServices.DirectionToVector(direction) * config.Animal.backwardScale;
+        var forward = backward * 0.75f;
 
         //check if next position is moveable
         int targetX = positionX+(int)moveDirection.x;
@@ -51,14 +61,21 @@ public class Animal : BoardObject
         //    Bug.Log($"{path[i].x},{path[i].y}");
         //}
 
-        moveDirection=new Vector3(targetX , targetY);
-        //update this position param
+        moveDirection = new Vector3(targetX , targetY);
+        //update this position param to game service
         UpdatePositionOnBoard(targetX+positionX , targetY+positionY);
 
-        transform.DOMove(transform.position+moveDirection , config.AnimalConfig.animationTime).SetEase(moveEase).OnComplete(() =>
+        animator.Move(this.direction);
+
+        transform.DOMove(transform.position - backward , config.Animal.animationTime/5f).OnComplete(() =>
         {
-            GameServices.ReleasePath(path);
-            OnStop?.Invoke();
+            transform.DOMove(transform.position + moveDirection + backward + forward, config.Animal.animationTime).SetEase(moveEase).OnComplete(() =>
+            {
+                transform.DOMove(transform.position-forward , config.Animal.animationTime/5f).SetEase(moveEase);
+                animator.Stop();
+                GameServices.ReleasePath(path);
+                OnStop?.Invoke();
+            });
         });
     }
 
@@ -102,16 +119,22 @@ public class Animal : BoardObject
         switch (direction)
         {
             case FaceDirection.Left:
-                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , -90));
+                skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , -90));
+                spine.localPosition=new Vector3(0.5f , 0 , 0 );
+
                 return 90;
             case FaceDirection.Right:
-                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , 90));
+                skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , 90));
+                spine.localPosition=new Vector3(-0.5f , 0 , 0);
+
                 return -90;
             case FaceDirection.Up:
-                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , -180));
+                skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , -180));
+                spine.localPosition=new Vector3(0 , -0.5f , 0);
                 return 0;
             case FaceDirection.Down:
-                sprite.rotation=Quaternion.Euler(new Vector3(0 , 0 , 0));
+                skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , 0));
+                spine.localPosition=new Vector3(0 , 0.5f , 0);
                 return -180;
         }
         return 0;
@@ -170,5 +193,9 @@ public class Animal : BoardObject
                 return new Vector2(positionX , positionY+1);
         }
         return Vector2.zero;
+    }
+    public override void Playwin()
+    {
+        animator.PlayWin();
     }
 }

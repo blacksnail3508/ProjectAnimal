@@ -32,4 +32,9 @@ public class BoardObject : MonoBehaviour
     {
         return true;
     }
+
+    public virtual void Playwin()
+    {
+
+    }
 }

@@ -133,13 +133,14 @@ public class AnimalCannon : MonoBehaviour
     {
         //reset shoot count
         shoot=0;
-
         //create and sort animal in clip
         ReleaseLoadedAnimals();
+
         for (int i = 0; i<count; i++)
         {
             var animal = GameServices.AnimalPool.GetAnimal();
             animal.gameObject.SetActive(true);
+            animal.PlayIdle();
             loadedAnimals.Add(animal);
             //sort
             animal.ChangeRotation(this.direction);
@@ -150,9 +151,8 @@ public class AnimalCannon : MonoBehaviour
         }
         Open();
 
-        //tell gameplay how long it wait to user to shoot
-        //GameServices.OnCannonLoaded(count);
-        GameServices.OnCannonLoaded(1);
+        //subscribe to GameService
+        GameServices.AddCannon(this);
     }
     public void ReturnPool()
     {
@@ -250,9 +250,8 @@ public class AnimalCannon : MonoBehaviour
         loadedAnimals.Clear();
     }
 
-    public bool Undo()
+    public void Undo()
     {
-
         //recall last shoot animal, then sort
         shoot--;
         SortAnimal();
@@ -260,7 +259,12 @@ public class AnimalCannon : MonoBehaviour
 
         //reallow click
         box.enabled=true;
-        var isFreshed = shoot == 0 ? false : true;
-        return isFreshed;
+
+        //var isFreshed = (loadedAnimals.Count - shoot)  > 0 ? true : false;
+        //return isFreshed;
+    }
+    public bool IsEmpty()
+    {
+        return loadedAnimals.Count-shoot==0;
     }
 }

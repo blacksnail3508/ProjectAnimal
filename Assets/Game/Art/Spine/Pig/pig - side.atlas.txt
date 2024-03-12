@@ -1,0 +1,61 @@
+pig - side.png
+size:405,99
+filter:Linear,Linear
+pma:true
+Ellipse 11 copy 2
+bounds:379,87,9,9
+offsets:1,1,11,11
+Lleg
+bounds:320,7,35,46
+rotate:90
+NOT
+bounds:388,10,9,9
+offsets:1,1,11,11
+Nose
+bounds:244,5,41,36
+offsets:1,1,43,38
+rotate:90
+Rear
+bounds:368,21,36,28
+offsets:1,1,38,30
+rotate:90
+Rhand
+bounds:282,48,30,49
+offsets:1,1,32,51
+Rleg
+bounds:314,44,35,46
+Shape 11
+bounds:227,3,12,9
+offsets:1,1,14,11
+Shape 11 copy
+bounds:227,14,13,9
+offsets:1,1,15,11
+Shape 6 copy 2
+bounds:2,2,102,95
+offsets:1,1,104,97
+body
+bounds:106,6,87,91
+ear
+bounds:349,59,38,28
+offsets:1,1,40,30
+rotate:90
+eye
+bounds:379,59,26,24
+offsets:1,1,28,26
+rotate:90
+eye-star
+bounds:282,10,36,36
+hand
+bounds:244,48,49,36
+offsets:1,1,51,38
+rotate:90
+leye
+bounds:368,2,18,17
+offsets:1,1,20,19
+no
+bounds:195,3,30,20
+offsets:1,1,32,22
+shadow
+bounds:195,25,72,47
+offsets:1,1,74,49
+rotate:90
