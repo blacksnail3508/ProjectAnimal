@@ -42,7 +42,7 @@ public class ObstacleSpawner : MonoBehaviour
     {
         foreach(var box in listBox)
         {
-            if (box.gameObject.activeSelf) return (Box)box;
+            if (box.gameObject.activeSelf == false) return (Box)box;
         }
 
         var newBox = Instantiate(boxPrefab , obstacleRoot);

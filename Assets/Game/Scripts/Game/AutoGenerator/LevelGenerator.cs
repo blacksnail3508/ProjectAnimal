@@ -8,6 +8,7 @@ public class LevelGenerator : MonoBehaviour
     public int col;
     public int difficult;
     public int randomTime;
+    public bool isBoxAllowed = false;
 
     int maxX;
     int maxY;
@@ -16,9 +17,9 @@ public class LevelGenerator : MonoBehaviour
     {
         for (int i = 0; i<randomTime; i++)
         {
-            int row = RandomUtils.RandomInSpecificRange(new int[] { 3 , 4 , 5 , 6 , 7 , 8 , 9 });
-            int col = RandomUtils.RandomInSpecificRange(new int[] { 3 , 4 , 5 , 6 , 7 , 8 , 9 });
-            int dif = RandomUtils.RandomInSpecificRange(new int[] { 5 , 8 , 10 , 12 });
+            int row = RandomUtils.RandomInSpecificRange(new int[] { 3 , 4 , 5 , 6 , 7 , 8 });
+            int col = RandomUtils.RandomInSpecificRange(new int[] { 3 , 4 , 5 , 6 , 7 , 8 });
+            int dif = RandomUtils.RandomInSpecificRange(new int[] { 5 , 8 , 10});
             AutoGenerate(dif , row , col);
         }
     }
@@ -29,17 +30,23 @@ public class LevelGenerator : MonoBehaviour
     public void AutoGenerate(int m , int n , int difficulty)
     {
         int[,] rectangle = new int[m , n];
-        maxX = m; maxY = n;
+        maxX=m; maxY=n;
 
         System.Random rand = new System.Random();
-
+        int randomShape;
         for (int i = 0; i<m; i++)
         {
             for (int j = 0; j<n; j++)
             {
                 if (rectangle[i , j]==0&&rand.Next(10)<difficulty)
                 {
-                    int randomShape = rand.Next(2);
+                    if (isBoxAllowed == true)
+                        randomShape = rand.Next(3); // Thêm lựa chọn cho hình vuông
+                    else
+                    {
+                        randomShape = rand.Next(2);
+                    }
+
                     if (randomShape==0&&i<m-1&&rectangle[i+1 , j]==0)
                     {
                         rectangle[i , j]=1;
@@ -50,18 +57,23 @@ public class LevelGenerator : MonoBehaviour
                         rectangle[i , j]=2;
                         rectangle[i , j+1]=2;
                     }
+                    else if (randomShape==2)
+                    {
+                        rectangle[i , j]=3; // Giá trị 3 cho hình vuông
+                    }
                 }
             }
         }
-
-        //DisplayBoard(rectangle, maxX, maxY);
+        //DisplayBoard(rectangle,maxX,maxY);
 
         //save to asset
         var newLevel = new Level();
         newLevel.sizeX = maxX; newLevel.sizeY = maxY;
 
         SaveCannonHorizontal(rectangle , m , n, newLevel);
-        CountRectanglesByColumn(rectangle , m , n, newLevel);
+        SaveCannonVertical(rectangle , m , n, newLevel);
+        SaveBoxPosition(rectangle , m , n , newLevel);
+
         newLevel.name=$"Level {levelAsset.listLevel.Count}";
         levelAsset.listLevel.Add(newLevel);
     }
@@ -98,7 +110,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    void CountRectanglesByColumn(int[,] rectangle , int m , int n, Level level)
+    void SaveCannonVertical(int[,] rectangle , int m , int n, Level level)
     {
         for (int j = 0; j<n; j++)
         {
@@ -113,7 +125,6 @@ public class LevelGenerator : MonoBehaviour
                     i++;
                 }
             }
-            //Debug.Log("Column "+(j+1)+": "+count+" rectangle(s)");
 
             if(count !=0)
             {
@@ -140,6 +151,24 @@ public class LevelGenerator : MonoBehaviour
                 row+=rectangle[i , j]+" ";
             }
             Debug.Log(row);
+        }
+    }
+    void SaveBoxPosition(int[,] rectangle , int m , int n,Level level)
+    {
+        for (int i = 0; i<m; i++)
+        {
+            for (int j = 0; j<n; j++)
+            {
+                if (rectangle[i , j]==3) // Kiểm tra nếu giá trị là 3
+                {
+                    var newBox = new ObstacleData();
+                    newBox.type=ObjectType.Box;
+                    newBox.posX = i;
+                    newBox.posY = j;
+                    level.listObstacle.Add(newBox);
+                    //Bug.Log($"Square at ({i},{j})");
+                }
+            }
         }
     }
 }
