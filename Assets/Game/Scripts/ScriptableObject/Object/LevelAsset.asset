@@ -23,6 +23,7 @@ MonoBehaviour:
     - posX: 3
       posY: 1
       animalCount: 1
+    listObstacle: []
   - name: Level 1
     sizeX: 3
     sizeY: 3
@@ -36,6 +37,7 @@ MonoBehaviour:
     - posX: 3
       posY: 2
       animalCount: 1
+    listObstacle: []
   - name: Level 2
     sizeX: 3
     sizeY: 3
@@ -52,6 +54,7 @@ MonoBehaviour:
     - posX: 2
       posY: -1
       animalCount: 1
+    listObstacle: []
   - name: Level 3
     sizeX: 4
     sizeY: 4
@@ -62,6 +65,7 @@ MonoBehaviour:
     - posX: 4
       posY: 2
       animalCount: 2
+    listObstacle: []
   - name: Level 4
     sizeX: 5
     sizeY: 4
@@ -78,6 +82,7 @@ MonoBehaviour:
     - posX: 5
       posY: 2
       animalCount: 2
+    listObstacle: []
   - name: Level 5
     sizeX: 4
     sizeY: 4
@@ -94,6 +99,7 @@ MonoBehaviour:
     - posX: 4
       posY: 2
       animalCount: 1
+    listObstacle: []
   - name: Level 6
     sizeX: 4
     sizeY: 4
@@ -110,6 +116,7 @@ MonoBehaviour:
     - posX: 4
       posY: 2
       animalCount: 1
+    listObstacle: []
   - name: Level 7
     sizeX: 4
     sizeY: 4
@@ -126,6 +133,7 @@ MonoBehaviour:
     - posX: 4
       posY: 2
       animalCount: 1
+    listObstacle: []
   - name: Level 8
     sizeX: 4
     sizeY: 4
@@ -142,6 +150,7 @@ MonoBehaviour:
     - posX: 4
       posY: 3
       animalCount: 1
+    listObstacle: []
   - name: Level 9
     sizeX: 4
     sizeY: 4
@@ -158,6 +167,7 @@ MonoBehaviour:
     - posX: 3
       posY: -1
       animalCount: 2
+    listObstacle: []
   - name: Level 10
     sizeX: 4
     sizeY: 4
@@ -174,6 +184,7 @@ MonoBehaviour:
     - posX: 4
       posY: 1
       animalCount: 1
+    listObstacle: []
   - name: Level 11
     sizeX: 4
     sizeY: 4
@@ -190,6 +201,7 @@ MonoBehaviour:
     - posX: 4
       posY: 1
       animalCount: 1
+    listObstacle: []
   - name: Level 12
     sizeX: 5
     sizeY: 5
@@ -206,6 +218,7 @@ MonoBehaviour:
     - posX: 4
       posY: -1
       animalCount: 2
+    listObstacle: []
   - name: Level 13
     sizeX: 5
     sizeY: 5
@@ -234,3 +247,4 @@ MonoBehaviour:
     - posX: 5
       posY: 2
       animalCount: 2
+    listObstacle: []

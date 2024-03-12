@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Cannon
+  - Animal
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,7 @@ TagManager:
     locked: 0
   - name: Collide
     uniqueID: 3290366565
+    locked: 0
+  - name: Conversation
+    uniqueID: 1472474329
     locked: 0

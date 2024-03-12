@@ -14,6 +14,7 @@ public class Animal : BoardObject
     [SerializeField] List<TilePosition> path = new List<TilePosition>();
     [SerializeField] PigAnimator animator;
     [SerializeField] SkateBoard skateBoard;
+    [SerializeField] PigConversation conversation;
 
     public void PlayIdle()
     {
@@ -77,7 +78,18 @@ public class Animal : BoardObject
                 transform.DOMove(transform.position-forward , config.Animal.animationTime/5f).SetEase(moveEase);
                 animator.Stop();
                 GameServices.ReleasePath(path);
+
+                if (IsSafe()==true)
+                {
+                    conversation.CelebrateEmoji();
+                }
+                else
+                {
+                    conversation.LoseEmoji();
+                }
                 OnStop?.Invoke();
+
+
             });
         });
     }

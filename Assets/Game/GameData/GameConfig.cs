@@ -20,5 +20,8 @@ public class GameConfig : ScriptableObject
 [Serializable] public struct EffectConfig
 {
     public float combatTime;
+    public float emojiTime;
+    [Range(0 , 1)] public float celebrateEmojiRate;
+    [Range(0,1)]public float loseEmojiRate;
 }
 

@@ -9,16 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfeef43c9790174185c9873da10252b, type: 3}
-  m_Name: GameConfig
+  m_Script: {fileID: 11500000, guid: 360e8d4659975054f9dd61d560615b1f, type: 3}
+  m_Name: EmoteLibrary
   m_EditorClassIdentifier: 
-  Cannon:
-    AnimationTime: 0
-  Animal:
-    animationTime: 0.25
-    backwardScale: 0.25
-  Effect:
-    combatTime: 1.5
-    emojiTime: 1.5
-    celebrateEmojiRate: 0.5
-    loseEmojiRate: 1
+  listEmoji:
+  - name: 
+    emoji: {fileID: 0}

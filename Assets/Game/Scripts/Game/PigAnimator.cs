@@ -13,6 +13,7 @@ public class PigAnimator : MonoBehaviour
     public void PlayWin()
     {
         pig.AnimationState.ClearTrack(0);
+        pig.skeleton.SetToSetupPose();
         track=pig.AnimationState.SetAnimation(0 , PigAnim.Win , false);
         track.Complete+=Idle;
     }
@@ -55,6 +56,8 @@ public class PigAnimator : MonoBehaviour
 
     public void Idle()
     {
+        pig.AnimationState.ClearTrack(0);
+        pig.skeleton.SetToSetupPose();
         track = pig.AnimationState.SetAnimation(0 , PigAnim.Idle , true);
     }
     void Idle(TrackEntry track)

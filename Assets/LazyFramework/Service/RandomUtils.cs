@@ -81,9 +81,50 @@ namespace LazyFramework
             // This line should not be reached unless there is an issue with the weights
             throw new InvalidOperationException("Weighted random item calculation failed.");
         }
+        public static int RandomWithWeight(int[] items , int[] weights)
+        {
+            if (items==null||weights==null||items.Length==0||weights.Length==0||items.Length!=weights.Length)
+            {
+                throw new ArgumentException("Invalid input parameters.");
+            }
 
-        
+            int totalWeight = 0;
 
+            foreach (int weight in weights)
+            {
+                if (weight<0)
+                {
+                    throw new ArgumentException("Weights cannot be negative.");
+                }
+
+                totalWeight+=weight;
+            }
+
+            int randomNumber = UnityEngine.Random.Range(1 , totalWeight+1);
+
+            for (int i = 0; i<weights.Length; i++)
+            {
+                if (randomNumber<=weights[i])
+                {
+                    return items[i];
+                }
+
+                randomNumber-=weights[i];
+            }
+
+            // This line should not be reached unless there is an issue with the weights
+            throw new InvalidOperationException("Weighted random item calculation failed.");
+        }
+        public static bool RandomRate(int rate)
+        {
+            int rand = Random.Range(0, 100);
+
+            if(rand > rate)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
-
 }
