@@ -149,6 +149,7 @@ public class Animal : BoardObject
     }
     public void ReturnPool()
     {
+        transform.DOKill();
         this.gameObject.SetActive(false);
     }
 
