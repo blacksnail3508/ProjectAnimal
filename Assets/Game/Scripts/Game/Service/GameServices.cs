@@ -43,6 +43,7 @@ public static class GameServices
     static float height => currentLevelSize.y;
 
     private static List<BoardObject> listAnimal = new List<BoardObject>();
+    private static List<BoardObject> listObstacles = new List<BoardObject>();
     private static List<AnimalCannon> listCannon = new List<AnimalCannon>();
 
     public static AnimalPool AnimalPool;
@@ -91,7 +92,7 @@ public static class GameServices
 
         return true;
     }
-    public static Animal UnsafedAnimal()
+    public static Animal UnsafeAnimal()
     {
         foreach (var animal in listAnimal)
         {
@@ -104,9 +105,13 @@ public static class GameServices
         return null;
     }
 
-    public static void Add(BoardObject obj)
+    public static void AddAnimal(BoardObject obj)
     {
         listAnimal.Add(obj);
+    }
+    public static void AddObstacle(BoardObject obj)
+    {
+        listObstacles.Add(obj);
     }
     public static void SaveCurrentLevelSize(float width , float height)
     {
@@ -148,6 +153,20 @@ public static class GameServices
                 {
                     //Bug.Log("position occupied, not moveable");
 
+                    //position is occupied, moveable = false
+                    return false;
+                }
+            }
+        }
+
+        //if any animal stand on that
+        foreach (var obstacle in listObstacles)
+        {
+            if (obstacle.gameObject.activeSelf==true)
+            {
+                if (obstacle.IsOccupied(x , y)==true)
+                {
+                    //Bug.Log("position occupied, not moveable");
                     //position is occupied, moveable = false
                     return false;
                 }
@@ -200,7 +219,7 @@ public static class GameServices
     #endregion
 
     #region UNDO
-
+    public static bool UndoEnable = true;
     static History history = new History();
 
     public static void WriteHistory(AnimalCannon cannon)
@@ -209,6 +228,8 @@ public static class GameServices
     }
     public static bool Undo()
     {
+        if (!UndoEnable) return false;
+
         var lastMove = history.Pop();
         if (lastMove!=null)
         {

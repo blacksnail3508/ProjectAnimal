@@ -38,6 +38,7 @@ public class AnimalCannon : MonoBehaviour
     public int posY;
 
     public int shoot = 0;
+    private bool isStuck;
 
     private void Awake()
     {
@@ -131,6 +132,7 @@ public class AnimalCannon : MonoBehaviour
     }
     public void LoadAnimal(int count)
     {
+        isStuck=false;
         //reset shoot count
         shoot=0;
         //create and sort animal in clip
@@ -203,9 +205,6 @@ public class AnimalCannon : MonoBehaviour
             //check if it realy get inside
             if(animal.IsSafe() == true)
             {
-                ////remove from list
-                //loadedAnimals.Remove(animal);
-
                 box.enabled=true;
 
                 //sort if queue is remaining
@@ -223,10 +222,7 @@ public class AnimalCannon : MonoBehaviour
             }
             else
             {
-                //for (int i = shoot-1; i<loadedAnimals.Count; i++)
-                //{
-                //    GameServices.OnCannonShot();
-                //}
+                isStuck = true;
                 GameServices.OnCannonShot();
                 box.enabled=false;
             }
@@ -252,19 +248,18 @@ public class AnimalCannon : MonoBehaviour
 
     public void Undo()
     {
+        isStuck =false;
         //recall last shoot animal, then sort
         shoot--;
         SortAnimal();
         Open();
 
-        //reallow click
+        //re-allow click
         box.enabled=true;
-
-        //var isFreshed = (loadedAnimals.Count - shoot)  > 0 ? true : false;
-        //return isFreshed;
     }
     public bool IsEmpty()
     {
-        return loadedAnimals.Count-shoot==0;
+        if(isStuck) return true;
+        return loadedAnimals.Count - shoot == 0;
     }
 }

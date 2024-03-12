@@ -71,7 +71,7 @@ public class Predator : BoardObject
     public void StartHunt(Action onReachTarget)
     {
         this.onReachTarget = onReachTarget;
-        var target = GameServices.UnsafedAnimal().TailPosition();
+        var target = GameServices.UnsafeAnimal().TailPosition();
         Hunt((int)target.x,(int)target.y);
 
         this.positionX = (int) target.x;

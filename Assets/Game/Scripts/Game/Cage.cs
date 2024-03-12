@@ -1,3 +1,4 @@
+using LazyFramework;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class Cage : MonoBehaviour
     [SerializeField] AnimalCannon cannonPrefab;
     [SerializeField] Transform cannonRoot;
 
+    [Header("Obstacles")]
+    [SerializeField] ObstacleSpawner objSpawner;
 
     private int sizeX;
     private int sizeY;
@@ -42,8 +45,8 @@ public class Cage : MonoBehaviour
         SpawnTiles();
 
         SpawnCannons();
-
     }
+
     private void SpawnTiles()
     {
         int x = sizeX; int y = sizeY;
@@ -105,7 +108,8 @@ public class Cage : MonoBehaviour
     /// <param name="count"></param>
     public void SetCannon(int posX, int posY, int count)
     {
-        GetCannon(posX, posY).LoadAnimal(count);
+        var cannon = GetCannon(posX , posY);
+        cannon?.LoadAnimal(count);
     }
 
     /// <summary>
@@ -158,6 +162,16 @@ public class Cage : MonoBehaviour
             if(cannon.posX == x && cannon.posY == y) return cannon;
         }
 
+        Bug.LogError($"Cannon {x}:{y} not found");
         return null;
+    }
+
+    public void CreateObstacles(int level)
+    {
+        objSpawner.CreateObject(level);
+    }
+    public void HideObstacles()
+    {
+        objSpawner.ReturnPoolAll();
     }
 }

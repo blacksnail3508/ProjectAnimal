@@ -18,9 +18,12 @@ public class GamePlay : MonoBehaviour
 
     private void OnPlayLevel(OnPlayLevel e)
     {
+        CancelInvoke();
         //clear history
         GameServices.ClearHistory();
         GameServices.ClearCannon();
+        GameServices.UndoEnable=true;
+        cage.HideObstacles();
 
         //reset and release all pool
         wolf.Idle();
@@ -45,6 +48,9 @@ public class GamePlay : MonoBehaviour
         {
             cage.SetCannon(cannonData.posX , cannonData.posY , cannonData.animalCount);
         }
+
+        //load obstacles
+        cage.CreateObstacles(e.Level);
     }
 
     private void OnCannonShot(OnCannonShot e)
@@ -52,6 +58,7 @@ public class GamePlay : MonoBehaviour
         if (GameServices.IsAllCannonShot()==true)
         {
             //end turn
+            GameServices.UndoEnable = false;
 
             if (GameServices.IsAllAnimalSafe())
             {
@@ -76,7 +83,7 @@ public class GamePlay : MonoBehaviour
 
                     //hide animal
                     wolf.Hide();
-                    GameServices.UnsafedAnimal().ReturnPool();
+                    GameServices.UnsafeAnimal().ReturnPool();
 
                     //show combat
                     combat.SetPosition(wolf.positionX , wolf.positionY);

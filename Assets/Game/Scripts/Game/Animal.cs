@@ -13,6 +13,7 @@ public class Animal : BoardObject
     [SerializeField] Ease moveEase;
     [SerializeField] List<TilePosition> path = new List<TilePosition>();
     [SerializeField] PigAnimator animator;
+    [SerializeField] SkateBoard skateBoard;
 
     public void PlayIdle()
     {
@@ -21,7 +22,9 @@ public class Animal : BoardObject
 
     private void Start()
     {
-        GameServices.Add(this);
+        GameServices.AddAnimal(this);
+
+        skateBoard.RandomLoad();
     }
     public void Move(Action OnStop = null)
     {

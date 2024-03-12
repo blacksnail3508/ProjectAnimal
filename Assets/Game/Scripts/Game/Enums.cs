@@ -29,5 +29,6 @@ public enum FaceDirection
 public enum ObjectType
 {
     Animal = 0,
+    Box = 1,
 
 }

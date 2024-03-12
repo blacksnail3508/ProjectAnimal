@@ -12,6 +12,7 @@ public class PigAnimator : MonoBehaviour
 
     public void PlayWin()
     {
+        pig.AnimationState.ClearTrack(0);
         track=pig.AnimationState.SetAnimation(0 , PigAnim.Win , false);
         track.Complete+=Idle;
     }
