@@ -19,7 +19,7 @@ public class UIPopupWin : UIPopupBase
     private void Start()
     {
         DisableCommon();
-        showDirection.stopped += delegate
+        director.stopped += delegate
         {
             //int best = levelAsset.listLevel[PlayerService.CurrentLevel].dificulty;
 

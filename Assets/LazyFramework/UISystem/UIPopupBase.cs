@@ -7,7 +7,7 @@ namespace LazyFramework
     public class UIPopupBase : MonoBehaviour
     {
         [Header("PlayableDirection")]
-        [HideInInspector] public PlayableDirector showDirection;
+        [HideInInspector] public PlayableDirector director;
         protected Tween tween;
         [HideInInspector] public string popupName;
         [Header("Base references and configs")]
@@ -31,10 +31,10 @@ namespace LazyFramework
                 canvasGroup=GetComponent<CanvasGroup>();
             SubscribeEvent();
 
-            showDirection = GetComponent<PlayableDirector>();
-            if(showDirection !=null)
+            director = GetComponent<PlayableDirector>();
+            if(director !=null)
             {
-                showDirection.timeUpdateMode=DirectorUpdateMode.UnscaledGameTime;
+                director.timeUpdateMode=DirectorUpdateMode.UnscaledGameTime;
             }
 
         }
@@ -48,9 +48,9 @@ namespace LazyFramework
             tween?.Kill();
             tween=canvasGroup.DOFade(1 , 0).SetUpdate(true);
 
-            if (showDirection!=null)
+            if (director!=null)
             {
-                showDirection.Play();
+                director.Play();
             }
         }
         public virtual void Hide(float? fadeTime = 0.25f)

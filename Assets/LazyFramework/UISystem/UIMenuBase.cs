@@ -1,11 +1,15 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Playables;
+
 namespace LazyFramework
 {
     [RequireComponent(typeof(CanvasGroup))]
     public class UIMenuBase : MonoBehaviour
     {
         Tween tween;
+        [Header("PlayableDirection")]
+        [HideInInspector] public PlayableDirector director;
         [SerializeField] private string menuName;
         [SerializeField] protected bool isDeactiveOnHide = true;
         [SerializeField] protected bool isDestroyOnHide = false;
@@ -25,12 +29,21 @@ namespace LazyFramework
         protected virtual void Awake()
         {
             canvasGroup=GetComponent<CanvasGroup>();
+            director=GetComponent<PlayableDirector>();
+            if (director!=null)
+            {
+                director.timeUpdateMode=DirectorUpdateMode.UnscaledGameTime;
+            }
             Subscribe();
         }
         protected virtual void OnEnable()
         {
             tween?.Kill();
             tween = canvasGroup.DOFade(1 , fadeTime);
+            if (director!=null)
+            {
+                director.Play();
+            }
         }
         public virtual void OnHide()
         {
