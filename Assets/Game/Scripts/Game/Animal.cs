@@ -16,6 +16,7 @@ public class Animal : BoardObject
     [SerializeField] SkateBoard skateBoard;
     [SerializeField] PigConversation conversation;
 
+
     public void PlayIdle()
     {
         animator.Idle();
@@ -25,7 +26,8 @@ public class Animal : BoardObject
     {
         GameServices.AddAnimal(this);
 
-        skateBoard.RandomLoad();
+        //skateBoard.RandomLoad();
+        skateBoard.LoadEquipingSkateBoard();
     }
     public void Move(Action OnStop = null)
     {
@@ -145,11 +147,11 @@ public class Animal : BoardObject
                 return -90;
             case FaceDirection.Up:
                 skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , -180));
-                spine.localPosition=new Vector3(0 , -0.5f , 0);
+                spine.localPosition=new Vector3(0 , -1f , 0);
                 return 0;
             case FaceDirection.Down:
                 skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , 0));
-                spine.localPosition=new Vector3(0 , 0.5f , 0);
+                spine.localPosition=new Vector3(0 , 0 , 0);
                 return -180;
         }
         return 0;

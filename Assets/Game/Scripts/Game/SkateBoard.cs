@@ -2,23 +2,22 @@ using UnityEngine;
 
 public class SkateBoard : MonoBehaviour
 {
-    [SerializeField] SpriteLibrary library;
+    [SerializeField] SkateBoardLibrary library;
 
     [SerializeField] SpriteRenderer board;
-    [SerializeField] SpriteRenderer decor;
 
-    public void Load(int boardId , int decorId)
+    void Load(int index)
     {
-        board.sprite=library.GetBoard(boardId);
-        decor.sprite=library.GetDecor(decorId);
+        board.sprite=library.GetBoard(index);
     }
 
     public void RandomLoad()
     {
-        var boardId = Random.Range(0 , library.SkateBoardAsset.Count);
-        var decorId = Random.Range(0 , library.SkateDecorAsset.Count);
-
-        board.sprite=library.GetBoard(boardId);
-        decor.sprite=library.GetDecor(decorId);
+        var index = Random.Range(0 , library.listSkateBoard.Count);
+        Load(index);
+    }
+    public void LoadEquipingSkateBoard()
+    {
+        Load(DataService.GetEquipingSkateBoard());
     }
 }

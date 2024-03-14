@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using LazyFramework;
 using UnityEngine;
 
@@ -172,3 +173,4 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 }
+#endif

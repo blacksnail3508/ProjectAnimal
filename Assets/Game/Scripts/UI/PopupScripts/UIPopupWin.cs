@@ -16,6 +16,8 @@ public class UIPopupWin : UIPopupBase
     [Header("text")]
     [SerializeField] TMP_Text levelText;
     [SerializeField] GameObject nextButton;
+
+    [SerializeField] UnlockSkateSlider skateUnlocker;
     private void Start()
     {
         DisableCommon();
@@ -86,6 +88,8 @@ public class UIPopupWin : UIPopupBase
             nextButton.gameObject.SetActive(false);
         }
         //get current best solution move count
+
+        skateUnlocker.Show();
     }
     private void DisableCommon()
     {

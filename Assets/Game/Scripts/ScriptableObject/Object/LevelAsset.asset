@@ -67,21 +67,21 @@ MonoBehaviour:
       animalCount: 2
     listObstacle: []
   - name: Level 4
-    sizeX: 5
+    sizeX: 4
     sizeY: 4
     listCannon:
     - posX: 0
-      posY: -1
+      posY: 4
       animalCount: 1
     - posX: 2
-      posY: -1
+      posY: 4
       animalCount: 1
-    - posX: 5
-      posY: 0
-      animalCount: 2
-    - posX: 5
+    - posX: -1
       posY: 2
       animalCount: 2
+    - posX: 3
+      posY: -1
+      animalCount: 1
     listObstacle: []
   - name: Level 5
     sizeX: 4
@@ -248,3 +248,698 @@ MonoBehaviour:
       posY: 2
       animalCount: 2
     listObstacle: []
+  - name: Level 14
+    sizeX: 5
+    sizeY: 6
+    listCannon:
+    - posX: -1
+      posY: 2
+      animalCount: 1
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: -1
+      posY: 5
+      animalCount: 1
+    - posX: 0
+      posY: -1
+      animalCount: 1
+    - posX: 0
+      posY: 6
+      animalCount: 1
+    - posX: 1
+      posY: -1
+      animalCount: 2
+    - posX: 2
+      posY: 6
+      animalCount: 2
+    - posX: 3
+      posY: -1
+      animalCount: 1
+    - posX: 3
+      posY: 6
+      animalCount: 1
+    - posX: 5
+      posY: 2
+      animalCount: 1
+    listObstacle: []
+  - name: Level 15
+    sizeX: 5
+    sizeY: 5
+    listCannon:
+    - posX: -1
+      posY: 1
+      animalCount: 1
+    - posX: 2
+      posY: -1
+      animalCount: 1
+    - posX: 3
+      posY: 5
+      animalCount: 1
+    listObstacle:
+    - posX: 3
+      posY: 1
+      type: 1
+  - name: Level 16
+    sizeX: 5
+    sizeY: 5
+    listCannon:
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: 0
+      posY: 5
+      animalCount: 1
+    - posX: 4
+      posY: 5
+      animalCount: 1
+    - posX: 5
+      posY: 3
+      animalCount: 1
+    - posX: 5
+      posY: 2
+      animalCount: 1
+    - posX: 5
+      posY: 1
+      animalCount: 1
+    - posX: 5
+      posY: 0
+      animalCount: 1
+    listObstacle:
+    - posX: 1
+      posY: 0
+      type: 1
+    - posX: 2
+      posY: 3
+      type: 1
+  - name: Level 17
+    sizeX: 6
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 0
+      animalCount: 1
+    - posX: -1
+      posY: 2
+      animalCount: 1
+    - posX: -1
+      posY: 4
+      animalCount: 1
+    - posX: -1
+      posY: 6
+      animalCount: 1
+    - posX: 2
+      posY: -1
+      animalCount: 1
+    - posX: 2
+      posY: 7
+      animalCount: 1
+    - posX: 3
+      posY: 7
+      animalCount: 2
+    - posX: 4
+      posY: -1
+      animalCount: 2
+    - posX: 5
+      posY: -1
+      animalCount: 2
+    - posX: 6
+      posY: 0
+      animalCount: 1
+    - posX: 6
+      posY: 4
+      animalCount: 1
+    listObstacle:
+    - posX: 2
+      posY: 3
+      type: 1
+    - posX: 3
+      posY: 2
+      type: 1
+  - name: Level 18
+    sizeX: 7
+    sizeY: 5
+    listCannon:
+    - posX: -1
+      posY: 4
+      animalCount: 1
+    - posX: -1
+      posY: 2
+      animalCount: 2
+    - posX: 0
+      posY: 5
+      animalCount: 1
+    - posX: 0
+      posY: -1
+      animalCount: 1
+    - posX: 1
+      posY: -1
+      animalCount: 2
+    - posX: 2
+      posY: 5
+      animalCount: 2
+    - posX: 5
+      posY: 5
+      animalCount: 1
+    - posX: 5
+      posY: -1
+      animalCount: 1
+    - posX: 7
+      posY: 3
+      animalCount: 1
+    - posX: 7
+      posY: 1
+      animalCount: 1
+    - posX: 7
+      posY: 0
+      animalCount: 1
+    listObstacle:
+    - posX: 5
+      posY: 2
+      type: 1
+  - name: Level 19
+    sizeX: 6
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: -1
+      posY: 2
+      animalCount: 1
+    - posX: -1
+      posY: 0
+      animalCount: 1
+    - posX: 0
+      posY: -1
+      animalCount: 2
+    - posX: 1
+      posY: -1
+      animalCount: 1
+    - posX: 3
+      posY: -1
+      animalCount: 2
+    - posX: 2
+      posY: 7
+      animalCount: 2
+    - posX: 5
+      posY: 7
+      animalCount: 2
+    - posX: 6
+      posY: 6
+      animalCount: 1
+    - posX: 6
+      posY: 4
+      animalCount: 1
+    - posX: 6
+      posY: 3
+      animalCount: 1
+    - posX: 6
+      posY: 0
+      animalCount: 1
+    listObstacle:
+    - posX: 1
+      posY: 4
+      type: 1
+    - posX: 3
+      posY: 5
+      type: 1
+    - posX: 4
+      posY: 2
+      type: 1
+    - posX: 2
+      posY: 1
+      type: 1
+  - name: Level 20
+    sizeX: 6
+    sizeY: 5
+    listCannon:
+    - posX: -1
+      posY: 2
+      animalCount: 1
+    - posX: 0
+      posY: 5
+      animalCount: 1
+    - posX: 0
+      posY: -1
+      animalCount: 1
+    - posX: 1
+      posY: 5
+      animalCount: 1
+    - posX: 1
+      posY: -1
+      animalCount: 1
+    - posX: 6
+      posY: 4
+      animalCount: 2
+    - posX: 6
+      posY: 3
+      animalCount: 2
+    - posX: 6
+      posY: 2
+      animalCount: 1
+    - posX: 6
+      posY: 1
+      animalCount: 2
+    - posX: 6
+      posY: 0
+      animalCount: 2
+    listObstacle:
+    - posX: 2
+      posY: 2
+      type: 1
+  - name: Level 21
+    sizeX: 6
+    sizeY: 6
+    listCannon:
+    - posX: -1
+      posY: 5
+      animalCount: 1
+    - posX: -1
+      posY: 4
+      animalCount: 1
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: -1
+      posY: 0
+      animalCount: 2
+    - posX: 0
+      posY: 6
+      animalCount: 1
+    - posX: 2
+      posY: 6
+      animalCount: 1
+    - posX: 2
+      posY: -1
+      animalCount: 1
+    - posX: 3
+      posY: -1
+      animalCount: 2
+    - posX: 4
+      posY: 6
+      animalCount: 1
+    - posX: 5
+      posY: 6
+      animalCount: 1
+    - posX: 6
+      posY: 5
+      animalCount: 1
+    - posX: 6
+      posY: 4
+      animalCount: 1
+    - posX: 6
+      posY: 1
+      animalCount: 2
+    listObstacle:
+    - posX: 2
+      posY: 2
+      type: 1
+    - posX: 3
+      posY: 4
+      type: 1
+  - name: Level 22
+    sizeX: 8
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 4
+      animalCount: 2
+    - posX: -1
+      posY: 2
+      animalCount: 1
+    - posX: 1
+      posY: -1
+      animalCount: 2
+    - posX: 3
+      posY: -1
+      animalCount: 1
+    - posX: 4
+      posY: 7
+      animalCount: 2
+    - posX: 5
+      posY: -1
+      animalCount: 1
+    - posX: 8
+      posY: 5
+      animalCount: 2
+    - posX: 8
+      posY: 4
+      animalCount: 1
+    - posX: 8
+      posY: 3
+      animalCount: 1
+    - posX: 8
+      posY: 2
+      animalCount: 1
+    - posX: 8
+      posY: 0
+      animalCount: 1
+    listObstacle:
+    - posX: 3
+      posY: 3
+      type: 1
+    - posX: 1
+      posY: 5
+      type: 1
+  - name: Level 23
+    sizeX: 7
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 5
+      animalCount: 2
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: -1
+      posY: 1
+      animalCount: 2
+    - posX: 3
+      posY: -1
+      animalCount: 1
+    - posX: 4
+      posY: -1
+      animalCount: 2
+    - posX: 7
+      posY: 5
+      animalCount: 1
+    - posX: 7
+      posY: 4
+      animalCount: 2
+    - posX: 7
+      posY: 3
+      animalCount: 1
+    - posX: 7
+      posY: 2
+      animalCount: 3
+    - posX: 7
+      posY: 1
+      animalCount: 1
+    - posX: 7
+      posY: 0
+      animalCount: 2
+    listObstacle:
+    - posX: 0
+      posY: 0
+      type: 1
+    - posX: 0
+      posY: 2
+      type: 1
+    - posX: 0
+      posY: 4
+      type: 1
+    - posX: 4
+      posY: 6
+      type: 1
+  - name: Level 24
+    sizeX: 7
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 6
+      animalCount: 2
+    - posX: -1
+      posY: 2
+      animalCount: 2
+    - posX: 4
+      posY: 7
+      animalCount: 3
+    - posX: 5
+      posY: 7
+      animalCount: 1
+    - posX: 1
+      posY: -1
+      animalCount: 2
+    - posX: 2
+      posY: -1
+      animalCount: 2
+    - posX: 7
+      posY: 6
+      animalCount: 1
+    - posX: 7
+      posY: 5
+      animalCount: 2
+    listObstacle:
+    - posX: 1
+      posY: 5
+      type: 1
+    - posX: 3
+      posY: 3
+      type: 1
+    - posX: 5
+      posY: 1
+      type: 1
+  - name: Level 25
+    sizeX: 7
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 6
+      animalCount: 1
+    - posX: -1
+      posY: 5
+      animalCount: 1
+    - posX: -1
+      posY: 4
+      animalCount: 2
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: -1
+      posY: 2
+      animalCount: 1
+    - posX: 0
+      posY: 7
+      animalCount: 2
+    - posX: 1
+      posY: 7
+      animalCount: 1
+    - posX: 4
+      posY: 7
+      animalCount: 2
+    - posX: 3
+      posY: -1
+      animalCount: 1
+    - posX: 5
+      posY: -1
+      animalCount: 1
+    - posX: 6
+      posY: -1
+      animalCount: 1
+    - posX: 7
+      posY: 6
+      animalCount: 1
+    - posX: 7
+      posY: 2
+      animalCount: 1
+    - posX: 7
+      posY: 1
+      animalCount: 1
+    listObstacle:
+    - posX: 1
+      posY: 1
+      type: 1
+    - posX: 3
+      posY: 3
+      type: 1
+    - posX: 5
+      posY: 5
+      type: 1
+  - name: Level 26
+    sizeX: 7
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 6
+      animalCount: 1
+    - posX: -1
+      posY: 5
+      animalCount: 1
+    - posX: -1
+      posY: 2
+      animalCount: 1
+    - posX: -1
+      posY: 1
+      animalCount: 1
+    - posX: -1
+      posY: 0
+      animalCount: 1
+    - posX: 0
+      posY: 7
+      animalCount: 1
+    - posX: 2
+      posY: 7
+      animalCount: 1
+    - posX: 4
+      posY: 7
+      animalCount: 1
+    - posX: 6
+      posY: 7
+      animalCount: 1
+    - posX: 3
+      posY: -1
+      animalCount: 2
+    - posX: 7
+      posY: 6
+      animalCount: 1
+    - posX: 7
+      posY: 5
+      animalCount: 1
+    - posX: 7
+      posY: 3
+      animalCount: 3
+    - posX: 7
+      posY: 2
+      animalCount: 1
+    - posX: 7
+      posY: 1
+      animalCount: 1
+    - posX: 7
+      posY: 0
+      animalCount: 1
+    listObstacle: []
+  - name: Level 27
+    sizeX: 6
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 5
+      animalCount: 1
+    - posX: -1
+      posY: 2
+      animalCount: 1
+    - posX: -1
+      posY: 0
+      animalCount: 1
+    - posX: 0
+      posY: -1
+      animalCount: 1
+    - posX: 3
+      posY: -1
+      animalCount: 2
+    - posX: 6
+      posY: 0
+      animalCount: 1
+    - posX: 6
+      posY: 2
+      animalCount: 1
+    - posX: 4
+      posY: 7
+      animalCount: 2
+    - posX: 2
+      posY: 7
+      animalCount: 2
+    - posX: 1
+      posY: 7
+      animalCount: 1
+    - posX: 0
+      posY: 7
+      animalCount: 1
+    listObstacle:
+    - posX: 3
+      posY: 5
+      type: 1
+    - posX: 2
+      posY: 2
+      type: 1
+  - name: Level 28
+    sizeX: 7
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 5
+      animalCount: 1
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: -1
+      posY: 2
+      animalCount: 3
+    - posX: -1
+      posY: 1
+      animalCount: 1
+    - posX: 3
+      posY: -1
+      animalCount: 2
+    - posX: 4
+      posY: -1
+      animalCount: 1
+    - posX: 7
+      posY: 1
+      animalCount: 1
+    - posX: 7
+      posY: 3
+      animalCount: 1
+    - posX: 7
+      posY: 4
+      animalCount: 3
+    - posX: 7
+      posY: 5
+      animalCount: 1
+    - posX: 4
+      posY: 7
+      animalCount: 1
+    listObstacle:
+    - posX: 2
+      posY: 5
+      type: 1
+    - posX: 4
+      posY: 3
+      type: 1
+    - posX: 2
+      posY: 1
+      type: 1
+  - name: Level 29
+    sizeX: 7
+    sizeY: 7
+    listCannon:
+    - posX: -1
+      posY: 4
+      animalCount: 1
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: -1
+      posY: 0
+      animalCount: 3
+    - posX: 0
+      posY: -1
+      animalCount: 1
+    - posX: 1
+      posY: -1
+      animalCount: 1
+    - posX: 2
+      posY: -1
+      animalCount: 2
+    - posX: 7
+      posY: 1
+      animalCount: 3
+    - posX: 7
+      posY: 2
+      animalCount: 3
+    - posX: 7
+      posY: 3
+      animalCount: 2
+    - posX: 7
+      posY: 4
+      animalCount: 1
+    - posX: 7
+      posY: 5
+      animalCount: 2
+    - posX: 7
+      posY: 6
+      animalCount: 2
+    - posX: 2
+      posY: 7
+      animalCount: 1
+    - posX: 4
+      posY: 7
+      animalCount: 2
+    listObstacle:
+    - posX: 2
+      posY: 4
+      type: 1

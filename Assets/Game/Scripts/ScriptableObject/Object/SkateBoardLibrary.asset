@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d73664171a21249b3bf1e42045d649, type: 3}
+  m_Name: SkateBoardLibrary
+  m_EditorClassIdentifier: 
+  listSkateBoard:
+  - name: Skate board 0
+    board: {fileID: 21300000, guid: 94465e20b87160f42ada6aaebcfcf83c, type: 3}
+    unlockLevel: 0
+  - name: Skate board 1
+    board: {fileID: 21300000, guid: af7c4f84fef36ad4e87fe18031f6964e, type: 3}
+    unlockLevel: 0
+  - name: Skate board 2
+    board: {fileID: 21300000, guid: ce9bc292ba165584eb470b677dd91f83, type: 3}
+    unlockLevel: 0
+  - name: Skate board 3
+    board: {fileID: 21300000, guid: 24e1fc09d5394ca49b66b301979d8231, type: 3}
+    unlockLevel: 0
+  - name: Skate board 4
+    board: {fileID: 21300000, guid: c66a3b233df7e4e408736f3c61ab93fe, type: 3}
+    unlockLevel: 0
+  - name: Skate board 5
+    board: {fileID: 21300000, guid: 504f414c409ac9f40b2de1e6a961831a, type: 3}
+    unlockLevel: 0
+  - name: Skate board 6
+    board: {fileID: 21300000, guid: 5307a0f2c1a6d7f40a091d8a9c5a883f, type: 3}
+    unlockLevel: 0
+  - name: Skate board 7
+    board: {fileID: 21300000, guid: f3213dece17b60041bfbf33e34dcc243, type: 3}
+    unlockLevel: 0
+  - name: Skate board 8
+    board: {fileID: 21300000, guid: c4dbf265c5b29ea459714ab60637f61c, type: 3}
+    unlockLevel: 0
+  - name: Skate board 9
+    board: {fileID: 21300000, guid: d648807d5082fb64fa32167afa349da1, type: 3}
+    unlockLevel: 0
+  - name: Skate board 10
+    board: {fileID: 21300000, guid: ece2f56d5a619494fa0e5ed51a978733, type: 3}
+    unlockLevel: 0
+  - name: Skate board 11
+    board: {fileID: 21300000, guid: e6a222e411618a9428b1c8a006782870, type: 3}
+    unlockLevel: 0

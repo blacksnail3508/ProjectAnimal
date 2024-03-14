@@ -291,6 +291,17 @@ public static class GameServices
     {
         return blockedPath.AnyMatch(path);
     }
+    public static void ClearPath()
+    {
+        blockedPath.Clear();
+    }
+
+    public static int SelectedSkate;
+    public static void ShowPopupSkateBoard(int skateIndex)
+    {
+        DisplayService.ShowPopup(UIPopupName.PopupSkate);
+        SelectedSkate = skateIndex;
+    }
 
     #endregion
 

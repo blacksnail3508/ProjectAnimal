@@ -1,5 +1,15 @@
 {
   "dependencies": {
+    "com.coffee.ui-particle": {
+      "version": "4.6.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.google.external-dependency-manager": {
       "version": "file:../GooglePackages/com.google.external-dependency-manager-1.2.177.tgz",
       "depth": 0,

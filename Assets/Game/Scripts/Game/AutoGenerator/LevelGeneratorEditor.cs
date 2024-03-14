@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -9,8 +10,6 @@ public class RectangleGeneratorEditor : Editor
         serializedObject.Update(); // Bắt đầu quá trình cập nhật serializedObject
 
         LevelGenerator generator = (LevelGenerator)target;
-
-
 
         SerializedProperty levelAssetProp = serializedObject.FindProperty("levelAsset");
         EditorGUILayout.PropertyField(levelAssetProp , new GUIContent("Level Asset"));
@@ -25,7 +24,7 @@ public class RectangleGeneratorEditor : Editor
         colProp.intValue=EditorGUILayout.IntField("Col" , colProp.intValue);
 
         SerializedProperty difficultProp = serializedObject.FindProperty("difficult");
-        difficultProp.intValue = EditorGUILayout.IntField("Difficult" , difficultProp.intValue);
+        difficultProp.intValue=EditorGUILayout.IntField("Difficult" , difficultProp.intValue);
 
         GUILayout.Space(30);
         if (GUILayout.Button("Generate"))
@@ -34,10 +33,10 @@ public class RectangleGeneratorEditor : Editor
         }
         GUILayout.Space(30);
         SerializedProperty randomTime = serializedObject.FindProperty("randomTime");
-        randomTime.intValue = EditorGUILayout.IntField("randomTime" , randomTime.intValue);
+        randomTime.intValue=EditorGUILayout.IntField("randomTime" , randomTime.intValue);
 
         SerializedProperty boxAllow = serializedObject.FindProperty("isBoxAllowed");
-        boxAllow.boolValue = EditorGUILayout.Toggle("isBoxAllowed" , boxAllow.boolValue);
+        boxAllow.boolValue=EditorGUILayout.Toggle("isBoxAllowed" , boxAllow.boolValue);
 
         if (GUILayout.Button("Random Generate"))
         {
@@ -54,3 +53,4 @@ public class RectangleGeneratorEditor : Editor
         }
     }
 }
+#endif

@@ -22,6 +22,7 @@ public class GamePlay : MonoBehaviour
         //clear history
         GameServices.ClearHistory();
         GameServices.ClearCannon();
+        GameServices.ClearPath();
         GameServices.UndoEnable=true;
         cage.HideObstacles();
 
@@ -65,9 +66,7 @@ public class GamePlay : MonoBehaviour
                 //predator is upset
 
                 PlayerService.UpdateLevel();
-
                 GameServices.AnimalCelebrate();
-
                 Invoke("ShowPopupWin" , 1);
             }
             else

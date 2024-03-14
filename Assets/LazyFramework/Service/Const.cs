@@ -16,6 +16,8 @@ namespace LazyFramework
         public static string IsRemoveAds = "IsRemoveAds";
         public static string IsShowRemoveAdsPopup = "IsShowRemoveAdsPopup";
         public static string IsRated = "IsRated";
+
+        public static string GameSave = "GameSave";
     }
 }
 

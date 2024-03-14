@@ -37,7 +37,19 @@ namespace LazyFramework
         }
         public static void UpdateLevel()
         {
+            int temp = Level;
             Level = Mathf.Max(CurrentLevel+1, Level);
+
+            if(temp < Level)
+            {
+                //user level up
+                IsLevelUp = true;
+            }
+            else
+            {
+                IsLevelUp = false;
+            }
         }
+        public static bool IsLevelUp;
     }
 }
