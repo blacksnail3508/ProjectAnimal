@@ -44,14 +44,15 @@ public static class CurrencyService
     {
         wallet.Coin += amount;
         Event<OnCoinChange>.Post(new OnCoinChange());
+        Save(wallet);
     }
     internal static void Spend(int amount, Action OnSuccess, Action Onfail)
     {
         if(wallet.Coin >= amount)
         {
             wallet.Coin-=amount;
+            Save(wallet);
             Event<OnCoinChange>.Post(new OnCoinChange());
-
             OnSuccess?.Invoke();
         }
         else

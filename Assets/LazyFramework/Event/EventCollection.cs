@@ -154,11 +154,12 @@ namespace LazyFramework
             this.count=count;
         }
     }
-    public class OnCannonShot: IEvent { }
+    public class OnCannonShot : IEvent { }
 
     public class OnNotificationChange : IEvent { }
 
-    public class OnCoinChange :IEvent { }
+    public class OnCoinChange : IEvent { }
+    public class OnSkateUse : IEvent {}
 
     #endregion
 }

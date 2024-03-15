@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 public class GamePlay : MonoBehaviour
 {
-    [SerializeField] LevelAsset levelAsset;
+    [SerializeField] LevelAsset levelLibrary;
     [SerializeField] Cage cage;
     [SerializeField] Predator wolf;
     [SerializeField] CombatEffect combat;
@@ -31,7 +31,7 @@ public class GamePlay : MonoBehaviour
         combat.Hide();
 
         //fetch size from level asset
-        var data = levelAsset.listLevel[e.Level];
+        var data = levelLibrary.listLevel[e.Level];
         int sizeX = data.sizeX;
         int sizeY = data.sizeY;
         //create game board
@@ -64,9 +64,10 @@ public class GamePlay : MonoBehaviour
             if (GameServices.IsAllAnimalSafe())
             {
                 //predator is upset
-
+                CurrencyService.AddCoin(levelLibrary.listLevel[PlayerService.CurrentLevel].CoinReward);
                 PlayerService.UpdateLevel();
                 GameServices.AnimalCelebrate();
+
                 Invoke("ShowPopupWin" , 1);
             }
             else

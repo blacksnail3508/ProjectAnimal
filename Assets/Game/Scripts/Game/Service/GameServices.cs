@@ -1,4 +1,5 @@
 using LazyFramework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -226,20 +227,25 @@ public static class GameServices
     {
         history.Push(cannon);
     }
-    public static bool Undo()
+    public static void Undo()
     {
-        if (!UndoEnable) return false;
+        if (!UndoEnable) return;
 
         var lastMove = history.Pop();
         if (lastMove!=null)
         {
-            //undo move
-            lastMove.Undo();
+            Action OnSuccess = () =>
+            {
+                //undo move
+                lastMove.Undo();
+                AudioService.PlaySound(AudioName.Undo);
+            };
+            Action OnFail = () =>
+            {
 
-            return true; // game has history to undo
+            };
+            CurrencyService.Spend(5 , OnSuccess , OnFail);
         }
-
-        return false;// game has NO history to undo
     }
 
     public static void ClearHistory()
@@ -294,15 +300,6 @@ public static class GameServices
     public static void ClearPath()
     {
         blockedPath.Clear();
-    }
-
-    public static int SelectedSkate;
-    public static void ShowPopupSkateBoard(int skateIndex)
-    {
-        SelectedSkate=skateIndex;
-
-        DisplayService.ShowPopup(UIPopupName.PopupSkate);
-
     }
 
     #endregion

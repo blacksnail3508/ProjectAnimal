@@ -55,6 +55,8 @@ public static class DataService
         {
             gameSave.skateEquiping=index;
             Save(gameSave);
+
+            Event<OnSkateUse>.Post(new OnSkateUse());
         }
     }
     public static bool IsSkateEquiping(int index)

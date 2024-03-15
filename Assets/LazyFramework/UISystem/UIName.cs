@@ -10,8 +10,6 @@ public static class UIPopupName
 
     public static string PopupPurchaseSuccess = "PopupPurchaseSuccess";
     public static string PopupPurchaseFail = "PopupPurchaseFail";
-
-    public static string PopupSkate = "PopupSkate";
 }
 public static class UIMenuName
 {

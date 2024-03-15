@@ -16,7 +16,7 @@ MonoBehaviour:
   - name: BG1
     audioClip: {fileID: 8300000, guid: aa822ef24d6aca745a4558318dd148e2, type: 3}
     volumn: 0
-  - name: BG2
+  - name: BG_Level
     audioClip: {fileID: 8300000, guid: cd1bc5a09c8246b44814c61382ec8bfe, type: 3}
     volumn: 0
   listSound:
@@ -52,4 +52,10 @@ MonoBehaviour:
     volumn: 0
   - name: Combat
     audioClip: {fileID: 8300000, guid: 75ce3a9d5e81cdd468ea4af3f5586c8c, type: 3}
+    volumn: 0
+  - name: BearRun
+    audioClip: {fileID: 8300000, guid: 09b59439a71a0f24a92d7f2f10b58a5c, type: 3}
+    volumn: 0
+  - name: Pig
+    audioClip: {fileID: 8300000, guid: f96654f8e6b2dbe409c5721b44fe075f, type: 3}
     volumn: 0

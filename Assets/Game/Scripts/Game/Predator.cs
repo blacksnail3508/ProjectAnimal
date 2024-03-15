@@ -1,4 +1,5 @@
 using DG.Tweening;
+using LazyFramework;
 using System;
 using UnityEngine;
 
@@ -27,6 +28,7 @@ public class Predator : BoardObject
 
         //play animation
         animator.Run();
+        AudioService.PlaySound(AudioName.BearRun);
 
         //if x path if longer than y path
         if (Mathf.Abs(deltaX)>Mathf.Abs(deltaY))

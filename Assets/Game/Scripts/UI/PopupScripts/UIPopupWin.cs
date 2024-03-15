@@ -18,6 +18,7 @@ public class UIPopupWin : UIPopupBase
     [SerializeField] GameObject nextButton;
 
     [SerializeField] UnlockSkateSlider skateUnlocker;
+    [SerializeField] Image clickBlock;
     private void Start()
     {
         DisableCommon();
@@ -63,6 +64,7 @@ public class UIPopupWin : UIPopupBase
         quote.transform.DOScaleY(0 , 0.5f).SetDelay(1.5f).OnComplete(() =>
         {
             quote.gameObject.SetActive(false);
+            clickBlock.gameObject.SetActive(false);
         });
     }
     public void OnReplay()
@@ -79,6 +81,7 @@ public class UIPopupWin : UIPopupBase
     }
     protected override void OnShow()
     {
+        clickBlock.gameObject.SetActive(true);
         base.OnShow();
         levelText.text=$"Level {PlayerService.CurrentLevel+1}";
         AudioService.PlaySound(AudioName.Win);

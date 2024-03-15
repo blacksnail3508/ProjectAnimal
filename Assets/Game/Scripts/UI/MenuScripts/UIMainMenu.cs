@@ -6,6 +6,10 @@ public class UIMainMenu : UIMenuBase
 
     [SerializeField] GameObject adsButton;
     [SerializeField] GameObject rateButton;
+    private void Start()
+    {
+        AudioService.PlayMusic(AudioName.BG1);
+    }
     protected override void OnEnable()
     {
         base.OnEnable();

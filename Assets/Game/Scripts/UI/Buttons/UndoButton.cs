@@ -1,4 +1,5 @@
 using LazyFramework;
+using System;
 
 public class UndoButton : ButtonBase
 {
@@ -10,14 +11,6 @@ public class UndoButton : ButtonBase
 
     private void Undo()
     {
-        if(GameServices.Undo() == false)
-        {
-            //sound negative
-            AudioService.PlaySound(AudioName.Undo);
-        }
-        else
-        {
-            //sound positive
-        }
+        GameServices.Undo();
     }
 }

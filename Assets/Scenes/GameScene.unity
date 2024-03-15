@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb80b407dd34c5747a88a55d036378ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelAsset: {fileID: 11400000, guid: 8d5506b316d454d44a39bbf56e62a6a3, type: 2}
+  levelLibrary: {fileID: 11400000, guid: 8d5506b316d454d44a39bbf56e62a6a3, type: 2}
   cage: {fileID: 547237923}
   wolf: {fileID: 987939625}
   combat: {fileID: 523775985}
