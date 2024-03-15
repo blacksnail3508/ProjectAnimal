@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: LevelAsset
   m_EditorClassIdentifier: 
   listLevel:
-  - name: Level 0
+  - name: Level 1
+    CoinReward: 50
     sizeX: 3
     sizeY: 3
     listCannon:
@@ -24,21 +25,8 @@ MonoBehaviour:
       posY: 1
       animalCount: 1
     listObstacle: []
-  - name: Level 1
-    sizeX: 3
-    sizeY: 3
-    listCannon:
-    - posX: 0
-      posY: -1
-      animalCount: 1
-    - posX: 1
-      posY: -1
-      animalCount: 1
-    - posX: 3
-      posY: 2
-      animalCount: 1
-    listObstacle: []
   - name: Level 2
+    CoinReward: 5
     sizeX: 3
     sizeY: 3
     listCannon:
@@ -50,12 +38,28 @@ MonoBehaviour:
       animalCount: 1
     - posX: 3
       posY: 2
-      animalCount: 1
-    - posX: 2
-      posY: -1
       animalCount: 1
     listObstacle: []
   - name: Level 3
+    CoinReward: 5
+    sizeX: 3
+    sizeY: 3
+    listCannon:
+    - posX: 0
+      posY: -1
+      animalCount: 1
+    - posX: 1
+      posY: -1
+      animalCount: 1
+    - posX: 3
+      posY: 2
+      animalCount: 1
+    - posX: 2
+      posY: -1
+      animalCount: 1
+    listObstacle: []
+  - name: Level 4
+    CoinReward: 5
     sizeX: 4
     sizeY: 4
     listCannon:
@@ -66,7 +70,8 @@ MonoBehaviour:
       posY: 2
       animalCount: 2
     listObstacle: []
-  - name: Level 4
+  - name: Level 5
+    CoinReward: 5
     sizeX: 4
     sizeY: 4
     listCannon:
@@ -83,7 +88,8 @@ MonoBehaviour:
       posY: -1
       animalCount: 1
     listObstacle: []
-  - name: Level 5
+  - name: Level 6
+    CoinReward: 5
     sizeX: 4
     sizeY: 4
     listCannon:
@@ -96,45 +102,48 @@ MonoBehaviour:
     - posX: 3
       posY: 4
       animalCount: 2
-    - posX: 4
-      posY: 2
-      animalCount: 1
-    listObstacle: []
-  - name: Level 6
-    sizeX: 4
-    sizeY: 4
-    listCannon:
-    - posX: 0
-      posY: 4
-      animalCount: 2
-    - posX: 3
-      posY: 4
-      animalCount: 2
-    - posX: 4
-      posY: 0
-      animalCount: 1
     - posX: 4
       posY: 2
       animalCount: 1
     listObstacle: []
   - name: Level 7
+    CoinReward: 5
     sizeX: 4
     sizeY: 4
     listCannon:
-    - posX: -1
-      posY: 3
-      animalCount: 1
-    - posX: 2
-      posY: -1
-      animalCount: 1
+    - posX: 0
+      posY: 4
+      animalCount: 2
     - posX: 3
-      posY: -1
+      posY: 4
+      animalCount: 2
+    - posX: 4
+      posY: 0
       animalCount: 1
     - posX: 4
       posY: 2
       animalCount: 1
     listObstacle: []
   - name: Level 8
+    CoinReward: 5
+    sizeX: 4
+    sizeY: 4
+    listCannon:
+    - posX: -1
+      posY: 3
+      animalCount: 1
+    - posX: 2
+      posY: -1
+      animalCount: 1
+    - posX: 3
+      posY: -1
+      animalCount: 1
+    - posX: 4
+      posY: 2
+      animalCount: 1
+    listObstacle: []
+  - name: Level 9
+    CoinReward: 5
     sizeX: 4
     sizeY: 4
     listCannon:
@@ -151,7 +160,8 @@ MonoBehaviour:
       posY: 3
       animalCount: 1
     listObstacle: []
-  - name: Level 9
+  - name: Level 10
+    CoinReward: 20
     sizeX: 4
     sizeY: 4
     listCannon:
@@ -168,7 +178,8 @@ MonoBehaviour:
       posY: -1
       animalCount: 2
     listObstacle: []
-  - name: Level 10
+  - name: Level 11
+    CoinReward: 5
     sizeX: 4
     sizeY: 4
     listCannon:
@@ -185,7 +196,8 @@ MonoBehaviour:
       posY: 1
       animalCount: 1
     listObstacle: []
-  - name: Level 11
+  - name: Level 12
+    CoinReward: 5
     sizeX: 4
     sizeY: 4
     listCannon:
@@ -202,7 +214,8 @@ MonoBehaviour:
       posY: 1
       animalCount: 1
     listObstacle: []
-  - name: Level 12
+  - name: Level 13
+    CoinReward: 5
     sizeX: 5
     sizeY: 5
     listCannon:
@@ -219,7 +232,8 @@ MonoBehaviour:
       posY: -1
       animalCount: 2
     listObstacle: []
-  - name: Level 13
+  - name: Level 14
+    CoinReward: 5
     sizeX: 5
     sizeY: 5
     listCannon:
@@ -248,7 +262,8 @@ MonoBehaviour:
       posY: 2
       animalCount: 2
     listObstacle: []
-  - name: Level 14
+  - name: Level 15
+    CoinReward: 5
     sizeX: 5
     sizeY: 6
     listCannon:
@@ -283,7 +298,8 @@ MonoBehaviour:
       posY: 2
       animalCount: 1
     listObstacle: []
-  - name: Level 15
+  - name: Level 16
+    CoinReward: 5
     sizeX: 5
     sizeY: 5
     listCannon:
@@ -300,7 +316,8 @@ MonoBehaviour:
     - posX: 3
       posY: 1
       type: 1
-  - name: Level 16
+  - name: Level 17
+    CoinReward: 5
     sizeX: 5
     sizeY: 5
     listCannon:
@@ -332,7 +349,8 @@ MonoBehaviour:
     - posX: 2
       posY: 3
       type: 1
-  - name: Level 17
+  - name: Level 18
+    CoinReward: 5
     sizeX: 6
     sizeY: 7
     listCannon:
@@ -376,7 +394,8 @@ MonoBehaviour:
     - posX: 3
       posY: 2
       type: 1
-  - name: Level 18
+  - name: Level 19
+    CoinReward: 5
     sizeX: 7
     sizeY: 5
     listCannon:
@@ -417,7 +436,8 @@ MonoBehaviour:
     - posX: 5
       posY: 2
       type: 1
-  - name: Level 19
+  - name: Level 20
+    CoinReward: 20
     sizeX: 6
     sizeY: 7
     listCannon:
@@ -473,7 +493,8 @@ MonoBehaviour:
     - posX: 2
       posY: 1
       type: 1
-  - name: Level 20
+  - name: Level 21
+    CoinReward: 5
     sizeX: 6
     sizeY: 5
     listCannon:
@@ -511,7 +532,8 @@ MonoBehaviour:
     - posX: 2
       posY: 2
       type: 1
-  - name: Level 21
+  - name: Level 22
+    CoinReward: 5
     sizeX: 6
     sizeY: 6
     listCannon:
@@ -561,7 +583,8 @@ MonoBehaviour:
     - posX: 3
       posY: 4
       type: 1
-  - name: Level 22
+  - name: Level 23
+    CoinReward: 5
     sizeX: 8
     sizeY: 7
     listCannon:
@@ -605,7 +628,8 @@ MonoBehaviour:
     - posX: 1
       posY: 5
       type: 1
-  - name: Level 23
+  - name: Level 24
+    CoinReward: 5
     sizeX: 7
     sizeY: 7
     listCannon:
@@ -655,7 +679,8 @@ MonoBehaviour:
     - posX: 4
       posY: 6
       type: 1
-  - name: Level 24
+  - name: Level 25
+    CoinReward: 5
     sizeX: 7
     sizeY: 7
     listCannon:
@@ -693,7 +718,8 @@ MonoBehaviour:
     - posX: 5
       posY: 1
       type: 1
-  - name: Level 25
+  - name: Level 26
+    CoinReward: 5
     sizeX: 7
     sizeY: 7
     listCannon:
@@ -749,7 +775,8 @@ MonoBehaviour:
     - posX: 5
       posY: 5
       type: 1
-  - name: Level 26
+  - name: Level 27
+    CoinReward: 5
     sizeX: 7
     sizeY: 7
     listCannon:
@@ -802,7 +829,8 @@ MonoBehaviour:
       posY: 0
       animalCount: 1
     listObstacle: []
-  - name: Level 27
+  - name: Level 28
+    CoinReward: 5
     sizeX: 6
     sizeY: 7
     listCannon:
@@ -846,7 +874,8 @@ MonoBehaviour:
     - posX: 2
       posY: 2
       type: 1
-  - name: Level 28
+  - name: Level 29
+    CoinReward: 5
     sizeX: 7
     sizeY: 7
     listCannon:
@@ -893,7 +922,8 @@ MonoBehaviour:
     - posX: 2
       posY: 1
       type: 1
-  - name: Level 29
+  - name: Level 30
+    CoinReward: 20
     sizeX: 7
     sizeY: 7
     listCannon:
@@ -929,7 +959,7 @@ MonoBehaviour:
       animalCount: 1
     - posX: 7
       posY: 5
-      animalCount: 2
+      animalCount: 1
     - posX: 7
       posY: 6
       animalCount: 2
@@ -938,7 +968,7 @@ MonoBehaviour:
       animalCount: 1
     - posX: 4
       posY: 7
-      animalCount: 2
+      animalCount: 1
     listObstacle:
     - posX: 2
       posY: 4

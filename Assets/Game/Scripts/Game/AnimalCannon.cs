@@ -245,6 +245,10 @@ public class AnimalCannon : MonoBehaviour
     }
     private void ReleaseLoadedAnimals()
     {
+        foreach (var animal in loadedAnimals)
+        {
+            animal.ReturnPool();
+        }
         loadedAnimals.Clear();
     }
 

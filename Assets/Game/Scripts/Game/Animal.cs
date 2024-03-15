@@ -90,6 +90,8 @@ public class Animal : BoardObject
                 {
                     conversation.LoseEmoji();
                 }
+
+                AudioService.PlaySound(AudioName.Pig);
                 OnStop?.Invoke();
             });
         });

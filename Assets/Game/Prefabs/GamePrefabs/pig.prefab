@@ -154,7 +154,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   library: {fileID: 11400000, guid: 518c6f94070781546beef786fd7c0b2c, type: 2}
   board: {fileID: 99415196441957697}
-  decor: {fileID: 0}
 --- !u!1 &4354865708994903590
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,4 +592,4 @@ SortingGroup:
   m_SortingLayerID: -1004600731
   m_SortingLayer: 1
   m_SortingOrder: 12
-  m_SortAtRoot: 0
+  m_SortAtRoot: 1
