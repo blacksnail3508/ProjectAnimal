@@ -1,5 +1,4 @@
 using LazyFramework;
-using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,5 +8,10 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Application.targetFrameRate=60;
         TimeUtils.SetLoginDayAsToday();
+
+        //run services
+        DataService.Run();
+        NotificationService.Run();
+        CurrencyService.Run();
     }
 }

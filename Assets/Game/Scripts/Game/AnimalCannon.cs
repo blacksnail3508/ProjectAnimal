@@ -58,6 +58,7 @@ public class AnimalCannon : MonoBehaviour
         box.enabled=false;
         horizontalGate.gameObject.SetActive(true);
         verticalGate.gameObject.SetActive(true);
+        AudioService.PlaySound(AudioName.DoorClose);
     }
 
     /// <summary>
@@ -143,6 +144,7 @@ public class AnimalCannon : MonoBehaviour
             var animal = GameServices.AnimalPool.GetAnimal();
             animal.gameObject.SetActive(true);
             animal.PlayIdle();
+            animal.LoadSkateBoard();
             loadedAnimals.Add(animal);
             //sort
             animal.ChangeRotation(this.direction);

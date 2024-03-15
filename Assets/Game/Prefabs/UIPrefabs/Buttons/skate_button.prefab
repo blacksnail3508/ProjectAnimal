@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2559340434824908282}
   - component: {fileID: 7013556136206013641}
-  - component: {fileID: 8047239873361608541}
   - component: {fileID: 7975293173855226466}
   - component: {fileID: 5211637640851424365}
   - component: {fileID: 7564227189212980093}
+  - component: {fileID: 8047239873361608541}
   m_Layer: 5
   m_Name: skate_button
   m_TagString: Untagged
@@ -51,22 +51,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300907902345056734}
   m_CullTransparentMesh: 1
---- !u!114 &8047239873361608541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 300907902345056734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 988a456f77ada5340bb736a9cce9dfb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 7975293173855226466}
-  skateImage: {fileID: 1132908413035769398}
-  noti: {fileID: 4111911848213312749}
-  lockIcon: {fileID: 793440503616710387}
 --- !u!114 &7975293173855226466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +91,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 7564227189212980093}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
@@ -166,6 +150,22 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &8047239873361608541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300907902345056734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 988a456f77ada5340bb736a9cce9dfb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 7975293173855226466}
+  skateImage: {fileID: 1132908413035769398}
+  noti: {fileID: 4111911848213312749}
+  lockIcon: {fileID: 793440503616710387}
 --- !u!1 &2578007091003646195
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5069474234640532800
 RectTransform:
   m_ObjectHideFlags: 0
@@ -348,11 +348,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2559340434824908282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.70000005, y: 1}
-  m_AnchorMax: {x: 0.70000005, y: 1}
+  m_AnchorMin: {x: 0.75, y: 0.75}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 25, y: 25}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &8544243910317242796
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -375,7 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

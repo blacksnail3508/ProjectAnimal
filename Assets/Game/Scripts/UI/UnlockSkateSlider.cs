@@ -24,6 +24,7 @@ public class UnlockSkateSlider : MonoBehaviour
         }
 
         skateIcon.color = Color.black;
+        slider?.DOKill();
         slider.value = numerator*20;
         Invoke("UpdateLevel" , 1.5f);
     }
@@ -47,6 +48,7 @@ public class UnlockSkateSlider : MonoBehaviour
                     var index = PlayerService.Level/5;
                     skateIcon.sprite=library.GetBoard(index);
                     DataService.UnlockSkate(index);
+                    NotificationService.PushSkateNotification(index);
                     skateIcon.color = Color.white;
                 }
                 numerator = _numerator;

@@ -11,7 +11,17 @@ public class LevelAsset : ScriptableObject
     {
         for (int i = 0; i<listLevel.Count; i++)
         {
-            listLevel[i].name=$"Level {i}";
+            listLevel[i].name=$"Level {i+1}";
+        }
+
+        listLevel[0].CoinReward = 50;
+        for(int i = 1;i<listLevel.Count; i++)
+        {
+            listLevel[i].CoinReward=5;
+            if(i % 10 == 9)
+            {
+                listLevel[i].CoinReward = 20;
+            }
         }
     }
 }
@@ -20,6 +30,9 @@ public class LevelAsset : ScriptableObject
 public class Level
 {
     public string name;
+
+    public int CoinReward;
+
     public int sizeX;
     public int sizeY;
     public List<CannonData> listCannon = new List<CannonData>();

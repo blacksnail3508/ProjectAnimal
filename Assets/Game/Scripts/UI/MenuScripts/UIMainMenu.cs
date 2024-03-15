@@ -9,7 +9,7 @@ public class UIMainMenu : UIMenuBase
     protected override void OnEnable()
     {
         base.OnEnable();
-        AudioService.PlayMusic(AudioName.BG);
+        AudioService.PlayMusic(AudioName.BG1);
         Reload();
     }
     public void OnPlayBtn()

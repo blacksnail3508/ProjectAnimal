@@ -7,18 +7,17 @@ public class SkateButton : ButtonBase
     [SerializeField] private Image skateImage;
     [SerializeField] Image noti;
     [SerializeField] Image lockIcon;
-
-    string name;
-    int unlockLevel;
     int index;
     private void OnEnable()
     {
         CheckUnlock();
+
     }
     public override void OnClick()
     {
         base.OnClick();
         ShowPopupSkate();
+        NotificationService.RemoveSkateNotification(index);
     }
 
     void ShowPopupSkate()
@@ -28,9 +27,8 @@ public class SkateButton : ButtonBase
     public void SetData(SkateBoardData data,int index)
     {
         skateImage.sprite = data.board;
-        this.unlockLevel = data.unlockLevel;
-        this.name = data.name;
         this.index = index;
+        OnNotificationChange(null);
         CheckUnlock();
     }
 
@@ -58,5 +56,25 @@ public class SkateButton : ButtonBase
         {
             Unlock();
         }
+    }
+    private void OnNotificationChange(OnNotificationChange e)
+    {
+        if(NotificationService.IsSkateNoti(index) == true)
+        {
+            noti.gameObject.SetActive(true);
+        }
+        else
+        {
+            noti.gameObject.SetActive(false);
+        }
+    }
+
+    protected override void Subscribe()
+    {
+        Event<OnNotificationChange>.Subscribe(OnNotificationChange);
+    }
+    protected override void Unsubscribe()
+    {
+        Event<OnNotificationChange>.Unsubscribe(OnNotificationChange);
     }
 }

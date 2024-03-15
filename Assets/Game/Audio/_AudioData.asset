@@ -13,46 +13,43 @@ MonoBehaviour:
   m_Name: _AudioData
   m_EditorClassIdentifier: 
   listMusic:
-  - name: BG
-    audioClip: {fileID: 8300000, guid: e14ad21e544781c41bc9059fb005b458, type: 3}
+  - name: BG1
+    audioClip: {fileID: 8300000, guid: aa822ef24d6aca745a4558318dd148e2, type: 3}
     volumn: 0
-  - name: BG_Level
-    audioClip: {fileID: 8300000, guid: 07948703c91ae1442a0f848b966ec7ae, type: 3}
+  - name: BG2
+    audioClip: {fileID: 8300000, guid: cd1bc5a09c8246b44814c61382ec8bfe, type: 3}
     volumn: 0
   listSound:
-  - name: ADS_Star
-    audioClip: {fileID: 8300000, guid: e55d192ee70917c46ab464ecc8b1566d, type: 3}
-    volumn: 0
-  - name: Arrow
-    audioClip: {fileID: 8300000, guid: 1a8bb14fcbbfc3f47bad266024263817, type: 3}
-    volumn: 0
-  - name: Buy
-    audioClip: {fileID: 8300000, guid: 63ad2c7ec3ffc0d44b66c468dbb04f20, type: 3}
-    volumn: 0
-  - name: ChooseLevel
-    audioClip: {fileID: 8300000, guid: e1c13036ce29d0646af020b61b0602b5, type: 3}
-    volumn: 0
-  - name: Gliding
-    audioClip: {fileID: 8300000, guid: 7295e21d41c264647baa13e12bbf4c1b, type: 3}
-    volumn: 0
-  - name: ArcherDie
-    audioClip: {fileID: 8300000, guid: 4df3c0736fc3dfa499455f958bbb6951, type: 3}
-    volumn: 0
-  - name: EnemyDie
-    audioClip: {fileID: 8300000, guid: d94a65d739e728c42a04970201f31839, type: 3}
-    volumn: 0
-  - name: Bounce
-    audioClip: {fileID: 8300000, guid: a4d0684df5db83548813f633335e2307, type: 3}
-    volumn: 0
-  - name: Lose
-    audioClip: {fileID: 8300000, guid: 02d6e071d06c618478a6fb1fb4077418, type: 3}
+  - name: Undo
+    audioClip: {fileID: 8300000, guid: 85adaf447ab013c4dbdbadd648264db6, type: 3}
     volumn: 0
   - name: Select
     audioClip: {fileID: 8300000, guid: ccc1f1b0b5af12d49957740955781361, type: 3}
     volumn: 0
-  - name: Undo_Reset
-    audioClip: {fileID: 8300000, guid: fd39256820dbb0148967eb41a1fa939b, type: 3}
+  - name: ChooseLevel
+    audioClip: {fileID: 8300000, guid: e1c13036ce29d0646af020b61b0602b5, type: 3}
+    volumn: 0
+  - name: ADS_Star
+    audioClip: {fileID: 8300000, guid: e55d192ee70917c46ab464ecc8b1566d, type: 3}
+    volumn: 0
+  - name: Buy
+    audioClip: {fileID: 8300000, guid: 63ad2c7ec3ffc0d44b66c468dbb04f20, type: 3}
     volumn: 0
   - name: Win
     audioClip: {fileID: 8300000, guid: 759a782edc65dfe4f9f688f3545ede56, type: 3}
+    volumn: 0
+  - name: Lose
+    audioClip: {fileID: 8300000, guid: 02d6e071d06c618478a6fb1fb4077418, type: 3}
+    volumn: 0
+  - name: Button
+    audioClip: {fileID: 8300000, guid: fd39256820dbb0148967eb41a1fa939b, type: 3}
+    volumn: 0
+  - name: DoorClose
+    audioClip: {fileID: 8300000, guid: f0d5ea1d006f1fe4a89c91a43ae9f934, type: 3}
+    volumn: 0
+  - name: Surf
+    audioClip: {fileID: 8300000, guid: 07b84f97d4d6b634eaf1a0f0af35f7b9, type: 3}
+    volumn: 0
+  - name: Combat
+    audioClip: {fileID: 8300000, guid: 75ce3a9d5e81cdd468ea4af3f5586c8c, type: 3}
     volumn: 0

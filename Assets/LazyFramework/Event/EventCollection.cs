@@ -156,5 +156,9 @@ namespace LazyFramework
     }
     public class OnCannonShot: IEvent { }
 
+    public class OnNotificationChange : IEvent { }
+
+    public class OnCoinChange :IEvent { }
+
     #endregion
 }

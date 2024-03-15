@@ -18,6 +18,8 @@ namespace LazyFramework
         public static string IsRated = "IsRated";
 
         public static string GameSave = "GameSave";
+        public static string Noti = "Noti";
+        public static string Wallet = "Wallet";
     }
 }
 

@@ -543,6 +543,7 @@ MonoBehaviour:
   skateImage: {fileID: 984400761189490630}
   name_text: {fileID: 5827295399461064786}
   description_text: {fileID: 8968677351951325524}
+  equipButton: {fileID: 6306196408853073803}
   equipButtonImage: {fileID: 1644219449318036310}
   equipSprite: {fileID: 21300000, guid: a1a80371441f28844826ed5fac40aa6a, type: 3}
   equipingSprite: {fileID: 21300000, guid: 0c8ef8a26e909c34ba347b9f2accc6c6, type: 3}
@@ -1071,8 +1072,83 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3660524169496469011, guid: 522ed46a830ef194999994fe15f0ba64, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3270682246370975192}
   m_SourcePrefab: {fileID: 100100000, guid: 522ed46a830ef194999994fe15f0ba64, type: 3}
+--- !u!1 &2897465928779437109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3660524169496469011, guid: 522ed46a830ef194999994fe15f0ba64, type: 3}
+  m_PrefabInstance: {fileID: 1943609725243591206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3270682246370975192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2897465928779437109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 4481820451277711920}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5280513970566559756}
+        m_TargetAssemblyTypeName: LazyFramework.UIPopupBase, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4481820451277711920 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2651363761899610134, guid: 522ed46a830ef194999994fe15f0ba64, type: 3}
+  m_PrefabInstance: {fileID: 1943609725243591206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2897465928779437109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5772829259614513832 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5396476871417159822, guid: 522ed46a830ef194999994fe15f0ba64, type: 3}
@@ -1089,6 +1165,10 @@ PrefabInstance:
     - target: {fileID: 399205504414261217, guid: 693acfeec631a724ab53fb80d4347e63, type: 3}
       propertyPath: m_Name
       value: CloseBtn
+      objectReference: {fileID: 0}
+    - target: {fileID: 399205504414261217, guid: 693acfeec631a724ab53fb80d4347e63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5390398337460717041, guid: 693acfeec631a724ab53fb80d4347e63, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

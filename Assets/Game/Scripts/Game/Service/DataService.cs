@@ -23,7 +23,7 @@ public static class DataService
         PlayerPrefs.SetString(KeyString.GameSave , json);
     }
 
-    public static void Load()
+    public static void Run()
     {
         if (PlayerPrefs.HasKey(KeyString.GameSave)==false)
         {

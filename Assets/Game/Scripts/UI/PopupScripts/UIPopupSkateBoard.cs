@@ -15,6 +15,7 @@ public class UIPopupSkateBoard : UIPopupBase
     [SerializeField] Image skateImage;
     [SerializeField] TMP_Text name_text;
     [SerializeField] TMP_Text description_text;
+    [SerializeField] Button equipButton;
 
     [Header("Button Equip")]
     [SerializeField] Image equipButtonImage;
@@ -31,28 +32,8 @@ public class UIPopupSkateBoard : UIPopupBase
         skateImage.sprite = library.GetBoard(selectedSkate);
         name_text.text = skateImage.name;
 
-        isUnlocked=DataService.IsSkateUnlock(selectedSkate);
+        Reload();
 
-        if(isUnlocked == true)
-        {
-            description_text.gameObject.SetActive(false);
-        }
-        else
-        {
-            description_text.gameObject.SetActive(true);
-            description_text.text=$"Unlock at level {library.GetUnlockLevel(selectedSkate)}";
-        }
-
-        if (DataService.IsSkateEquiping(selectedSkate) == true)
-        {
-            equipButtonImage.sprite=equipingSprite;
-            equipText.text="Equipped";
-        }
-        else
-        {
-            equipButtonImage.sprite=equipSprite;
-            equipText.text="Equip";
-        }
     }
 
     public void OnEquip()
@@ -65,6 +46,36 @@ public class UIPopupSkateBoard : UIPopupBase
         if (isUnlocked)
         {
             DataService.EquipSkate(selectedSkate);
+            Reload();
+        }
+    }
+    private void Reload()
+    {
+        isUnlocked=DataService.IsSkateUnlock(selectedSkate);
+
+        if (isUnlocked == true)
+        {
+            description_text.gameObject.SetActive(false);
+            skateImage.color=Color.white;
+            equipButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            description_text.gameObject.SetActive(true);
+            description_text.text=$"Unlock at level {library.GetUnlockLevel(selectedSkate)}";
+            skateImage.color=Color.black;
+            equipButton.gameObject.SetActive(false);
+        }
+
+        if (DataService.IsSkateEquiping(selectedSkate)==true)
+        {
+            equipButtonImage.sprite=equipingSprite;
+            equipText.text="Equipped";
+        }
+        else
+        {
+            equipButtonImage.sprite=equipSprite;
+            equipText.text="Equip";
         }
     }
 }

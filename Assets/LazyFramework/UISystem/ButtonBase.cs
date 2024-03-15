@@ -27,17 +27,28 @@ namespace LazyFramework
             AudioService.PlaySound(AudioName.Button);
 
         }
-        private void Start()
+        protected virtual void Start()
         {
+            Subscribe();
             if (button==null)
             {
                 button=GetComponent<Button>();
             }
             button.onClick.AddListener(OnClick);
         }
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             button.onClick.RemoveListener(OnClick);
+            Unsubscribe();
+        }
+
+        protected virtual void Subscribe()
+        {
+
+        }
+        protected virtual void Unsubscribe()
+        {
+
         }
     }
 }

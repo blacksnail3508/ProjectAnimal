@@ -299,8 +299,10 @@ public static class GameServices
     public static int SelectedSkate;
     public static void ShowPopupSkateBoard(int skateIndex)
     {
+        SelectedSkate=skateIndex;
+
         DisplayService.ShowPopup(UIPopupName.PopupSkate);
-        SelectedSkate = skateIndex;
+
     }
 
     #endregion

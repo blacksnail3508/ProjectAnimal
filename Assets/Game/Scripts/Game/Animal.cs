@@ -1,4 +1,5 @@
 using DG.Tweening;
+using LazyFramework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,19 +16,18 @@ public class Animal : BoardObject
     [SerializeField] PigAnimator animator;
     [SerializeField] SkateBoard skateBoard;
     [SerializeField] PigConversation conversation;
-
-
     public void PlayIdle()
     {
         animator.Idle();
+    }
+    public void LoadSkateBoard()
+    {
+        skateBoard.LoadEquipingSkateBoard();
     }
 
     private void Start()
     {
         GameServices.AddAnimal(this);
-
-        //skateBoard.RandomLoad();
-        skateBoard.LoadEquipingSkateBoard();
     }
     public void Move(Action OnStop = null)
     {
@@ -72,6 +72,7 @@ public class Animal : BoardObject
         UpdatePositionOnBoard(targetX+positionX , targetY+positionY);
 
         animator.Move(this.direction);
+        AudioService.PlaySound(AudioName.Surf);
 
         transform.DOMove(transform.position - backward , config.Animal.animationTime/5f).OnComplete(() =>
         {
@@ -90,8 +91,6 @@ public class Animal : BoardObject
                     conversation.LoseEmoji();
                 }
                 OnStop?.Invoke();
-
-
             });
         });
     }

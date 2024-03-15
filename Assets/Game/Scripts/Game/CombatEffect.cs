@@ -1,3 +1,4 @@
+using LazyFramework;
 using Spine.Unity;
 using System;
 using UnityEngine;
@@ -11,7 +12,11 @@ public class CombatEffect : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         this.onEndEffect = onEndEffect;
+
+        AudioService.PlaySound(AudioName.Combat);
         Invoke("_Hide" , gameConfig.Effect.combatTime);
+
+
     }
 
     void _Hide()
