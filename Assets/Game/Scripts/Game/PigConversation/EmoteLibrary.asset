@@ -16,78 +16,104 @@ MonoBehaviour:
   - name: Smile
     index: 0
     emoji: {fileID: -1952864183, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: ThumpUp
     index: 1
     emoji: {fileID: -549770091, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: SmileHeart
     index: 2
     emoji: {fileID: -1090558727, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: Heart
     index: 3
     emoji: {fileID: 1417344276, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: SmileHeartHug
     index: 4
     emoji: {fileID: -222621397, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: Laught
     index: 5
     emoji: {fileID: -1561799916, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: SmileCry
     index: 6
     emoji: {fileID: 929291988, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Mute
     index: 7
     emoji: {fileID: 83552533, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Winking
     index: 8
     emoji: {fileID: -369581676, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: SmileFullOfHeart
     index: 9
     emoji: {fileID: 1058234395, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: Grin
     index: 10
     emoji: {fileID: -591884490, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: PokerFace
     index: 11
     emoji: {fileID: -1278712601, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Smirking
     index: 12
     emoji: {fileID: 393786641, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: Angry
     index: 13
     emoji: {fileID: 551039779, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Scowl
     index: 14
     emoji: {fileID: -290640259, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Vomiting
     index: 15
     emoji: {fileID: -56357711, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Clap
     index: 16
     emoji: {fileID: 1993778325, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: AirKiss
     index: 17
     emoji: {fileID: 1118204034, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: Upset
     index: 18
     emoji: {fileID: -1907878925, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Worry
     index: 19
     emoji: {fileID: 487083800, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Frown
     index: 20
     emoji: {fileID: -663937827, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: SmileDown
     index: 21
     emoji: {fileID: -39832037, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: LaughtMoney
     index: 22
     emoji: {fileID: -1880682533, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 0
   - name: Sleeping
     index: 23
     emoji: {fileID: 667750015, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Suprise
     index: 24
     emoji: {fileID: 1146552647, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1
   - name: Sob
     index: 25
     emoji: {fileID: -1029815634, guid: ab71aa99eae8d0146a5ea85ba3dadd0b, type: 3}
+    type: 1

@@ -32,3 +32,8 @@ public enum ObjectType
     Box = 1,
 
 }
+public enum EmojiType
+{
+    Positive = 0,
+    Negative = 1,
+}
