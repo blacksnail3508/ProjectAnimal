@@ -234,17 +234,21 @@ public static class GameServices
         var lastMove = history.Pop();
         if (lastMove!=null)
         {
+            //success on spend coin
             Action OnSuccess = () =>
             {
                 //undo move
                 lastMove.Undo();
                 AudioService.PlaySound(AudioName.Undo);
             };
-            Action OnFail = () =>
+
+            //failed on spend coin
+            Action OnFailed = () =>
             {
 
             };
-            CurrencyService.Spend(5 , OnSuccess , OnFail);
+
+            CurrencyService.Spend(5 , OnSuccess , OnFailed);
         }
     }
 

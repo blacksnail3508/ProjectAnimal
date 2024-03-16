@@ -11,12 +11,9 @@ public class VibrationSettingButton : ButtonBase
     {
         Subscribe();
     }
-    private void OnDestroy()
+    protected override void Start()
     {
-        Unsubscribe();
-    }
-    private void Start()
-    {
+        base.Start();
         ChangeIcon();
     }
     public override void OnClick()
@@ -56,11 +53,11 @@ public class VibrationSettingButton : ButtonBase
         ChangeIcon();
     }
 
-    private void Subscribe()
+    protected override void Subscribe()
     {
         Event<OnChangeVibrationSetting>.Subscribe(OnChangeVibrationSetting);
     }
-    private void Unsubscribe()
+    protected override void Unsubscribe()
     {
         Event<OnChangeVibrationSetting>.Unsubscribe(OnChangeVibrationSetting);
     }

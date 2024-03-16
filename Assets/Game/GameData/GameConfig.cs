@@ -23,5 +23,8 @@ public class GameConfig : ScriptableObject
     public float emojiTime;
     [Range(0 , 1)] public float celebrateEmojiRate;
     [Range(0,1)]public float loseEmojiRate;
+
+    public float coinChangeFadeDelay;
+    public float coinChangeFadeTime;
 }
 

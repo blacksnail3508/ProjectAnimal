@@ -22,3 +22,5 @@ MonoBehaviour:
     emojiTime: 1.5
     celebrateEmojiRate: 0.5
     loseEmojiRate: 1
+    coinChangeFadeDelay: 0.75
+    coinChangeFadeTime: 0.25

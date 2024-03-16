@@ -158,7 +158,16 @@ namespace LazyFramework
 
     public class OnNotificationChange : IEvent { }
 
-    public class OnCoinChange : IEvent { }
+    public class OnCoinChange : IEvent {
+
+        public int amount;
+
+        public OnCoinChange(int amount)
+        {
+            this.amount = amount;
+        }
+
+    }
     public class OnSkateUse : IEvent {}
 
     #endregion

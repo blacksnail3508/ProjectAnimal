@@ -43,21 +43,21 @@ public static class CurrencyService
     internal static void AddCoin(int amount)
     {
         wallet.Coin += amount;
-        Event<OnCoinChange>.Post(new OnCoinChange());
+        Event<OnCoinChange>.Post(new OnCoinChange(amount));
         Save(wallet);
     }
-    internal static void Spend(int amount, Action OnSuccess, Action Onfail)
+    internal static void Spend(int amount, Action OnSuccess, Action OnFailed)
     {
         if(wallet.Coin >= amount)
         {
             wallet.Coin-=amount;
             Save(wallet);
-            Event<OnCoinChange>.Post(new OnCoinChange());
+            Event<OnCoinChange>.Post(new OnCoinChange(-amount));
             OnSuccess?.Invoke();
         }
         else
         {
-            Onfail?.Invoke();
+            OnFailed?.Invoke();
         }
     }
 }

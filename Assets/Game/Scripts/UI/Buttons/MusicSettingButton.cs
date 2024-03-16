@@ -11,12 +11,9 @@ public class MusicSettingButton : ButtonBase
     {
         Subscribe();
     }
-    private void OnDestroy()
+    protected override void Start()
     {
-        Unsubscribe();
-    }
-    private void Start()
-    {
+        base.Start();
         ChangeIcon();
     }
     public override void OnClick()
@@ -56,12 +53,12 @@ public class MusicSettingButton : ButtonBase
         ChangeIcon();
     }
 
-    private void Subscribe()
-    {
-        Event<OnChangeMusicSetting>.Subscribe(OnChangeMusicSetting);
-    }
-    private void Unsubscribe()
+    protected override void Unsubscribe()
     {
         Event<OnChangeMusicSetting>.Unsubscribe(OnChangeMusicSetting);
+    }
+    protected override void Subscribe()
+    {
+        Event<OnChangeMusicSetting>.Subscribe(OnChangeMusicSetting);
     }
 }
