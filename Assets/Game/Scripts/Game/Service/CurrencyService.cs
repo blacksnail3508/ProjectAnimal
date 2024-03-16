@@ -30,9 +30,9 @@ public static class CurrencyService
         }
     }
 
-    internal static string GetCoin()
+    internal static int GetCoin()
     {
-        return wallet.Coin.ToString();
+        return wallet.Coin;
     }
 
     static void Save(UserWallet wallet)
