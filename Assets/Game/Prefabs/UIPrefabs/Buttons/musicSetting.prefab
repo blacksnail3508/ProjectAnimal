@@ -169,19 +169,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3425024931803784381}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1001818910524864414}
-        m_TargetAssemblyTypeName: MusicSettingButton, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!95 &2280129055821408009
 Animator:
   serializedVersion: 5
@@ -215,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3993b62a5407411418f1a7c190fcc102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 8720056150524912976}
   settingIcon: {fileID: 5426922159392739207}
   iconOn: {fileID: 21300000, guid: b65cfa7cc1f399548a9566c99fae5d58, type: 3}
   iconOff: {fileID: 21300000, guid: 3c6998a3edeb69743b66575e65e97384, type: 3}

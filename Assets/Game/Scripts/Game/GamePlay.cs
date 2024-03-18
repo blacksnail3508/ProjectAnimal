@@ -63,8 +63,16 @@ public class GamePlay : MonoBehaviour
 
             if (GameServices.IsAllAnimalSafe())
             {
-                //predator is upset
-                CurrencyService.AddCoin(levelLibrary.listLevel[PlayerService.CurrentLevel].CoinReward);
+                //all animal safe
+                if (PlayerService.IsLevelUp ==true)
+                {
+                    CurrencyService.AddCoin(levelLibrary.listLevel[PlayerService.CurrentLevel].CoinReward);
+                }
+                else
+                {
+                    CurrencyService.AddCoin(5);
+                }
+
                 PlayerService.UpdateLevel();
                 GameServices.AnimalCelebrate();
 
@@ -83,7 +91,7 @@ public class GamePlay : MonoBehaviour
 
                     //hide animal
                     wolf.Hide();
-                    GameServices.UnsafeAnimal().ReturnPool();
+                    GameServices.UnsafeAnimals().ReturnPool();
 
                     //show combat
                     combat.SetPosition(wolf.positionX , wolf.positionY);

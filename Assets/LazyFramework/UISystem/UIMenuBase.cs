@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -26,15 +27,27 @@ namespace LazyFramework
         {
             DisplayService.ShowMenu(menuName , isHideAll);
         }
+        public void ShowPreviousMenu()
+        {
+            DisplayService.ShowPreviousMenu();
+        }
         protected virtual void Awake()
         {
             canvasGroup=GetComponent<CanvasGroup>();
-            director=GetComponent<PlayableDirector>();
+            director = GetComponent<PlayableDirector>();
             if (director!=null)
             {
                 director.timeUpdateMode=DirectorUpdateMode.UnscaledGameTime;
+                director.stopped+=delegate
+                {
+                    OnDirectorComplete();
+                };
             }
             Subscribe();
+        }
+        public virtual void OnDirectorComplete()
+        {
+
         }
         protected virtual void OnEnable()
         {

@@ -19,6 +19,7 @@ namespace LazyFramework
             Event<OnUIShowMenu>.Subscribe(Show);
             Event<OnUIHideAllMenu>.Subscribe(OnHideAllMenu);
             Event<OnUIShowLastMenu>.Subscribe(ShowLastMenu);
+            Event<OnShowPreviousMenu>.Subscribe(OnShowPreviousMenu);
         }
 
         private void Show(OnUIShowMenu e)
@@ -44,6 +45,11 @@ namespace LazyFramework
         private void ShowLastMenu(OnUIShowLastMenu e)
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        private void OnShowPreviousMenu(OnShowPreviousMenu e)
+        {
+            HideAllMenu();
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
         }
 
         public void ShowMenuByName(string menuName)
@@ -101,6 +107,7 @@ namespace LazyFramework
             Event<OnUIShowMenu>.Unsubscribe(Show);
             Event<OnUIHideAllMenu>.Unsubscribe(OnHideAllMenu);
             Event<OnUIShowLastMenu>.Unsubscribe(ShowLastMenu);
+            Event<OnShowPreviousMenu>.Unsubscribe(OnShowPreviousMenu);
         }
     }
 }

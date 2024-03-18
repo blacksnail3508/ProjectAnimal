@@ -14,6 +14,10 @@ namespace LazyFramework
         {
             Event<OnUIShowLastMenu>.Post(new OnUIShowLastMenu());
         }
+        public static void ShowPreviousMenu()
+        {
+            Event<OnShowPreviousMenu>.Post(new OnShowPreviousMenu());
+        }
         public static void ShowMessage(string message)
         {
             Event<OnShowMessage>.Post(new OnShowMessage(message));

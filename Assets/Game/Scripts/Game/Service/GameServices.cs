@@ -1,3 +1,4 @@
+using DG.Tweening;
 using LazyFramework;
 using System;
 using System.Collections.Generic;
@@ -93,7 +94,7 @@ public static class GameServices
 
         return true;
     }
-    public static Animal UnsafeAnimal()
+    public static Animal UnsafeAnimals()
     {
         foreach (var animal in listAnimal)
         {
@@ -120,11 +121,18 @@ public static class GameServices
     }
     public static void SetCameraZoom(Camera camera)
     {
+        camera?.DOKill();
         float mapSize = Mathf.Max(width , height);
         float screenResolution = Screen.width/(float)Screen.height;
 
         float deltaSize = MapLerp(screenResolution , 0.41f , 0.75f , 0f , 2f);
-        camera.orthographicSize=mapSize+deltaSize*2+4;
+
+        float finalSize = mapSize+deltaSize*2+4;
+
+        float startSize = finalSize*1.5f;
+
+        camera.orthographicSize = startSize;
+        camera.DOOrthoSize(finalSize,1.25f).SetDelay(3f);
     }
 
     public static Vector2 BoardPositionToLocalPosition(float valueX , float valueY)

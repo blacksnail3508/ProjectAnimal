@@ -16,6 +16,7 @@ public class UIPopupWin : UIPopupBase
     [Header("text")]
     [SerializeField] TMP_Text levelText;
     [SerializeField] GameObject nextButton;
+    [SerializeField] GameObject homeButton;
 
     [SerializeField] UnlockSkateSlider skateUnlocker;
     [SerializeField] Image clickBlock;
@@ -86,9 +87,16 @@ public class UIPopupWin : UIPopupBase
         levelText.text=$"Level {PlayerService.CurrentLevel+1}";
         AudioService.PlaySound(AudioName.Win);
 
-        if(PlayerService.CurrentLevel >= levelAsset.listLevel.Count)
+        Bug.Log($"current level {PlayerService.CurrentLevel}, max level = {levelAsset.listLevel.Count}");
+        if(PlayerService.CurrentLevel >= levelAsset.listLevel.Count-1)
         {
             nextButton.gameObject.SetActive(false);
+            homeButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            nextButton.gameObject.SetActive(true);
+            homeButton.gameObject.SetActive(false);
         }
         //get current best solution move count
 

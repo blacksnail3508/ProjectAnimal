@@ -473,8 +473,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1403713560}
     - target: {fileID: 1123765136787643258, guid: c448d684952520d40855e58878d9b431, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1123765136787643258, guid: c448d684952520d40855e58878d9b431, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2407945875544982048, guid: c448d684952520d40855e58878d9b431, type: 3}
+      propertyPath: m_Value
+      value: 69
       objectReference: {fileID: 0}
     - target: {fileID: 3371251364256954032, guid: c448d684952520d40855e58878d9b431, type: 3}
       propertyPath: m_IsActive
@@ -563,6 +571,26 @@ PrefabInstance:
     - target: {fileID: 6593709347371959701, guid: c448d684952520d40855e58878d9b431, type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986113601727394645, guid: c448d684952520d40855e58878d9b431, type: 3}
+      propertyPath: m_text
+      value: 69%
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986113601727394645, guid: c448d684952520d40855e58878d9b431, type: 3}
+      propertyPath: m_isRichText
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986113601727394645, guid: c448d684952520d40855e58878d9b431, type: 3}
+      propertyPath: m_parseCtrlCharacters
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8986113601727394645, guid: c448d684952520d40855e58878d9b431, type: 3}
+      propertyPath: m_useMaxVisibleDescender
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9000572585315357072, guid: c448d684952520d40855e58878d9b431, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -19,7 +19,7 @@ public class SoundSettingButton : ButtonBase
     public override void OnClick()
     {
         base.OnClick();
-        if (AudioService.IsSoundOn)
+        if (AudioService.IsSoundOn == true)
         {
             TurnOffSound();
         }

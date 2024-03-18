@@ -12,6 +12,10 @@ public class CoinWallet : MonoBehaviour
 
     int currentCoin;
     Coroutine changeEffect;
+    private void OnEnable()
+    {
+        coinText.text=CurrencyService.GetCoin().ToString();
+    }
     private void Start()
     {
         Subscribe();
@@ -31,12 +35,6 @@ public class CoinWallet : MonoBehaviour
 
     private void ShowChange(int amount)
     {
-        if (this.gameObject.activeSelf == false)
-        {
-            coinText.text = CurrencyService.GetCoin().ToString();
-            return;
-        }
-
         changeText?.DOKill();
         changeText.gameObject.SetActive(true);
         changeText.DOFade(1, 0);
@@ -53,14 +51,10 @@ public class CoinWallet : MonoBehaviour
         }
 
         if (changeEffect != null) StopCoroutine(changeEffect);
-        if (this.gameObject.activeSelf == false)
-        {
-            coinText.text = CurrencyService.GetCoin().ToString();
-            return;
-        }
+
         changeEffect = StartCoroutine(
-            TransitionNumber(currentCoin, CurrencyService.GetCoin(), gameConfig.Effect.coinChangeFadeTime));
-        HideChange(gameConfig.Effect.coinChangeFadeDelay, gameConfig.Effect.coinChangeFadeTime);
+            TransitionNumber(currentCoin , CurrencyService.GetCoin() , gameConfig.Effect.coinChangeFadeTime));
+        HideChange(gameConfig.Effect.coinChangeFadeDelay , gameConfig.Effect.coinChangeFadeTime);
     }
 
     private void HideChange(float delay, float fadeTime)

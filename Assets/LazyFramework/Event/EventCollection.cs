@@ -56,6 +56,7 @@ namespace LazyFramework
         }
     }
     public class OnUIShowLastMenu : IEvent { }
+    public class OnShowPreviousMenu: IEvent { }
     public class OnUIHideAllPopup : IEvent { }
     public class OnUIHideAllMenu : IEvent { }
     public class OnUIShowMenu : IEvent

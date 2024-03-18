@@ -1041,6 +1041,8 @@ MonoBehaviour:
   fadeTime: 0.5
   moveCountTxt: {fileID: 9211749255672557833}
   text: {fileID: 5349996808961739923}
+  bg: {fileID: 1978899589513146231}
+  centerMask: {fileID: 1260578289746161476}
 --- !u!320 &3345241425153360504
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -1051,17 +1053,11 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: f5b3a2a71e1cd1143938d23a38209137, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 2
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -2792980232407905209, guid: 3fe0a4ce125c6d042b7c405c5b00fdd2, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 3373999927781393596, guid: 3fe0a4ce125c6d042b7c405c5b00fdd2, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 2806810506452723339, guid: 3fe0a4ce125c6d042b7c405c5b00fdd2, type: 2}
-    value: {fileID: 0}
   - key: {fileID: -1348087411636512813, guid: f5b3a2a71e1cd1143938d23a38209137, type: 2}
     value: {fileID: 9060514193710646712}
   - key: {fileID: 8548362499606417827, guid: f5b3a2a71e1cd1143938d23a38209137, type: 2}

@@ -94,19 +94,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3247641435256370931}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7483109600169282983}
-        m_TargetAssemblyTypeName: VibrationSettingButton, Assembly-CSharp
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!95 &2627784915675804677
 Animator:
   serializedVersion: 5
@@ -140,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f4661df294e1546a85fc7f8d64fab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 4814556775116912220}
   settingIcon: {fileID: 8107374115053673611}
   iconOn: {fileID: 21300000, guid: 2af3b00a686d31e41b38e87167b11c40, type: 3}
   iconOff: {fileID: 21300000, guid: 960e49faa6552f24993918c6c4aaf4b8, type: 3}

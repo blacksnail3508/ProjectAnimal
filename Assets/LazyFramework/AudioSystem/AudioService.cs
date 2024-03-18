@@ -13,7 +13,7 @@ namespace LazyFramework
         public static bool IsSoundOn { get => PlayerPrefs.GetInt(KeyString.IsSoundOn , 1) == 0 ? false : true;}
         public static void SetSound(bool isOn)
         {
-            PlayerPrefs.SetInt(KeyString.IsSoundOn , isOn==false ? 0 : 1);
+            PlayerPrefs.SetInt(KeyString.IsSoundOn , isOn ==false ? 0 : 1);
 
             Event<OnChangeSoundSetting>.Post(new OnChangeSoundSetting(isOn));
         }
