@@ -16,6 +16,12 @@ public class History
         }
         return null;
     }
+
+    public bool IsUndoable()
+    {
+        return animals.Count > 0;
+    }
+
     public void Clear()
     {
         animals.Clear();

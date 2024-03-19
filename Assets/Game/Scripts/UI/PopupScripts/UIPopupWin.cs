@@ -87,7 +87,7 @@ public class UIPopupWin : UIPopupBase
         levelText.text=$"Level {PlayerService.CurrentLevel+1}";
         AudioService.PlaySound(AudioName.Win);
 
-        Bug.Log($"current level {PlayerService.CurrentLevel}, max level = {levelAsset.listLevel.Count}");
+        //Bug.Log($"current level {PlayerService.CurrentLevel}, max level = {levelAsset.listLevel.Count}");
         if(PlayerService.CurrentLevel >= levelAsset.listLevel.Count-1)
         {
             nextButton.gameObject.SetActive(false);

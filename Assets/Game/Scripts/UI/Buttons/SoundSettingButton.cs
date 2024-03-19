@@ -30,7 +30,7 @@ public class SoundSettingButton : ButtonBase
     }
     private void ChangeIcon()
     {
-        if (AudioService.IsSoundOn)
+        if(AudioService.IsSoundOn)
         {
             settingIcon.sprite = iconOn;
         }

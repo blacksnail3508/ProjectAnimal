@@ -31,5 +31,5 @@ MonoBehaviour:
     popupPrefab: {fileID: 4850545099671313182, guid: 29a4589e060f81d498532c6ec257db30, type: 3}
   - popupName: PopupPurchaseFail
     popupPrefab: {fileID: 4850545099671313182, guid: 5db2d442dd58f354eac2b7cd77f289e2, type: 3}
-  - popupName: PopupSkate
-    popupPrefab: {fileID: 4850545099671313182, guid: bffbeee728488d2468e90ead79bbbdd0, type: 3}
+  - popupName: PopupBonusCoin
+    popupPrefab: {fileID: 4850545099671313182, guid: 7d6465c5ca864034ea19f34e3a5d5b81, type: 3}

@@ -235,17 +235,18 @@ public static class GameServices
     {
         history.Push(cannon);
     }
+    static AnimalCannon lastMove;
     public static void Undo()
     {
         if (!UndoEnable) return;
 
-        var lastMove = history.Pop();
-        if (lastMove!=null)
+        if (history.IsUndoable())
         {
             //success on spend coin
             Action OnSuccess = () =>
             {
                 //undo move
+                lastMove = history.Pop();
                 lastMove.Undo();
                 AudioService.PlaySound(AudioName.Undo);
             };
@@ -253,7 +254,7 @@ public static class GameServices
             //failed on spend coin
             Action OnFailed = () =>
             {
-
+                DisplayService.ShowPopup(UIPopupName.PopupBonusCoin);
             };
 
             CurrencyService.Spend(5 , OnSuccess , OnFailed);

@@ -63,8 +63,10 @@ public class GamePlay : MonoBehaviour
 
             if (GameServices.IsAllAnimalSafe())
             {
+                PlayerService.UpdateLevel();
+                GameServices.AnimalCelebrate();
                 //all animal safe
-                if (PlayerService.IsLevelUp ==true)
+                if (PlayerService.IsLevelUp == true)
                 {
                     CurrencyService.AddCoin(levelLibrary.listLevel[PlayerService.CurrentLevel].CoinReward);
                 }
@@ -72,9 +74,6 @@ public class GamePlay : MonoBehaviour
                 {
                     CurrencyService.AddCoin(5);
                 }
-
-                PlayerService.UpdateLevel();
-                GameServices.AnimalCelebrate();
 
                 Invoke("ShowPopupWin" , 1);
             }
