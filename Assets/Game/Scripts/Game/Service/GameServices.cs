@@ -230,35 +230,11 @@ public static class GameServices
     #region UNDO
     public static bool UndoEnable = true;
     static History history = new History();
+    public static History History {  get { return history; } }
 
     public static void WriteHistory(AnimalCannon cannon)
     {
         history.Push(cannon);
-    }
-    static AnimalCannon lastMove;
-    public static void Undo()
-    {
-        if (!UndoEnable) return;
-
-        if (history.IsUndoable())
-        {
-            //success on spend coin
-            Action OnSuccess = () =>
-            {
-                //undo move
-                lastMove = history.Pop();
-                lastMove.Undo();
-                AudioService.PlaySound(AudioName.Undo);
-            };
-
-            //failed on spend coin
-            Action OnFailed = () =>
-            {
-                DisplayService.ShowPopup(UIPopupName.PopupBonusCoin);
-            };
-
-            CurrencyService.Spend(5 , OnSuccess , OnFailed);
-        }
     }
 
     public static void ClearHistory()

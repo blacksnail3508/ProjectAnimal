@@ -24,6 +24,11 @@ public class LevelAsset : ScriptableObject
             }
         }
     }
+
+    public Sprite GetHint(int index)
+    {
+        return listLevel[index].hint;
+    }
 }
 
 [Serializable]
@@ -37,6 +42,8 @@ public class Level
     public int sizeY;
     public List<CannonData> listCannon = new List<CannonData>();
     public List<ObstacleData> listObstacle = new List<ObstacleData>();
+
+    public Sprite hint;
 }
 
 [Serializable]

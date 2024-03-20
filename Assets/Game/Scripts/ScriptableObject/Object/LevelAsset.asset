@@ -25,6 +25,7 @@ MonoBehaviour:
       posY: 1
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: 242fc2d2f68976943ab0b54a6f7294ed, type: 3}
   - name: Level 2
     CoinReward: 5
     sizeX: 3
@@ -40,6 +41,7 @@ MonoBehaviour:
       posY: 2
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: 0852815e1ab7788499b7b733c018a5a3, type: 3}
   - name: Level 3
     CoinReward: 5
     sizeX: 3
@@ -58,6 +60,7 @@ MonoBehaviour:
       posY: -1
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: 5c5b32d99d2e6934aa2a2373f96d84fe, type: 3}
   - name: Level 4
     CoinReward: 5
     sizeX: 4
@@ -70,6 +73,7 @@ MonoBehaviour:
       posY: 2
       animalCount: 2
     listObstacle: []
+    hint: {fileID: 21300000, guid: af4ab731f61fa154ea3e1ad201554a08, type: 3}
   - name: Level 5
     CoinReward: 5
     sizeX: 4
@@ -88,6 +92,7 @@ MonoBehaviour:
       posY: -1
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: e7f8198e8fd89f249bb413fb3fe3bae6, type: 3}
   - name: Level 6
     CoinReward: 5
     sizeX: 4
@@ -106,6 +111,7 @@ MonoBehaviour:
       posY: 2
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: af70e312633f71a4999c98c4774a9eb2, type: 3}
   - name: Level 7
     CoinReward: 5
     sizeX: 4
@@ -124,6 +130,7 @@ MonoBehaviour:
       posY: 2
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: faf9588ef9e627a41afdb24ebaf836a4, type: 3}
   - name: Level 8
     CoinReward: 5
     sizeX: 4
@@ -142,6 +149,7 @@ MonoBehaviour:
       posY: 2
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: 57a57a5e7959ff042b4f9919b1717999, type: 3}
   - name: Level 9
     CoinReward: 5
     sizeX: 4
@@ -160,6 +168,7 @@ MonoBehaviour:
       posY: 3
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: 39628f4084c23c041967e9852a44ff2e, type: 3}
   - name: Level 10
     CoinReward: 20
     sizeX: 4
@@ -178,6 +187,7 @@ MonoBehaviour:
       posY: -1
       animalCount: 2
     listObstacle: []
+    hint: {fileID: 21300000, guid: d5c32e87dafed3b42b9805465d95ef41, type: 3}
   - name: Level 11
     CoinReward: 5
     sizeX: 4
@@ -196,6 +206,7 @@ MonoBehaviour:
       posY: 1
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: e6f23aaaf05b3ec4e98d7ec34fef0727, type: 3}
   - name: Level 12
     CoinReward: 5
     sizeX: 4
@@ -214,6 +225,7 @@ MonoBehaviour:
       posY: 1
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: 99a8677f21901ab48a544064c34a6ef3, type: 3}
   - name: Level 13
     CoinReward: 5
     sizeX: 5
@@ -232,6 +244,7 @@ MonoBehaviour:
       posY: -1
       animalCount: 2
     listObstacle: []
+    hint: {fileID: 21300000, guid: 27fe15bac261acf4bbad755570f9694e, type: 3}
   - name: Level 14
     CoinReward: 5
     sizeX: 5
@@ -262,6 +275,7 @@ MonoBehaviour:
       posY: 2
       animalCount: 2
     listObstacle: []
+    hint: {fileID: 21300000, guid: 99b512089964ad147a111be7780efefd, type: 3}
   - name: Level 15
     CoinReward: 5
     sizeX: 5
@@ -298,6 +312,7 @@ MonoBehaviour:
       posY: 2
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: 60635cc762ad968409df94ee3455f751, type: 3}
   - name: Level 16
     CoinReward: 5
     sizeX: 5
@@ -316,6 +331,7 @@ MonoBehaviour:
     - posX: 3
       posY: 1
       type: 1
+    hint: {fileID: 21300000, guid: ac06916de169d58468a58ff5e1f552b3, type: 3}
   - name: Level 17
     CoinReward: 5
     sizeX: 5
@@ -349,6 +365,7 @@ MonoBehaviour:
     - posX: 2
       posY: 3
       type: 1
+    hint: {fileID: 21300000, guid: df81a7a1704812d408a7248bc1ed229a, type: 3}
   - name: Level 18
     CoinReward: 5
     sizeX: 6
@@ -394,6 +411,7 @@ MonoBehaviour:
     - posX: 3
       posY: 2
       type: 1
+    hint: {fileID: 21300000, guid: de349361c89f5b6478493ccc32385b52, type: 3}
   - name: Level 19
     CoinReward: 5
     sizeX: 7
@@ -436,6 +454,7 @@ MonoBehaviour:
     - posX: 5
       posY: 2
       type: 1
+    hint: {fileID: 21300000, guid: c5a92dc5c4d94984abbf5b47d78607bf, type: 3}
   - name: Level 20
     CoinReward: 20
     sizeX: 6
@@ -493,6 +512,7 @@ MonoBehaviour:
     - posX: 2
       posY: 1
       type: 1
+    hint: {fileID: 21300000, guid: 72cd710f44d63be42b6010ca8704684f, type: 3}
   - name: Level 21
     CoinReward: 5
     sizeX: 6
@@ -532,6 +552,7 @@ MonoBehaviour:
     - posX: 2
       posY: 2
       type: 1
+    hint: {fileID: 21300000, guid: e98d8063914b0104a917ad9427241220, type: 3}
   - name: Level 22
     CoinReward: 5
     sizeX: 6
@@ -583,6 +604,7 @@ MonoBehaviour:
     - posX: 3
       posY: 4
       type: 1
+    hint: {fileID: 21300000, guid: b89e352e871ad4a48a455c50e4224691, type: 3}
   - name: Level 23
     CoinReward: 5
     sizeX: 8
@@ -628,6 +650,7 @@ MonoBehaviour:
     - posX: 1
       posY: 5
       type: 1
+    hint: {fileID: 21300000, guid: 048ea1828ab14fa4fb340c7aef86feb9, type: 3}
   - name: Level 24
     CoinReward: 5
     sizeX: 7
@@ -679,6 +702,7 @@ MonoBehaviour:
     - posX: 4
       posY: 6
       type: 1
+    hint: {fileID: 21300000, guid: 9adc593e7677ad745a9de5cc899f7dbf, type: 3}
   - name: Level 25
     CoinReward: 5
     sizeX: 7
@@ -718,6 +742,7 @@ MonoBehaviour:
     - posX: 5
       posY: 1
       type: 1
+    hint: {fileID: 21300000, guid: 016bc705e934d404daee5e96df25072f, type: 3}
   - name: Level 26
     CoinReward: 5
     sizeX: 7
@@ -775,6 +800,7 @@ MonoBehaviour:
     - posX: 5
       posY: 5
       type: 1
+    hint: {fileID: 21300000, guid: 3b5b62f840548f146b16722251d9f734, type: 3}
   - name: Level 27
     CoinReward: 5
     sizeX: 7
@@ -829,6 +855,7 @@ MonoBehaviour:
       posY: 0
       animalCount: 1
     listObstacle: []
+    hint: {fileID: 21300000, guid: 3032248f704b6e34ebdeb117c9d37197, type: 3}
   - name: Level 28
     CoinReward: 5
     sizeX: 6
@@ -874,6 +901,7 @@ MonoBehaviour:
     - posX: 2
       posY: 2
       type: 1
+    hint: {fileID: 21300000, guid: 474860a47a7a12a44bc4c660df1e4aa4, type: 3}
   - name: Level 29
     CoinReward: 5
     sizeX: 7
@@ -922,6 +950,7 @@ MonoBehaviour:
     - posX: 2
       posY: 1
       type: 1
+    hint: {fileID: 21300000, guid: 47087cd0d6edcce45afbedd189e0afb6, type: 3}
   - name: Level 30
     CoinReward: 20
     sizeX: 7
@@ -973,3 +1002,4 @@ MonoBehaviour:
     - posX: 2
       posY: 4
       type: 1
+    hint: {fileID: 21300000, guid: 8d16188b748c20b4392a53c1a60ddaf4, type: 3}

@@ -6,6 +6,7 @@ public class GameConfig : ScriptableObject
     public GateConfig Cannon = new GateConfig();
     public AnimalConfig Animal = new AnimalConfig();
     public EffectConfig Effect = new EffectConfig();
+    public EconomyConfig Economy = new EconomyConfig();
 }
 [Serializable] public struct GateConfig
 {
@@ -26,5 +27,11 @@ public class GameConfig : ScriptableObject
 
     public float coinChangeFadeDelay;
     public float coinChangeFadeTime;
+}
+[Serializable] public struct EconomyConfig
+{
+    public int HintCost;
+    public int UndoCost;
+    public int UFOCost;
 }
 

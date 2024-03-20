@@ -57,6 +57,7 @@ namespace LazyFramework
             {
                 director.Play();
             }
+            transform.SetAsFirstSibling();
         }
         public virtual void OnHide()
         {

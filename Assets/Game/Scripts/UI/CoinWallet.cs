@@ -14,16 +14,16 @@ public class CoinWallet : MonoBehaviour
     Coroutine changeEffect;
     private void OnEnable()
     {
+        Subscribe();
         coinText.text=CurrencyService.GetCoin().ToString();
     }
     private void Start()
     {
-        Subscribe();
         currentCoin = CurrencyService.GetCoin();
 
         coinText.text = currentCoin.ToString();
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
         Unsubscribe();
     }
@@ -35,6 +35,8 @@ public class CoinWallet : MonoBehaviour
 
     private void ShowChange(int amount)
     {
+        if (amount==0) return;
+
         changeText?.DOKill();
         changeText.gameObject.SetActive(true);
         changeText.DOFade(1, 0);

@@ -24,3 +24,7 @@ MonoBehaviour:
     loseEmojiRate: 1
     coinChangeFadeDelay: 0.75
     coinChangeFadeTime: 0.25
+  Economy:
+    HintCost: 30
+    UndoCost: 5
+    UFOCost: 50
