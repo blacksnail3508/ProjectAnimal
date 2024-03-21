@@ -34,6 +34,10 @@ namespace LazyFramework
         {
             Event<OnUIHideAllMenu>.Post(new OnUIHideAllMenu());
         }
+        public static void HidePopup(string popupname)
+        {
+            Event<OnUIHidePopup>.Post(new OnUIHidePopup(popupname));
+        }
     }
 }
 

@@ -16,7 +16,7 @@ public class ObstacleSpawner : MonoBehaviour
             case ObjectType.Box:
                 var box = CreateOrReuseBox();
                 box.gameObject.SetActive(true);
-                box.SetPosition(data.posX , data.posY);
+                box.SetPositionOnBoard(data.posX , data.posY);
                 break;
         }
     }

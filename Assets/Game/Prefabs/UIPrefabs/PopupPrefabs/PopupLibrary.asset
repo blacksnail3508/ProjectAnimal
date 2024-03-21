@@ -35,3 +35,5 @@ MonoBehaviour:
     popupPrefab: {fileID: 4850545099671313182, guid: 7d6465c5ca864034ea19f34e3a5d5b81, type: 3}
   - popupName: PopupHint
     popupPrefab: {fileID: 4850545099671313182, guid: f294551819b0d0c45978daee94d05406, type: 3}
+  - popupName: PopupUfo
+    popupPrefab: {fileID: 4850545099671313182, guid: 5b9b4be8cb5d1864fbbf2b698604c812, type: 3}

@@ -13,10 +13,10 @@ public enum AnimalType
     Prey = 0,
     Predator = 1,
 }
-public enum GameState
+public enum GameMode
 {
-    Idle,
-    Playing,
+    Normal= 0,
+    Ufo = 1,
 }
 public enum FaceDirection
 {

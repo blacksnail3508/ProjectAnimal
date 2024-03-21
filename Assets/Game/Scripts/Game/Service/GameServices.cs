@@ -1,6 +1,5 @@
 using DG.Tweening;
 using LazyFramework;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,12 +43,22 @@ public static class GameServices
     static float width => currentLevelSize.x;
     static float height => currentLevelSize.y;
 
-    private static List<BoardObject> listAnimal = new List<BoardObject>();
+    private static List<IAnimal> listAnimal = new List<IAnimal>();
     private static List<BoardObject> listObstacles = new List<BoardObject>();
     private static List<AnimalCannon> listCannon = new List<AnimalCannon>();
 
     public static AnimalPool AnimalPool;
 
+    public static GameMode GameMode {  get; private set; }
+
+    public static void StartUfoMode()
+    {
+        GameMode=GameMode.Ufo;
+    }
+    public static void StopUfoMode()
+    {
+        GameMode=GameMode.Normal;
+    }
     public static void ClearCannon()
     {
         listCannon.Clear();
@@ -60,9 +69,9 @@ public static class GameServices
     }
     public static bool IsAllCannonShot()
     {
-        foreach(var cannon in listCannon)
+        foreach (var cannon in listCannon)
         {
-            if (cannon.IsEmpty() == false) return false;
+            if (cannon.IsEmpty()==false) return false;
         }
 
         return true;
@@ -85,7 +94,7 @@ public static class GameServices
     {
         foreach (var animal in listAnimal)
         {
-            if (animal.gameObject.activeSelf==true&&
+            if (animal.IsActive() == true &&
                 animal.IsSafe()==false)
             {
                 return false;
@@ -98,7 +107,7 @@ public static class GameServices
     {
         foreach (var animal in listAnimal)
         {
-            if (animal.gameObject.activeSelf==true&&
+            if (animal.IsActive() == true&&
                 animal.IsSafe()==false)
             {
                 return animal as Animal;
@@ -107,7 +116,7 @@ public static class GameServices
         return null;
     }
 
-    public static void AddAnimal(BoardObject obj)
+    public static void AddAnimal(IAnimal obj)
     {
         listAnimal.Add(obj);
     }
@@ -131,8 +140,8 @@ public static class GameServices
 
         float startSize = finalSize*1.5f;
 
-        camera.orthographicSize = startSize;
-        camera.DOOrthoSize(finalSize,1.25f).SetDelay(3f);
+        camera.orthographicSize=startSize;
+        camera.DOOrthoSize(finalSize , 1.25f).SetDelay(3f);
     }
 
     public static Vector2 BoardPositionToLocalPosition(float valueX , float valueY)
@@ -156,7 +165,7 @@ public static class GameServices
         //if any animal stand on that
         foreach (var animal in listAnimal)
         {
-            if (animal.gameObject.activeSelf==true)
+            if (animal.IsActive()==true)
             {
                 if (animal.IsOccupied(x , y)==true)
                 {
@@ -196,16 +205,16 @@ public static class GameServices
         if (y>height-1) return null;
 
         //check obj
-        foreach (var obj in listAnimal)
+        foreach (var animal in listAnimal)
         {
-            if (obj.GetBoardPosition().x==x&&obj.GetBoardPosition().y==y)
+            if (animal.GetPosition().x==x && animal.GetPosition().y==y)
             {
-                if (obj.gameObject.activeSelf==false)
+                if (animal.IsActive()==false)
                 {
                 }
                 else
                 {
-                    result.Add(obj);
+                    result.Add(animal.GetBoardObject());
                 }
             }
         }
@@ -230,7 +239,7 @@ public static class GameServices
     #region UNDO
     public static bool UndoEnable = true;
     static History history = new History();
-    public static History History {  get { return history; } }
+    public static History History { get { return history; } }
 
     public static void WriteHistory(AnimalCannon cannon)
     {

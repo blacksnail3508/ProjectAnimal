@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Animal : BoardObject
+public class Animal : BoardObject, IAnimal
 {
     [SerializeField] GameConfig config;
     [SerializeField] Transform skate;
@@ -16,6 +16,13 @@ public class Animal : BoardObject
     [SerializeField] PigAnimator animator;
     [SerializeField] SkateBoard skateBoard;
     [SerializeField] PigConversation conversation;
+    [SerializeField] BoxCollider2D boxCollider;
+
+    bool isCaptured = false;
+    bool isShoot = false;
+    public bool IsShoot() { return isShoot;}
+    public bool IsCaptured() {return isCaptured;}
+    Action onStop = null;
     public void PlayIdle()
     {
         animator.Idle();
@@ -29,8 +36,10 @@ public class Animal : BoardObject
     {
         GameServices.AddAnimal(this);
     }
-    public void Move(Action OnStop = null)
+    public void Move()
     {
+        isShoot=true;
+
         //parse enum direction to vector
         var moveDirection = GameServices.DirectionToVector(direction);
         var backward = GameServices.DirectionToVector(direction) * config.Animal.backwardScale;
@@ -92,7 +101,7 @@ public class Animal : BoardObject
                 }
 
                 AudioService.PlaySound(AudioName.Pig);
-                OnStop?.Invoke();
+                onStop?.Invoke();
             });
         });
     }
@@ -100,6 +109,8 @@ public class Animal : BoardObject
     //calculate it position and bodyLength
     public override bool IsOccupied(int x , int y)
     {
+        if (isCaptured==true) return false;
+
         //this head position
         if (x==positionX&&y==positionY) return true;
 
@@ -139,20 +150,26 @@ public class Animal : BoardObject
             case FaceDirection.Left:
                 skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , -90));
                 spine.localPosition=new Vector3(0.5f , 0 , 0 );
-
+                boxCollider.size=new Vector2(2 , 1);
+                boxCollider.offset=new Vector2(0.5f , 0);
                 return 90;
             case FaceDirection.Right:
                 skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , 90));
                 spine.localPosition=new Vector3(-0.5f , 0 , 0);
-
+                boxCollider.size=new Vector2(2 , 1);
+                boxCollider.offset=new Vector2(-0.5f , 0);
                 return -90;
             case FaceDirection.Up:
                 skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , -180));
                 spine.localPosition=new Vector3(0 , -1f , 0);
+                boxCollider.size=new Vector2(1 , 2);
+                boxCollider.offset=new Vector2(0 , -0.5f);
                 return 0;
             case FaceDirection.Down:
                 skate.rotation=Quaternion.Euler(new Vector3(0 , 0 , 0));
                 spine.localPosition=new Vector3(0 , 0 , 0);
+                boxCollider.size=new Vector2(1 , 2);
+                boxCollider.offset=new Vector2(0 , 0.5f);
                 return -180;
         }
         return 0;
@@ -166,10 +183,14 @@ public class Animal : BoardObject
     {
         transform.DOKill();
         this.gameObject.SetActive(false);
+        isCaptured = false;
+        isShoot = false;
     }
 
-    public override bool IsSafe()
+    public bool IsSafe()
     {
+        if(isCaptured) return true;
+
         bool isHeadSafe = GameServices.IsPositionOnBoard(positionX , positionY);
         bool isTailSafe = false;
         switch (direction)
@@ -213,8 +234,51 @@ public class Animal : BoardObject
         }
         return Vector2.zero;
     }
-    public override void Playwin()
+    public void Playwin()
     {
         animator.PlayWin();
+    }
+
+    public void Captured()
+    {
+        isCaptured = true;
+        isShoot = true;
+        gameObject.SetActive(false);
+        onStop?.Invoke();
+    }
+    public void Uncaptured()
+    {
+        isCaptured = false;
+        isShoot = false;
+        gameObject.SetActive(true);
+    }
+    public void SetCallbackOnStop(Action onStop)
+    {
+        this.onStop = onStop;
+    }
+
+    public bool IsActive()
+    {
+        return this.gameObject.activeSelf;
+    }
+
+    public void SetPosition(float x , float y)
+    {
+        SetPositionOnBoard((int)x,(int)y);
+    }
+
+    bool IAnimal.IsOccupied(int x , int y)
+    {
+        return IsOccupied(x, y);
+    }
+
+    public Vector2 GetPosition()
+    {
+        throw new NotImplementedException();
+    }
+
+    public BoardObject GetBoardObject()
+    {
+        return this;
     }
 }

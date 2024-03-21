@@ -39,7 +39,7 @@ public class GamePlay : MonoBehaviour
         cage.Create(sizeX , sizeY);
 
         //relocate predator
-        wolf.SetPosition(-2 , sizeY+1);
+        wolf.SetPositionOnBoard(-2 , sizeY+1);
 
         //set camera size
         GameServices.SetCameraZoom(Camera.main);

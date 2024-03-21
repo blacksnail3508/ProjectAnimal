@@ -12,6 +12,8 @@ public static class UIPopupName
     public static string PopupPurchaseFail = "PopupPurchaseFail";
     public static string PopupBonusCoin = "PopupBonusCoin";
     public static string PopupHint = "PopupHint";
+
+    public static string PopupUfo = "PopupUfo";
 }
 public static class UIMenuName
 {

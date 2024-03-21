@@ -1,18 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using LazyFramework;
+using System;
+using TMPro;
 using UnityEngine;
 
-public class UFOButton : MonoBehaviour
+public class UFOButton : ButtonBase
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] GameConfig gameConfig;
+    [SerializeField] TMP_Text priceText;
+    private void Awake()
     {
-        
+        priceText.text=$"{gameConfig.Economy.UFOCost}";
+    }
+    public override void OnClick()
+    {
+        base.OnClick();
+        StartUfo();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void StartUfo()
     {
-        
+        Action onSuccess = () =>
+        {
+            GameServices.StartUfoMode();
+            DisplayService.ShowPopup(UIPopupName.PopupUfo);
+        };
+        Action onFail = () =>
+        {
+            DisplayService.ShowPopup(UIPopupName.PopupBonusCoin);
+        };
+
+        CurrencyService.Spend(gameConfig.Economy.UFOCost, onSuccess, onFail);
     }
 }

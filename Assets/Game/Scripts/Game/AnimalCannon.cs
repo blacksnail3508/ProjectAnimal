@@ -20,7 +20,7 @@ public class AnimalCannon : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [Header("Parameters")]
     [SerializeField] FaceDirection direction;
-    [SerializeField] List<Animal> loadedAnimals = new List<Animal>();
+    [SerializeField] List<IAnimal> loadedAnimals = new List<IAnimal>();
 
     [Header("Sorting group")]
     [SerializeField] SortingGroup columnUp;
@@ -152,6 +152,7 @@ public class AnimalCannon : MonoBehaviour
             var _direction = GameServices.DirectionToVector(direction);
 
             animal.SetPosition(posX-(int)_direction.x*2*i , posY-(int)_direction.y*2*i);
+            SetCallbackStop(animal);
         }
         Open();
 
@@ -199,50 +200,68 @@ public class AnimalCannon : MonoBehaviour
         shoot++;
         box.enabled=false;
 
-        //create callback
+        //move
+        animal.Move();
+    }
+    private void SetCallbackStop(Animal animal)
+    {
         Action onStop = () =>
         {
-            Bug.Log("Callback stop");
 
-            //check if it realy get inside
-            if(animal.IsSafe() == true)
+            if (this.IsEmpty()==false)
             {
-                box.enabled=true;
 
-                //sort if queue is remaining
-                if (loadedAnimals.Count > shoot)
-                {
-                    //sort
-                    SortAnimal();
-                }
-                else //if no animal remaining, check if all animal is get inside cage
-                {
-                    Close();
-                    GameServices.OnCannonShot();
-                }
-                //GameServices.OnCannonShot();
+            }
+            else //shoot end
+            {
+                Close();
+            }
+
+            if (animal.IsSafe()==false)
+            {
+                isStuck=true;
+                box.enabled=false;
+                Open();
             }
             else
             {
-                isStuck = true;
-                GameServices.OnCannonShot();
-                box.enabled=false;
+                isStuck=false;
+                SortAnimal();
+                box.enabled=true;
             }
-        };
 
-        //move
-        animal.Move(onStop);
+
+
+            GameServices.OnCannonShot();
+        };
+        animal.SetCallbackOnStop(onStop);
+    }
+
+    public bool IsEmpty()
+    {
+        foreach (IAnimal animal in loadedAnimals)
+        {
+            if (animal.IsShoot() == false) return false;
+        }
+
+        return true;
     }
 
     private void SortAnimal()
     {
+        int remaining = 0;
         var _direction = GameServices.DirectionToVector(direction);
-        for (int i = shoot; i < loadedAnimals.Count; i++)
+        for (int i = 0; i < loadedAnimals.Count; i++)
         {
-            int positionInCannon = i-shoot;
+            if(loadedAnimals[i].IsCaptured() == true) continue;
+            if(loadedAnimals[i].IsShoot()) continue;
+
+            int positionInCannon = remaining;
             loadedAnimals[i].SetPosition(posX-(int)_direction.x*2*positionInCannon , posY-(int)_direction.y*2*positionInCannon);
+            remaining++;
         }
     }
+
     private void ReleaseLoadedAnimals()
     {
         foreach (var animal in loadedAnimals)
@@ -257,15 +276,19 @@ public class AnimalCannon : MonoBehaviour
         isStuck =false;
         //recall last shoot animal, then sort
         shoot--;
-        SortAnimal();
+
+        //SortAnimal();
+        var _direction = GameServices.DirectionToVector(direction);
+        for (int i = shoot; i<loadedAnimals.Count; i++)
+        {
+            int positionInCannon = i-shoot;
+            loadedAnimals[i].Uncaptured();
+            loadedAnimals[i].SetPosition(posX-(int)_direction.x*2*positionInCannon , posY-(int)_direction.y*2*positionInCannon);
+        }
+
         Open();
 
         //re-allow click
         box.enabled=true;
-    }
-    public bool IsEmpty()
-    {
-        if(isStuck) return true;
-        return loadedAnimals.Count - shoot == 0;
     }
 }

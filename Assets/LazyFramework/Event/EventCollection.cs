@@ -55,6 +55,14 @@ namespace LazyFramework
             Bug.Log("OnShowPopup "+popupName);
         }
     }
+    public class OnUIHidePopup : IEvent
+    {
+        public string popupName;
+        public OnUIHidePopup(string popupName)
+        {
+            this.popupName=popupName;
+        }
+    }
     public class OnUIShowLastMenu : IEvent { }
     public class OnShowPreviousMenu: IEvent { }
     public class OnUIHideAllPopup : IEvent { }

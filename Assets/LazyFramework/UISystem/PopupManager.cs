@@ -19,7 +19,20 @@ namespace LazyFramework
         private void SubcribeEvents()
         {
             Event<OnUIShowPopup>.Subscribe(Show);
+            Event<OnUIHidePopup>.Subscribe(Hide);
             Event<OnUIHideAllPopup>.Subscribe(OnUIHideAllPopup);
+        }
+
+        private void Hide(OnUIHidePopup e)
+        {
+            // check if popup already created
+            for (int i = 0; i<listPopup.Count; i++)
+            {
+                if (e.popupName.Equals(listPopup[i].popupName))
+                {
+                    listPopup[i].gameObject.SetActive(false);
+                }
+            }
         }
 
         private void Show(OnUIShowPopup e)
@@ -79,6 +92,7 @@ namespace LazyFramework
         private void UnsubcrideEvents()
         {
             Event<OnUIShowPopup>.Unsubscribe(Show);
+            Event<OnUIHidePopup>.Unsubscribe(Hide);
             Event<OnUIHideAllPopup>.Unsubscribe(OnUIHideAllPopup);
         }
     }
