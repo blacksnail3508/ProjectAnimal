@@ -15,6 +15,8 @@ public class UFOButton : ButtonBase
     public override void OnClick()
     {
         base.OnClick();
+
+        if (!GameServices.UndoEnable) return;
         StartUfo();
     }
 

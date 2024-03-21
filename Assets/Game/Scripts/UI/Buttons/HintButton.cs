@@ -16,6 +16,8 @@ public class HintButton : ButtonBase
     public override void OnClick()
     {
         base.OnClick();
+
+        if (!GameServices.UndoEnable) return;
         ShowHint();
     }
 
