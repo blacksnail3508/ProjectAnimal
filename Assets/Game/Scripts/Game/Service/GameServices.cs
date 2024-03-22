@@ -71,6 +71,7 @@ public static class GameServices
     {
         foreach (var cannon in listCannon)
         {
+            if (cannon.IsStuck()==true) continue;
             if (cannon.IsEmpty()==false) return false;
         }
 

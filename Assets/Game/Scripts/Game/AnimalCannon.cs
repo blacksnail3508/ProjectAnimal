@@ -219,9 +219,9 @@ public class AnimalCannon : MonoBehaviour
 
             if (animal.IsSafe()==false)
             {
-                isStuck=true;
-                box.enabled=false;
                 Open();
+                isStuck = true;
+                box.enabled = false;
             }
             else
             {
@@ -229,8 +229,6 @@ public class AnimalCannon : MonoBehaviour
                 SortAnimal();
                 box.enabled=true;
             }
-
-
 
             GameServices.OnCannonShot();
         };
@@ -245,6 +243,10 @@ public class AnimalCannon : MonoBehaviour
         }
 
         return true;
+    }
+    public bool IsStuck()
+    {
+        return isStuck;
     }
 
     private void SortAnimal()

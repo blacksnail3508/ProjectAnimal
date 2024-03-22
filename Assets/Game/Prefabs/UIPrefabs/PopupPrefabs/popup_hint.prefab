@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 2532248685075143563}
   - component: {fileID: 4040939582204453655}
   - component: {fileID: 7309077305488426736}
+  - component: {fileID: 7976294598751657275}
   m_Layer: 5
   m_Name: popup
   m_TagString: Untagged
@@ -289,6 +290,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &7976294598751657275
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2167176074125665547}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3575194523822957242
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +531,7 @@ GameObject:
   - component: {fileID: 2272860408449031403}
   - component: {fileID: 1367070497832408437}
   - component: {fileID: 7035884017836060755}
+  - component: {fileID: 8359278148708061628}
   m_Layer: 5
   m_Name: popup_hint
   m_TagString: Untagged
@@ -571,6 +594,25 @@ MonoBehaviour:
   levelLibrary: {fileID: 11400000, guid: 8d5506b316d454d44a39bbf56e62a6a3, type: 2}
   hintImage: {fileID: 3532460568214939980}
   levelText: {fileID: 4051177835717279695}
+--- !u!320 &8359278148708061628
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4850545099671313182}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: c1427a1b68da8d442b5012a64e502ecf, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 8300616643324554465, guid: c1427a1b68da8d442b5012a64e502ecf, type: 2}
+    value: {fileID: 7976294598751657275}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &5946512662532452549
 GameObject:
   m_ObjectHideFlags: 0
